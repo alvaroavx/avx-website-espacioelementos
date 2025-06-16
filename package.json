@@ -15,9 +15,11 @@
     "astro": "^5.8.0"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.7",
-    "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.3",
-    "tailwindcss": "^4.1.7"
-  }
+    "@tailwindcss/postcss": "^4.1.7"
+  },
+  "description": "```sh npm create astro@latest -- --template blog ```",
+  "main": "postcss.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
