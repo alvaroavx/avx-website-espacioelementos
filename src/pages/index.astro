@@ -3,7 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-
+import '../styles/carousel.css';
 ---
 
 <!doctype html>
@@ -13,9 +13,62 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	</head>
 	<body class="bg-white text-gray-900">
 		<Header />
-		<div class="bg-blue-100 text-gray-800 p-4 rounded-lg shadow-md">
-			¡Hola Espacio Elementos!
-		</div>
+		
+		<!-- Banner Principal -->
+		<section id="hero">
+			<div id="carouselElementos" class="carousel slide" data-bs-ride="carousel">
+				<div class="carousel-inner">
+
+				<!-- Slide 1 -->
+				<div class="carousel-item active">
+					<img src="/images/banners/banner-1.png" class="d-block w-100" alt="Primera imagen" />
+					<div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-center text-white h-100 caption-left">
+					<img src="/images/elementos-blanco.png" alt="Logo Espacio Elementos" style="height:80px;" />
+					<h2 class="display-4 mt-3">ENCUENTRA TU MEJOR VERSIÓN</h2>
+					<a href="#talleres" class="btn btn-warning btn-lg mt-4">Conoce nuestros talleres</a>
+					</div>
+				</div>
+				<!-- Slide 2 -->
+				<div class="carousel-item">
+					<img src="/images/banners/banner-2.png" class="d-block w-100" alt="Segunda imagen" />
+					<div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-center text-white h-100 caption-left">
+					<img src="/images/elementos-blanco.png" alt="Logo Espacio Elementos" style="height:80px;" />
+					<h2 class="display-4 mt-3">presentaciones en vivo</h2>
+					<a href="#nosotros" class="btn btn-warning btn-lg mt-4">Conócenos</a>
+					</div>
+				</div>
+				<!-- Slide 3 -->
+				<div class="carousel-item">
+					<img src="/images/banners/banner-3.png" class="d-block w-100" alt="Tercera imagen" />
+					<div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-center text-white h-100 caption-left">
+					<img src="/images/elementos-blanco.png" alt="Logo Espacio Elementos" style="height:80px;" />
+					<h2 class="display-4 mt-3">proyectos comunitarios</h2>
+					<a href="#servicios" class="btn btn-warning btn-lg mt-4">Explora nuestros servicios</a>
+					</div>
+				</div>
+				<!-- Slide 4 -->
+				<div class="carousel-item">
+					<img src="/images/banners/banner-4.png" class="d-block w-100" alt="Cuarta imagen" />
+					<div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-center text-white h-100 caption-left">
+					<img src="/images/elementos-blanco.png" alt="Logo Espacio Elementos" style="height:80px;" />
+					<h2 class="display-4 mt-3">jornadas de bienestar</h2>
+					<a href="#contacto" class="btn btn-warning btn-lg mt-4">Únete a Elementos</a>
+					</div>
+				</div>
+
+				</div>
+
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselElementos" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Anterior</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselElementos" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Siguiente</span>
+				</button>
+			</div>
+		</section>
+
 		<main class="p-8">
 			<h1 class="text-4xl font-bold">¡Hola desde Tailwind (modo manual)!</h1>
 			<p>

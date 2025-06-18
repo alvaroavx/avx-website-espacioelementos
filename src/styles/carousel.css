@@ -1,0 +1,54 @@
+/* Fuente Anton */
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+/* Ajustes del carrusel */
+#hero {
+    max-height: 700px;
+    overflow: hidden;
+}
+#hero .carousel-item {
+    height: 600px;
+}
+#hero .carousel-item img {
+    object-fit: cover;
+    height: 100%;
+    border-radius: 0px;
+}
+
+/* Estilos tipográficos */
+#hero .carousel-caption h2 {
+    font-family: 'Anton', sans-serif;
+    color: white;
+    font-size: 70px;
+    max-width: 500px;
+    text-transform: uppercase;
+}
+
+/* Botón amarillo personalizado */
+#hero .btn-warning {
+    background-color: #F9EF23;
+    border-color: #F9EF23;
+    color: #141414;
+    padding: 10px 40px;
+    border-radius: 0px;
+    text-transform: uppercase;
+}
+#hero .btn-warning:hover {
+    background-color: #e0a800;
+    border-color: #d39e00;
+}
+
+/* Hacer que la caption solo ocupe la mitad izquierda */
+.caption-left {
+  position: absolute;   /* bootstrap ya la posiciona absolute */
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  padding: 0 2rem;      /* algo de espacio lateral */
+}
+
+/* Opcional: si aparece right automáticamente, anúlalo */
+.caption-left.right {
+  right: auto;
+}
