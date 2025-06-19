@@ -6,6 +6,7 @@
 
 /* Fuente Anton */
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;700&display=swap');
 
 :root {
 	--accent: #2337ff;
@@ -164,4 +165,47 @@ hr {
 	color: #000 !important;
 	font-weight: 400;
 	font-size: 28px;
+}
+
+/* Bajada */
+/* 1. Aumentar espacio general arriba/abajo */
+.summary-section {
+  font-family: 'Source Serif Pro', serif;
+  background: #fff;
+  font-weight: 600;
+  font-size: 24px;
+  padding-top: 3rem;    /* más aire arriba */
+  padding-bottom: 3rem; /* más aire abajo */
+}
+
+/* 2. Asegurar que los iconos se peguen arriba y abajo */
+.icons-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* icon-top arriba, icon-bottom abajo */
+  align-items: center;
+  height: 100%;
+}
+.icons-col .icon-bottom {
+	margin-top: 100px;
+}
+
+/* 4. Hover sutil */
+.icons-col img {
+  opacity: 0.4;
+  transition: opacity 0.2s;
+}
+.icons-col img:hover {
+  opacity: 1;
+}
+
+/* 5. Móvil: ocultar iconos, texto full width */
+@media (max-width: 767.98px) {
+  .icons-col {
+    display: none !important;
+  }
+  .text-content {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
 }
