@@ -209,3 +209,47 @@ hr {
     padding-bottom: 2rem;
   }
 }
+
+/* Nuestros Servicios */
+/* 1. Tipografía y espaciado */
+#services {
+  font-family: 'Source Serif Pro', serif; /* misma familia usada globalmente */
+}
+
+#services .display-5 {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+#services .lead {
+  font-size: 1.125rem;
+  color: #555;
+}
+
+/* 2. Imágenes */
+#services img {
+  object-fit: cover; /* para mantener proporción sin distorsión */ 
+}
+
+/* 3. Botones de acción */
+#services .btn-warning {
+  background-color: #FFC107;
+  border-color: #FFC107;
+  color: #212529;
+  font-weight: 600;
+}
+#services .btn-warning:hover {
+  background-color: #e0a800;
+  border-color: #d39e00;
+}
+
+/* 4. Responsive: apilar en móvil */
+@media (max-width: 991.98px) {
+  #services .row.align-items-center {
+    flex-direction: column !important; /* imagen encima, texto debajo */
+    text-align: center;
+  }
+  #services .mb-lg-0 {
+    margin-bottom: 1rem !important;
+  }
+}
