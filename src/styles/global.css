@@ -1,11 +1,11 @@
-/* ==========================================================================
-   1. IMPORTACIONES DE FUENTES
+/* ==========================================================================  
+   1. IMPORTACIONES DE FUENTES  
    ========================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;700&display=swap');
 
-/* ==========================================================================
-   2. VARIABLES GLOBALES
+/* ==========================================================================  
+   2. VARIABLES GLOBALES  
    ========================================================================== */
 :root {
   --accent: #2337ff;
@@ -19,15 +19,15 @@
     0 2px 6px rgba(var(--gray), 25%),
     0 8px 24px rgba(var(--gray), 33%),
     0 16px 32px rgba(var(--gray), 33%);
-	--elementos-azul: #0C4B7C;
-	--elementos-celeste: #0BAACB;
-	--elementos-naranjo: #EB8E1D;
-	--elementos-verde: #248C45;
-	--elementos-amarillo: #F5CF00;
+  --elementos-azul: #0C4B7C;
+  --elementos-celeste: #0BAACB;
+  --elementos-naranjo: #EB8E1D;
+  --elementos-verde: #248C45;
+  --elementos-amarillo: #F5CF00;
 }
 
-/* ==========================================================================
-   4. ESTILOS BASE (reset / tipografía global)
+/* ==========================================================================  
+   3. ESTILOS BASE (reset / tipografía global)  
    ========================================================================== */
 body {
   margin: 0;
@@ -51,9 +51,10 @@ main {
   padding: 3em 1em;
 }
 
-/* ==========================================================================
-   5. ENCABEZADOS (Anton) Y TEXTOS FUENTE SECUNDARIA
+/* ==========================================================================  
+   4. ENCABEZADOS Y TEXTOS  
    ========================================================================== */
+/* Anton para títulos */
 h1, h2, h3, h4, h5, h6 {
   margin: 0 0 0.5rem;
   line-height: 1.2;
@@ -62,7 +63,6 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
   text-transform: uppercase;
 }
-
 h1 { font-size: 3.052em; }
 h2 { font-size: 2.441em; }
 h3 { font-size: 1.953em; }
@@ -70,13 +70,14 @@ h4 { font-size: 1.563em; }
 h5 { font-size: 1.25em; }
 h6 { font-size: 1em; }
 
+/* Source Serif Pro para párrafos y listas */
 p, li {
   margin-bottom: 1em;
   font-family: 'Source Serif Pro', serif;
 }
 
-/* ==========================================================================
-   6. ELEMENTOS DE FORMULARIO, TABLAS, CÓDIGO, IMÁGENES
+/* ==========================================================================  
+   5. ELEMENTOS DE FORMULARIO, TABLAS, CÓDIGO, IMÁGENES  
    ========================================================================== */
 a {
   color: var(--accent);
@@ -132,7 +133,7 @@ img {
 }
 
 /* ==========================================================================
-   7. CLASES UTILITARIAS
+   6. CLASES UTILITARIAS
    ========================================================================== */
 .sr-only {
   position: absolute !important;
@@ -143,8 +144,8 @@ img {
   white-space: nowrap;
 }
 
-/* ==========================================================================
-   8. MENU HEADER
+/* ==========================================================================  
+   7. MENU HEADER  
    ========================================================================== */
 #menu .nav-link {
   font-family: 'Anton', sans-serif;
@@ -153,8 +154,78 @@ img {
   color: #000 !important;
 }
 
-/* ==========================================================================
-   9. SECCIÓN “BAJADA” (.summary-section)
+/* ==========================================================================  
+   7.1 MENU RESPONSIVO: enlaces con Anton en negrita  
+   ========================================================================== */
+#mobileNav {
+  width: 100%;
+}
+       
+#mobileNav .nav-link {
+  font-family: 'Anton', sans-serif !important;
+  font-weight: 700             !important;
+  font-style: normal           !important;
+  font-size: 28px              !important;
+  text-transform: uppercase    !important;
+  color: #000                  !important;
+}
+
+#mobileNav li {
+  margin: 0;
+}
+#mobileNav li hr {
+      border-color: red;
+    height: 7px;
+}
+
+
+/* ==========================================================================  
+   8. BANNER PRINCIPAL (#hero)  
+   ========================================================================== */
+#hero {
+  max-height: 700px;
+  overflow: hidden;
+}
+#hero .carousel-item {
+  height: 600px;
+}
+#hero .carousel-item img {
+  object-fit: cover;
+  height: 100%;
+  border-radius: 0;
+}
+#hero .carousel-caption h2 {
+  font-family: 'Anton', sans-serif;
+  color: white;
+  font-size: 70px;
+  max-width: 500px;
+  text-transform: uppercase;
+}
+#hero .btn-warning {
+  background-color: #F9EF23;
+  border-color: #F9EF23;
+  color: #141414;
+  padding: 10px 40px;
+  border-radius: 0;
+  text-transform: uppercase;
+}
+#hero .btn-warning:hover {
+  background-color: #e0a800;
+  border-color: #d39e00;
+}
+/* Limitar caption a la mitad izquierda */
+.caption-left {
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: 50%;
+  padding: 0 2rem;
+}
+.caption-left.right {
+  right: auto;
+}
+
+/* ==========================================================================  
+   9. SECCIÓN “BAJADA” (.summary-section)  
    ========================================================================== */
 .summary-section {
   background: #fff;
@@ -163,18 +234,16 @@ img {
   font-weight: 600;
   font-size: 24px;
 }
-
 .icons-col {
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* top & bottom */
+  justify-content: space-between;
   align-items: center;
   height: 100%;
 }
 .icons-col .icon-bottom {
   margin-top: 100px;
 }
-
 .icons-col img {
   opacity: 0.4;
   transition: opacity 0.2s;
@@ -183,38 +252,25 @@ img {
   opacity: 1;
 }
 
-@media (max-width: 767.98px) {
-  .icons-col {
-    display: none !important;
-  }
-  .text-content {
-    padding: 2rem 0;
-  }
-}
-
-/* ==========================================================================
-   10. SECCIÓN “NUESTROS SERVICIOS” (#services)
+/* ==========================================================================  
+   10. SECCIÓN “NUESTROS SERVICIOS” (#services)  
    ========================================================================== */
 #services {
   font-family: 'Source Serif Pro', serif;
 }
-
 #services .display-5 {
   font-family: 'Anton', sans-serif;
   font-weight: 700;
   margin-bottom: 0.5rem;
 }
-
 #services .lead {
   font-family: 'Source Serif Pro', serif;
   font-size: 1.125rem;
   color: #555;
 }
-
 #services img {
   object-fit: cover;
 }
-
 #services .btn-warning {
   background-color: #FFC107;
   border-color: #FFC107;
@@ -226,6 +282,46 @@ img {
   border-color: #d39e00;
 }
 
+/* ==========================================================================  
+   11. SECCIÓN “NUESTROS TALLERES”  
+   ========================================================================== */
+.taller-card {
+  position: relative;
+  overflow: hidden;
+}
+.taller-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+.taller-card:hover img {
+  transform: scale(1.05);
+}
+.taller-card .overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.taller-card:hover .overlay {
+  opacity: 1;
+}
+.taller-card .overlay h3 {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.25rem;
+}
+.taller-card .overlay p {
+  font-family: 'Source Serif Pro', serif;
+  font-size: 0.9rem;
+}
+
+/* ==========================================================================  
+   12. MEDIA QUERIES GENERALES  
+   ========================================================================== */
 @media (max-width: 991.98px) {
   #services .row.align-items-center {
     flex-direction: column !important;
@@ -235,10 +331,14 @@ img {
     margin-bottom: 1rem !important;
   }
 }
-
-/* ==========================================================================
-   11. MEDIA QUERIES GENERALES
-   ========================================================================== */
+@media (max-width: 767.98px) {
+  .icons-col {
+    display: none !important;
+  }
+  .text-content {
+    padding: 2rem 0;
+  }
+}
 @media (max-width: 720px) {
   body {
     font-size: 18px;
@@ -248,52 +348,78 @@ img {
   }
 }
 
-/* ==========================================================================
-   SECCION NUESTROS TALLERES
+/* ========================================================================== 
+   Ajustes menú responsive full-width, padding reducido y texto centrado 
    ========================================================================== */
-/* Contenedor de cada tarjeta */
-.taller-card {
-  position: relative;
-  overflow: hidden;
+@media (max-width: 767.98px) {
+  /* 1. Asegura que el collapse ocupe todo el ancho */
+  .navbar-collapse {
+    width: 100vw;
+    margin-left: calc(-1 * var(--bs-gutter-x) / 2); /* quita el gutter horizontal */
+    margin-right: calc(-1 * var(--bs-gutter-x) / 2);
+  }
+
+  /* 2. Quita padding extra del <ul> */
+  #mobileNav .nav {
+    padding: 0;
+    margin: 0;
+  }
+
+  /* 3. Estilo de cada enlace: ocupa todo el ancho, padding reducido y centrado */
+  #mobileNav .nav-link {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0;      /* menos padding vertical */
+    text-align: center;     /* texto centrado */
+    border-bottom: 1px solid rgba(0,0,0,0.1); /* opcional separación */
+  }
+
+  /* 4. Elimina márgenes innecesarios en el último ítem */
+  #mobileNav .nav-link:last-child {
+    border-bottom: none;
+  }
+
+  /* 5. Repartir equitativamente los logos de redes sociales */
+  #mobileNav .nav-item {
+    display: flex;
+  justify-content: space-evenly;
+  }
+  
 }
 
-/* La imagen ocupa todo el contenedor */
-.taller-card img {
-  display: block;
-  width: 100%;
-  height: auto;
-  transition: transform 0.3s ease;
-}
+/* ========================================================================== 
+   Ajustes para el banner responsivo 
+   ========================================================================== */
+@media (max-width: 767.98px) {
+  /* Haz que la leyenda ocupe todo el ancho */
+  .caption-left {
+    width: 100%;
+    padding: 1rem;          /* espacio interior */
+    top: auto;              /* si quieres que quede abajo: top:auto; bottom:0; */
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
 
-/* Efecto zoom suave al pasar el ratón */
-.taller-card:hover img {
-  transform: scale(1.05);
-}
+  /* Centra el contenido y ajusta tamaño */
+  #hero .carousel-caption {
+    justify-content: center;  /* centra verticalmente */
+    align-items: center;      /* y horizontalmente */
+    text-align: center;
+  }
 
-/* Capa de texto oculta por defecto */
-.taller-card .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
+  #hero .carousel-caption h2 {
+    font-size: 1.75rem;       /* menos grosor en móvil */
+    max-width: 90%;
+  }
 
-/* Mostrar overlay al hover */
-.taller-card:hover .overlay {
-  opacity: 1;
-}
+  #hero .btn-warning {
+    padding: 0.5rem 1.5rem;   /* botón más pequeño */
+    font-size: 0.9rem;
+  }
 
-/* Ajustes de texto dentro del overlay */
-.taller-card .overlay h3 {
-  font-family: 'Anton', sans-serif;
-  font-size: 1.25rem;
-}
-.taller-card .overlay p {
-  font-family: 'Source Serif Pro', serif;
-  font-size: 0.9rem;
+  /* Reduce la altura del slide si quieres */
+  #hero .carousel-item {
+    height: auto;
+  }
 }

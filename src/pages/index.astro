@@ -3,7 +3,6 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-import '../styles/carousel.css';
 ---
 
 <!doctype html>
@@ -23,9 +22,9 @@ import '../styles/carousel.css';
 				<div class="carousel-item active">
 					<img src="/images/banners/banner-1.png" class="d-block w-100" alt="Primera imagen" />
 					<div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-center text-white h-100 caption-left">
-					<img src="/images/elementos-blanco.png" alt="Logo Espacio Elementos" style="height:80px;" />
-					<h2 class="display-4 mt-3">ENCUENTRA TU MEJOR VERSIÓN</h2>
-					<a href="#talleres" class="btn btn-warning btn-lg mt-4">Conoce nuestros talleres</a>
+						<img src="/images/elementos-blanco.png" alt="Logo Espacio Elementos" style="height:80px;" class="d-md-none"/>
+						<h2 class="display-4 mt-3">ENCUENTRA TU MEJOR VERSIÓN</h2>
+						<a href="#talleres" class="btn btn-warning btn-lg mt-4">Conoce nuestros talleres</a>
 					</div>
 				</div>
 				<!-- Slide 2 -->
@@ -70,7 +69,7 @@ import '../styles/carousel.css';
 		</section>
 
 		<!-- Bajada -->
-		<section class="summary-section py-6">
+		<section id="bajada" class="summary-section py-6">
 			<div class="container">
 				<div class="row align-items-stretch">
 				<div class="col-2 d-none d-md-flex icons-col h-100 pe-4">
@@ -91,7 +90,7 @@ import '../styles/carousel.css';
 
 		<hr style="border: 10px solid var(--elementos-azul); border-radius: 5px;"/>
 		<!-- Nuestros Servicios -->
-		<section id="services" class="py-5">
+		<section id="servicios" class="py-5">
 			<div class="container">
 				<!-- Título de sección -->
 				<div class="row mb-5">
@@ -288,14 +287,16 @@ import '../styles/carousel.css';
 
 		<hr style="border: 10px solid var(--elementos-celeste); border-radius: 5px;"/>
 		<!-- EQUIPO DOCENTE -->
-		<div class="container">
-			<!-- Título de sección -->
-			<div class="row mb-5">
-				<div class="col text-center">
-					<h1 class="display-5">EQUIPO DOCENTE</h2>
+		<section id="equipo" class="py-5">
+			<div class="container">
+				<!-- Título de sección -->
+				<div class="row mb-5">
+					<div class="col text-center">
+						<h1 class="display-5">EQUIPO DOCENTE</h2>
+					</div>
 				</div>
 			</div>
-		</div>
+		</section>
 
 		<hr style="border: 10px solid var(--elementos-verde); border-radius: 5px;"/>
 		<!-- Testimonios -->

@@ -4,18 +4,17 @@ import { SITE_TITLE } from '../consts';
 ---
 
 <header>
-  <nav class="navbar navbar-light bg-white shadow-sm px-4">
-    <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap">
+  <nav class="navbar navbar-light bg-white shadow-sm px-0 px-md-4">
+    <div class="container-fluid d-flex flex-nowrap justify-content-between align-items-center">
       
       <!-- Logo -->
-      <a class="navbar-brand" href="/">
+      <a class="navbar-brand flex-shrink-1 flex-md-shrink-0" href="/">
         <img src="/images/logo-espacio-elementos.png" alt="Espacio Elementos" width="300" />
       </a>
 
-      <!-- Navegación principal (visible en desktop) -->
+      <!-- Navegación principal (desktop) -->
       <ul id="menu" class="nav d-none d-md-flex justify-content-center flex-grow-1">
         <li class="nav-item"><a class="nav-link" href="/">INICIO</a></li>
-        <li class="nav-item"><a class="nav-link" href="#nosotros">NOSOTROS</a></li>
         <li class="nav-item"><a class="nav-link" href="#servicios">SERVICIOS</a></li>
         <li class="nav-item"><a class="nav-link" href="#talleres">TALLERES</a></li>
         <li class="nav-item"><a class="nav-link" href="#equipo">EQUIPO</a></li>
@@ -24,8 +23,8 @@ import { SITE_TITLE } from '../consts';
         <li class="nav-item"><a class="nav-link" href="#contacto">CONTACTO</a></li>
       </ul>
 
-      <!-- Redes sociales -->
-      <div class="d-flex align-items-center gap-3">
+      <!-- Redes sociales (solo desktop) -->
+      <div class="d-none d-md-flex align-items-center gap-3">
         <a href="https://www.instagram.com/espacio.elementos" target="_blank" aria-label="Instagram">
           <img src="/images/rrss/instagram.png" alt="Instagram" width="50" />
         </a>
@@ -37,7 +36,7 @@ import { SITE_TITLE } from '../consts';
         </a>
       </div>
 
-      <!-- Menú hamburguesa (mobile) -->
+      <!-- Botón hamburguesa (mobile) -->
       <button
         class="navbar-toggler d-md-none mt-2"
         type="button"
@@ -54,15 +53,31 @@ import { SITE_TITLE } from '../consts';
     <!-- Menú móvil colapsable -->
     <div class="collapse d-md-none" id="mobileNav">
       <ul class="nav flex-column px-3">
+        <li class="nav-item"><hr></li>
         <li class="nav-item"><a class="nav-link" href="/">INICIO</a></li>
-        <li class="nav-item"><a class="nav-link" href="#nosotros">NOSOTROS</a></li>
+        <li class="nav-item"><a class="nav-link" href="#bajada">NOSOTROS</a></li>
         <li class="nav-item"><a class="nav-link" href="#servicios">SERVICIOS</a></li>
         <li class="nav-item"><a class="nav-link" href="#talleres">TALLERES</a></li>
         <li class="nav-item"><a class="nav-link" href="#equipo">EQUIPO</a></li>
         <li class="nav-item"><a class="nav-link" href="#testimonios">TESTIMONIOS</a></li>
         <li class="nav-item"><a class="nav-link" href="#noticias">NOTICIAS</a></li>
         <li class="nav-item"><a class="nav-link" href="#contacto">CONTACTO</a></li>
+        <!-- Redes sociales al final -->
+        <li class="nav-item"><hr></li>
+        <li class="nav-item social-mobile">
+          <a href="https://www.instagram.com/espacio.elementos" target="_blank" aria-label="Instagram">
+            <img src="/images/rrss/instagram.png" alt="Instagram" width="50" />
+          </a>
+          <a href="https://www.facebook.com/espacio.elementos.rengo" target="_blank" aria-label="Facebook">
+            <img src="/images/rrss/facebook.png" alt="Facebook" width="50" />
+          </a>
+          <a href="https://www.youtube.com/@EspacioElementos" target="_blank" aria-label="YouTube">
+            <img src="/images/rrss/youtube.png" alt="YouTube" width="50" />
+          </a>
+        </li>
+        <li class="nav-item"><hr></li>
       </ul>
     </div>
   </nav>
 </header>
+
