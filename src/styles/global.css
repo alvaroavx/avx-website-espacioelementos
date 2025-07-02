@@ -187,7 +187,7 @@ img {
   overflow: hidden;
 }
 #hero .carousel-item {
-  height: 600px;
+  height: 700px;
 }
 #hero .carousel-item img {
   object-fit: cover;
@@ -351,6 +351,15 @@ img {
 /* ========================================================================== 
    Ajustes menú responsive full-width, padding reducido y texto centrado 
    ========================================================================== */
+.navbar a {
+  -webkit-transition: transform 0.2s ease;
+  transition: transform 0.2s ease;
+  transform-origin: center center;
+}
+.navbar a:hover {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
 @media (max-width: 767.98px) {
   /* 1. Asegura que el collapse ocupe todo el ancho */
   .navbar-collapse {
@@ -423,3 +432,87 @@ img {
     height: auto;
   }
 }
+
+/* ========================================================================== 
+   Separadores 
+   ========================================================================== */
+.separator-svg-container {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+.separator-svg-container svg {
+  display: block;
+  width: 100%;
+  height: 80px;
+}
+.separator {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+.separator svg {
+  display: block;
+  width: 100%;
+  height: 80px;
+}
+.separator-bottom {
+  transform: scaleY(-1);
+}
+.separator-top {
+  margin-top: -1px;
+}
+.separator-bottom {
+  margin-bottom: -1px;
+}
+
+/* ========================================================================== 
+   Boton para volver arriba 
+   ========================================================================== */
+#backToTop {
+  position: fixed;
+  bottom: 1.5rem;          /* separación del borde inferior */
+  right: 1.5rem;           /* separación del borde derecho */
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--elementos-amarillo);
+  color: #141414;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: var(--box-shadow);
+  display: none;           /* oculto por defecto */
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: opacity 0.3s;
+}
+
+#backToTop:hover {
+  opacity: 0.8;
+}
+
+/* ========================================================================== 
+   FOOTER 
+   ========================================================================== */
+
+footer {
+		padding: 2em 1em 6em 1em;
+		background-color: var(--elementos-azul);
+		color: white;
+		text-align: center;
+	}
+	.social-links {
+		display: flex;
+		justify-content: center;
+		gap: 1em;
+		margin-top: 1em;
+	}
+	.social-links a {
+		text-decoration: none;
+		color: rgb(var(--gray));
+	}
+	.social-links a:hover {
+		color: rgb(var(--gray-dark));
+	}
