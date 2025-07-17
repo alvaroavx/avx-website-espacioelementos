@@ -516,3 +516,46 @@ footer {
 	.social-links a:hover {
 		color: rgb(var(--gray-dark));
 	}
+
+  /* ========================================================================== 
+    SECCION EQUIPO DOCENTE 
+   ========================================================================== */
+   /* Fuente y espaciado de sección */
+#equipo {
+  font-family: 'Source Serif Pro', serif;
+}
+#equipo .display-5 {
+  font-family: 'Anton', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+#equipo .lead {
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+/* Cards de equipo */
+.equipo-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.equipo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--box-shadow);
+}
+
+/* Titulares y textos */
+#equipo .card-title {
+  font-family: 'Anton', sans-serif;
+  font-size: 24px;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+#equipo .card-subtitle,
+#equipo .card-text {
+  font-family: 'Source Serif Pro', serif;
+}
+
+/* Asegura que las imágenes estén centradas */
+.equipo-card img {
+  display: block;
+}
