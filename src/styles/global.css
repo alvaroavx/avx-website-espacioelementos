@@ -56,7 +56,7 @@ main {
    ========================================================================== */
 /* Anton para títulos */
 h1, h2, h3, h4, h5, h6 {
-  margin: 0 0 0.5rem;
+  margin: 3rem 0 0.5rem;
   line-height: 1.2;
   color: rgb(var(--black));
   font-family: 'Anton', sans-serif;
@@ -233,6 +233,7 @@ img {
   font-family: 'Source Serif Pro', serif;
   font-weight: 600;
   font-size: 24px;
+  margin-top: 40px;
 }
 .icons-col {
   display: flex;
@@ -507,6 +508,7 @@ footer {
 /* Cards de equipo */
 .equipo-card {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: none;
 }
 .equipo-card:hover {
   transform: translateY(-5px);
@@ -598,6 +600,7 @@ footer {
     url('/images/fondos/equipo.png') 
     center/cover no-repeat fixed;
   z-index: -1;
+  opacity: 0.5;
 }
 /* 3. Asegura que el separador SVG esté encima del fondo */
 .separator-bottom {
@@ -605,53 +608,275 @@ footer {
   z-index: 1; 
 }
 /* ========================================================================== 
-    FONDO TESTIMONIOS
+    FONDO COMUNIDAD
    ========================================================================== */
 /* 1. Crea stacking context en la sección */
+#comunidad {
+  position: relative;
+  z-index: 0;
+  padding: 0 !important;
+}
+
+/* 2. Pseudo-elemento que pinta el fondo fullscreen y parallax */
+#comunidad::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: 
+    url('/images/fondos/comunidad.png') 
+    center/cover no-repeat fixed;
+  z-index: -1;
+}
+/* 3. Asegura que el separador SVG esté encima del fondo */
+.separator-bottom {
+  position: relative;
+  z-index: 1; 
+}
+/* ========================================================================== 
+    COLABORADORES
+   ========================================================================== */
+/* Logos de colaboradores */
+.logo-link img {
+  transition: transform .2s ease, opacity .2s ease;
+}
+.logo-link:hover img {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+/* ========================================================================== 
+    TESTIMONIOS
+   ========================================================================== */
+/* 1. Contenedor y título */
 #testimonios {
   position: relative;
-  z-index: 0;
-  padding: 0 !important;
+  padding: 4rem 0;
+}
+#testimonios .display-5 {
+  font-family: 'Anton', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  text-align: center;
 }
 
-/* 2. Pseudo-elemento que pinta el fondo fullscreen y parallax */
-#testimonios::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: 
-    url('/images/fondos/testimonios.png') 
-    center/cover no-repeat fixed;
-  z-index: -1;
-}
-/* 3. Asegura que el separador SVG esté encima del fondo */
-.separator-bottom {
+/* 2. Carousel inner */
+#testimonios .carousel-inner {
   position: relative;
-  z-index: 1; 
+  width: 100%;
 }
-/* ========================================================================== 
-    FONDO CONTACTO
-   ========================================================================== */
-/* 1. Crea stacking context en la sección */
+
+/* 3. Cada item */
+#testimonios .carousel-item {
+  padding: 2rem 0;
+}
+
+/* 4. Imagen del alumno */
+#testimonios .carousel-item img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+/* 5. Blockquote styling */
+#testimonios blockquote {
+  font-family: 'Source Serif Pro', serif;
+  font-size: 1.125rem;
+  color: #333;
+  margin: 0 auto;
+  max-width: 600px;
+  position: relative;
+  padding: 1rem 1.5rem;
+}
+#testimonios blockquote::before {
+  content: "“";
+  font-size: 3rem;
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  color: rgba(0,0,0,0.1);
+}
+#testimonios .blockquote-footer {
+  font-family: 'Anton', sans-serif;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  color: #555;
+  margin-top: 0.5rem;
+}
+/* Sección Testimonios Mejorada */
+.testimonial {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+.testimonial footer {
+  padding: 10px;
+}
+.testimonial-img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+  margin-bottom: 1.5rem;
+}
+.testimonial-blockquote {
+  position: relative;
+  font-family: 'Source Serif Pro', serif;
+  font-style: italic;
+  color: #333;
+  border-left: 0px;
+  padding-left: 1rem;
+}
+
+.testimonial-blockquote::before {
+  content: "“";
+  font-size: 4rem;
+  color: var(--elementos-azul);
+  position: absolute;
+  left: -10px;
+  top: -20px;
+}
+
+.testimonial-text {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.testimonial-author {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.1rem;
+  color: var(--elementos-naranjo);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+/* 6. Controles del carousel */
+#carouselTestimonios .carousel-control-prev,
+#carouselTestimonios .carousel-control-next {
+  width: 3rem;
+  height: 3rem;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+#carouselTestimonios .carousel-control-prev:hover,
+#carouselTestimonios .carousel-control-next:hover {
+  opacity: 1;
+}
+
+/* 7. Indicadores (puntos) */
+#carouselTestimonios .carousel-indicators {
+  bottom: -1.5rem;
+}
+#carouselTestimonios .carousel-indicators button {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background-color: #ccc;
+  border: none;
+}
+#carouselTestimonios .carousel-indicators .active {
+  background-color: var(--elementos-amarillo);
+}
+
+/* 8. Responsive tweaks */
+@media (max-width: 768px) {
+  #testimonios blockquote {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+  #carouselTestimonios .carousel-control-prev,
+  #carouselTestimonios .carousel-control-next {
+    display: none; /* opcional: ocultar controles en móvil */
+  }
+  #carouselTestimonios .carousel-indicators {
+    display: none; /* opcional: ocultar indicadores en móvil */
+  }
+}
+
+/* =======================================================
+    CONTACTO
+    ======================================================= */
 #contacto {
+  margin-top: 50px;
+}
+/* 1. Contenedor principal que define el fondo */
+.contact-section {
   position: relative;
-  z-index: 0;
-  padding: 0 !important;
+  overflow: hidden;
 }
 
-/* 2. Pseudo-elemento que pinta el fondo fullscreen y parallax */
-#contacto::before {
-  content: "";
+/* 2. Imagen de fondo full-bleed */
+.contact-background {
+  background: url('/images/equipo/grupal.jpg') center/cover no-repeat;
+  height: 400px;
+  width: 100%;
+  position: relative;
+}
+
+/* 3. Overlay semitransparente */
+.contact-overlay {
   position: absolute;
-  inset: 0;
-  background: 
-    url('/images/fondos/contacto.png') 
-    center/cover no-repeat fixed;
-  z-index: -1;
-}
-/* 3. Asegura que el separador SVG esté encima del fondo */
-.separator-bottom {
-  position: relative;
-  z-index: 1; 
+  inset: 0; /* top:0; right:0; bottom:0; left:0; */
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
+/* 4. Contenido encima del overlay */
+.contact-content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+/* 5. Tipografía */
+.contact-title {
+  font-family: 'Anton', sans-serif;
+  font-size: 2.5rem;
+  color: #fff;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.contact-text {
+  font-family: 'Source Serif Pro', serif;
+  color: #fff;
+  font-size: 1.125rem;
+  margin-bottom: 1.5rem;
+  max-width: 600px;
+}
+
+.contact-link {
+  color: #F9EF23; /* amarillo botones */
+  text-decoration: underline;
+}
+
+/* 6. Botón de acción */
+.contact-btn {
+  font-family: 'Anton', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+}
+
+/* 7. Responsive tweaks */
+@media (max-width: 768px) {
+  .contact-title {
+    font-size: 2rem;
+  }
+  .contact-text {
+    font-size: 1rem;
+  }
+  .contact-background {
+    height: 300px;
+  }
+}

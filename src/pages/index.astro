@@ -92,7 +92,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				<svg viewBox="0 0 1200 120" preserveAspectRatio="none">
 					<path
 						d="M0,0 C150,100 350,0 600,50 C850,100 1050,0 1200,75 L1200,120 L0,120 Z"
-						fill="var(--elementos-naranjo)"
+						fill="var(--elementos-amarillo)"
 					/>
 				</svg>
 			</div>
@@ -106,7 +106,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				<svg viewBox="0 0 1200 120" preserveAspectRatio="none">
 					<path
 						d="M0,0 C150,100 350,0 600,50 C850,100 1050,0 1200,75 L1200,120 L0,120 Z"
-						fill="var(--elementos-naranjo)"
+						fill="var(--elementos-amarillo)"
 					/>
 				</svg>
 			</div>
@@ -177,7 +177,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				<svg viewBox="0 0 1200 120" preserveAspectRatio="none">
 					<path
 						d="M0,0 C150,100 350,0 600,50 C850,100 1050,0 1200,75 L1200,120 L0,120 Z"
-						fill="var(--elementos-amarillo)"
+						fill="var(--elementos-naranjo)"
 					/>
 				</svg>
 			</div>
@@ -190,12 +190,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				<svg viewBox="0 0 1200 120" preserveAspectRatio="none">
 					<path
 						d="M0,0 C150,100 350,0 600,50 C850,100 1050,0 1200,75 L1200,120 L0,120 Z"
-						fill="var(--elementos-amarillo)"
+						fill="var(--elementos-naranjo)"
 					/>
 				</svg>
 			</div>
 			
-			<div class="container">
+			<div class="container" style="margin-bottom:80px">
 				<div class="row mb-5">
 					<div class="col text-center">
 						<h1 class="display-5">Nuestros Talleres</h2>
@@ -350,7 +350,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				</svg>
 			</div>
 
-			<div class="container">
+			<div class="container" style="margin-bottom:80px">
 				<!-- Título y subtítulo -->
 				<div class="row mb-4">
 					<div class="col text-center">
@@ -444,9 +444,8 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			</div>
 		</section>
 
-		<!-- Testimonios -->
-		<section id="testimonios" class="py-5">
-
+		<!-- COMUNIDAD -->
+		<section id="comunidad" class="py-5">
 			<!-- Separador ondulado -->
 			<div class="separator separator-bottom" role="separator" aria-orientation="horizontal">
 				<svg viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -456,54 +455,120 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 					/>
 				</svg>
 			</div>
-			
 			<div class="container">
-				<div class="row mb-5">
-					<div class="col text-center">
-						<h1 class="display-5">Testimonios</h2>
+				<div class="row align-items-start"> 
+					<!-- Testimonios (columna izquierda) -->
+					<div class="col-12 col-md-6 mb-4 mb-md-0">
+						<h2 class="display-5 text-center mb-4" style="font-size:36px">Testimonios</h2>
+						<div id="carouselTestimonios" class="carousel carousel-dark slide" data-bs-ride="carousel">
+							<div class="carousel-inner">
+								<!-- Sara Soto -->
+								<div class="carousel-item active">
+									<div class="testimonial text-center">
+										<img src="/images/testimonios/sara.jpg" alt="Sara Soto" class="testimonial-img">
+										<blockquote class="testimonial-blockquote">
+											<p class="testimonial-text">Desde que llegué a Espacio Elementos hace casi dos años, he cambiado completamente mi vida. Al principio solo buscaba mantenerme activa, pero terminé participando en todos los talleres: danza, circo, yoga… ¡todo! Este espacio se ha convertido en mucho más que un gimnasio para mí, es mi lugar favorito y donde me siento realmente libre.”</p>
+											<footer class="testimonial-author">— Sara Soto</footer>
+										</blockquote>
+									</div>
+								</div>
+								<!-- Antonia Cabello -->
+								<div class="carousel-item">
+									<div class="testimonial text-center">
+										<img src="/images/testimonios/anto.jpg" alt="Sara Soto" class="testimonial-img">
+										<blockquote class="testimonial-blockquote">
+											<p class="testimonial-text">Comencé con el taller de lyra hace más de un año, y honestamente, fue una de las mejores decisiones que he tomado. Antes era muy tímida y reservada, pero ahora no solo domino mejor mi cuerpo, sino que también me siento mucho más segura, extrovertida y con ganas de compartir lo que he aprendido.”</p>
+											<footer class="testimonial-author">— Antonia Cabello</footer>
+										</blockquote>
+									</div>
+								</div>
+								<!-- Héctor Molina -->
+								<div class="carousel-item">
+									<div class="testimonial text-center">
+										<img src="/images/testimonios/tito.png" alt="Sara Soto" class="testimonial-img">
+										<blockquote class="testimonial-blockquote">
+											<p class="testimonial-text">Llegué hace año y medio a Espacio Elementos con dolores constantes en mi hombro, que me dificultaban incluso hacer cosas cotidianas. Nunca había entrenado antes, pero decidí intentarlo, y sinceramente no esperaba resultados tan rápidos ni tan buenos. Ahora estoy libre de dolores, entreno con regularidad y cada día tengo más ganas de superarme.”</p>
+											<footer class="testimonial-author">— Héctor Molina</footer>
+										</blockquote>
+									</div>
+								</div>
+							</div>
+							<!-- Controles sin cambios adicionales -->
+							<button class="carousel-control-prev" type="button" data-bs-target="#carouselTestimonios" data-bs-slide="prev">
+								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">Anterior</span>
+							</button>
+							<button class="carousel-control-next" type="button" data-bs-target="#carouselTestimonios" data-bs-slide="next">
+								<span class="carousel-control-next-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">Siguiente</span>
+							</button>
+						</div>
 					</div>
-				</div>
-			</div>
 
-			<!-- Separador ondulado -->
-			<div class="separator-svg-container" role="separator" aria-orientation="horizontal">
-				<svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-					<path
-						d="M0,0 C150,100 350,0 600,50 C850,100 1050,0 1200,75 L1200,120 L0,120 Z"
-						fill="var(--elementos-amarillo)"
-					/>
-				</svg>
-			</div>
-		
-		</section>
-
-		<!-- Contacto -->
-		<section id="contacto" class="py-5">
-
-			<!-- Separador ondulado -->
-			<div class="separator separator-bottom" role="separator" aria-orientation="horizontal">
-				<svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-					<path
-						d="M0,0 C150,100 350,0 600,50 C850,100 1050,0 1200,75 L1200,120 L0,120 Z"
-						fill="var(--elementos-amarillo)"
-					/>
-				</svg>
-			</div>
-			
-			<!-- COLABORADORES -->
-			<div class="container">
-				<div class="row mb-5">
-					<div class="col text-center">
-						<h1 class="display-5">COLABORADORES</h2>
+					<!-- Colaboradores (columna derecha) -->
+					<div class="col-12 col-md-6">
+						<h2 class="display-5 text-center mb-4" style="font-size:36px">Colaboradores</h2>
+						<div class="row g-4">
+							<!-- Fila 1: 2 logos -->
+							<div class="col-6 text-center">
+							<a href="https://www.instagram.com/naranjal_norte/?utm_source=espacioelementos&utm_medium=referral" target="_blank" class="logo-link d-block p-3" rel="noopener noreferrer">
+								<img src="/images/colaboradores/jjvvnaranjalnorte.png"
+									alt="El Naranjal Norte"
+									class="img-fluid mx-auto"
+									style="max-height:120px;">
+							</a>
+							</div>
+							<div class="col-6 text-center">
+							<a href="https://www.circoquetralmahue.cl/?utm_source=espacioelementos&utm_medium=referral" target="_blank" class="logo-link d-block p-3" rel="noopener noreferrer">
+								<img src="/images/colaboradores/quetralmahue.png"
+									alt="Circo Quetralmahue"
+									class="img-fluid mx-auto"
+									style="max-height:120px;">
+							</a>
+							</div>
+							<!-- Fila 2: 2 logos -->
+							<div class="col-6 text-center">
+							<a href="https://www.instagram.com/casa7colores/?utm_source=espacioelementos&utm_medium=referral" target="_blank" class="logo-link d-block p-3" rel="noopener noreferrer">
+								<img src="/images/colaboradores/casa7colores.png"
+									alt="Casa 7 Colores"
+									class="img-fluid mx-auto"
+									style="max-height:120px;">
+							</a>
+							</div>
+							<div class="col-6 text-center">
+							<a href="https://www.instagram.com/afro_renku/?utm_source=espacioelementos&utm_medium=referral" target="_blank" class="logo-link d-block p-3" rel="noopener noreferrer">
+								<img src="/images/colaboradores/afrorenku.png"
+									alt="Afro Renku"
+									class="img-fluid mx-auto"
+									style="max-height:120px;">
+							</a>
+							</div>
+							<!-- Fila 3: 1 logo centrado -->
+							<div class="col-12 text-center">
+							<a href="https://www.instagram.com/latin.rengo/?utm_source=espacioelementos&utm_medium=referral" target="_blank" class="logo-link d-block p-3" rel="noopener noreferrer">
+								<img src="/images/colaboradores/latinrengo.png"
+									alt="Latin Rengo"
+									class="img-fluid mx-auto"
+									style="max-height:120px;">
+							</a>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 
 			<!-- CONTACTO -->
-			<div class="container">
-				<div class="row mb-5">
-					<div class="col text-center">
-						<h1 class="display-5">Contacto</h2>
+			<div id="contacto" class="contact-section">
+				<div class="contact-background">
+					<div class="contact-overlay"></div>
+					<div class="contact-content">
+					<h2 class="contact-title">¡Ponte en contacto hoy!</h2>
+					<p class="contact-text">
+						Escríbenos a 
+						<a href="mailto:hola@espacioelementos.cl" class="contact-link">hola@espacioelementos.cl</a> 
+						o llámanos al <strong>923 456 789</strong>.
+					</p>
+					<a href="#formContacto" class="btn btn-warning contact-btn">Enviar mensaje</a>
 					</div>
 				</div>
 			</div>
