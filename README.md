@@ -14,6 +14,7 @@ Bienvenido al repositorio oficial del sitio web de **Espacio Elementos**, un esp
 ## 🛠️ Estructura del proyecto
 
 El proyecto sigue la estructura estándar de Astro:
+```sh
 ├── public/                   # Archivos estáticos como imágenes y assets
 ├── src/
 │   ├── components/           # Componentes Astro reutilizables
@@ -24,6 +25,7 @@ El proyecto sigue la estructura estándar de Astro:
 ├── README.md                 # Este archivo
 ├── package.json              # Dependencias y scripts
 └── tsconfig.json             # Configuración TypeScript
+```
 
 ## ⚙️ Comandos básicos
 
