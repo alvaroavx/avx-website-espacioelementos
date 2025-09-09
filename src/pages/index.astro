@@ -557,32 +557,162 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				</div>
 			</div>
 
-			<!-- CONTACTO -->
-			<div id="contacto" class="contact-section">
-				<div class="contact-background">
-					<div class="contact-overlay"></div>
-					<div class="contact-content">
-					<h2 class="contact-title">¡Ponte en contacto hoy!</h2>
-					<p class="contact-text">
-						Escríbenos a 
-						<a href="mailto:hola@espacioelementos.cl" class="contact-link">hola@espacioelementos.cl</a> 
-						o llámanos al <strong>923 456 789</strong>.
-					</p>
-					<a href="#formContacto" class="btn btn-warning contact-btn">Enviar mensaje</a>
+		</section>
+
+		<!-- CONTACTO -->
+		<section id="contacto" class="contacto">
+
+		<!-- Piso 1: Hero con foto del equipo -->
+		<div class="team-hero" role="img" aria-label="Equipo completo de Espacio Elementos">
+			<div class="team-hero__overlay"></div>
+			<div class="team-hero__inner">
+				<h2 class="team-hero__title">¡Ponte en contacto hoy!</h2>
+				<p class="team-hero__subtitle">
+					Escríbenos o agenda una visita; estamos felices de acompañarte en tu camino de autoconocimiento.
+				</p>
+				<div class="d-flex flex-wrap gap-2">
+					<!-- Email -->
+					<a
+						href="mailto:espacio.elementos@gmail.com?subject=Contacto%20desde%20Espacio%20Elementos"
+						class="team-hero__btn btn-email"
+						target="_blank"
+						rel="noopener"
+					>
+						<!-- ícono sobre → “envelope” -->
+						<svg aria-hidden="true" viewBox="0 0 24 24"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2m0 4-8 5L4 8V6l8 5l8-5z"/></svg>
+						Enviar correo
+					</a>
+					
+					<script>
+						const u = 'espacio.elementos';
+						const d = 'gmail.com';
+						const a = document.getElementById('btnMail');
+						const subject = 'Contacto desde el sitio';
+						const body    = 'Hola Espacio Elementos,\n\nles escribo porque...';
+						a.href = `mailto:${u}@${d}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+						a.setAttribute('aria-label','Enviar correo a Espacio Elementos');
+					</script>
+
+					<!-- WhatsApp -->
+					<a
+						href="https://wa.me/56956490299?text=Hola!%20Vengo%20desde%20espacioelementos.cl%20y%20quiero%20más%20información."
+						class="team-hero__btn btn-whatsapp"
+						target="_blank"
+						rel="noopener nofollow"
+					>
+						<!-- ícono WhatsApp -->
+						<svg aria-hidden="true" viewBox="0 0 24 24"><path fill="currentColor" d="M16.57 14.53c-.22-.11-1.31-.65-1.52-.72c-.2-.07-.35-.11-.5.11s-.58.72-.71.87c-.13.14-.26.16-.48.05c-.22-.11-.92-.33-1.75-1.06c-.65-.58-1.09-1.3-1.22-1.52c-.13-.22-.01-.34.1-.45c.1-.1.22-.26.33-.39c.11-.13.14-.22.22-.37c.07-.15.03-.28-.02-.39c-.05-.11-.5-1.2-.69-1.64c-.18-.44-.37-.38-.5-.38h-.43c-.15 0-.39.06-.6.28c-.2.22-.79.77-.79 1.88c0 1.1.81 2.16.92 2.31c.11.15 1.59 2.43 3.86 3.41c.54.23.96.36 1.28.46c.54.17 1.02.15 1.41.09c.43-.06 1.31-.54 1.5-1.07c.19-.53.19-.98.14-1.07c-.05-.09-.2-.14-.42-.25M12.03 2A9.94 9.94 0 0 0 2 12c0 1.76.46 3.39 1.27 4.82L2 22l5.35-1.25A9.95 9.95 0 0 0 12.03 22A10 10 0 0 0 22 12A10 10 0 0 0 12.03 2m0 18c-1.66 0-3.2-.5-4.49-1.35l-.32-.2l-3.17.74l.68-3.09l-.22-.32A7.94 7.94 0 0 1 4.03 12a8 8 0 1 1 8 8Z"/></svg>
+						Hablar por WhatsApp
+					</a>
+					<script>
+						const u = 'espacio.elementos';
+						const d = 'gmail.com';
+						const a = document.getElementById('btnMail');
+						const subject = 'Contacto desde el sitio';
+						const body    = 'Hola Espacio Elementos,\n\nles escribo porque...';
+						a.href = `mailto:${u}@${d}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+						a.setAttribute('aria-label','Enviar correo a Espacio Elementos');
+					</script>
+				</div>
+			</div>
+		</div>
+
+		<!-- Piso 2: Formulario + Datos -->
+		<!-- Si usarás Formspree / Netlify, cambia action y method -->
+		<!--
+		<div class="container py-5">
+			<div class="row g-4 align-items-stretch">
+				<div class="col-12 col-lg-7">
+					<div class="contact-card h-100 p-4">
+						<h3 class="contact-heading mb-3">Escríbenos</h3>
+
+						<form id="formContacto" action="#" method="POST" novalidate>
+							<div class="row g-3">
+								<div class="col-12">
+									<label for="nombre" class="form-label">Nombre</label>
+									<input id="nombre" name="nombre" type="text" class="form-control" required />
+								</div>
+								<div class="col-12">
+									<label for="email" class="form-label">Email</label>
+									<input id="email" name="email" type="email" class="form-control" required />
+								</div>
+								<div class="col-12">
+									<label for="motivo" class="form-label">Motivo</label>
+									<select id="motivo" name="motivo" class="form-select">
+									<option value="talleres">Talleres</option>
+									<option value="servicios">Servicios a empresas</option>
+									<option value="presentaciones">Presentaciones</option>
+									<option value="otro">Otro</option>
+									</select>
+								</div>
+								<label class="hp">No llenar este campo: <input type="text" name="company"></label>
+								<div class="col-12">
+									<label for="mensaje" class="form-label">Mensaje</label>
+									<textarea id="mensaje" name="mensaje" rows="5" class="form-control" required></textarea>
+								</div>
+								<div class="col-12">
+									<button type="submit" class="btn btn-warning px-4">Enviar</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+
+				<div class="col-12 col-lg-5">
+					<div class="info-card h-100 p-4">
+						<h3 class="contact-heading mb-3">Datos de contacto</h3>
+						<ul class="info-list">
+							<li>
+								<span class="info-label">Email</span>
+								<a id="emailLink" href="#" rel="nofollow noopener">cargando…</a>
+							</li>
+							<li>
+								<span class="info-label">WhatsApp</span>
+								<a href="https://wa.me/56956490299?text=Hola%20Espacio%20Elementos%2C%20quisiera%20informaci%C3%B3n"
+									target="_blank" rel="noopener noreferrer" class="info-link"><span id="telText"></span></a>
+								
+							</li>
+							<li>
+								<span class="info-label">Dirección</span>
+								<a href="https://www.google.com/maps/search/?api=1&query=Espacio+Elementos+Rengo"
+									target="_blank" rel="noopener noreferrer" class="info-link">Rengo, O’Higgins</a>
+							</li>
+							<li>
+								<span class="info-label">Horario</span>
+								<span>Lun–Vie 10:00–20:00 · Sáb 10:00–14:00</span>
+							</li>
+						</ul>
+
+						<hr class="my-3">
+
+						<div class="d-flex gap-3 align-items-center">
+							<a href="https://www.instagram.com/espacio.elementos" target="_blank" aria-label="Instagram">
+							<img src="/images/rrss/instagram.png" alt="Instagram" width="40" />
+							</a>
+							<a href="https://www.facebook.com/espacio.elementos.rengo" target="_blank" aria-label="Facebook">
+							<img src="/images/rrss/facebook.png" alt="Facebook" width="40" />
+							</a>
+							<a href="https://www.youtube.com/@EspacioElementos" target="_blank" aria-label="YouTube">
+							<img src="/images/rrss/youtube.png" alt="YouTube" width="40" />
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
+		</div>
+		-->
 
-			<!-- Separador ondulado -->
-			<div class="separator-svg-container" role="separator" aria-orientation="horizontal">
-				<svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-					<path
-						d="M0,0 C150,100 350,0 600,50 C850,100 1050,0 1200,75 L1200,120 L0,120 Z"
-						fill="var(--elementos-azul)"
-					/>
-				</svg>
-			</div>
+		<!-- Separador ondulado (azul) -->
+		<!--
+		<div class="separator-svg-container" role="separator" aria-orientation="horizontal">
+			<svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+			<path d="M0,0 C150,100 350,0 600,50 C850,100 1050,0 1200,75 L1200,120 L0,120 Z"
+					fill="var(--elementos-azul)" />
+			</svg>
+		</div>
+		-->
 		</section>
+
 
 		<Footer />
 
@@ -605,6 +735,19 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			backToTopBtn.addEventListener('click', () => {
 				window.scrollTo({ top: 0, behavior: 'smooth' });
 			});
+
+			// Email
+			const u = 'espacio.elementos', d = 'gmail.com';
+			const mail = `${u}@${d}`;
+			const a = document.getElementById('emailLink');
+			a.href = `mailto:${mail}`;
+			a.textContent = mail;
+
+			// Teléfono
+			const tel = '56956490299';             // sin signos
+			const telNode = document.getElementById('telText');
+			telNode.innerHTML = `<a href="tel:+${tel}">+56 9 5649 0299</a>`;
+						
 		</script>
 	</body>
 </html>

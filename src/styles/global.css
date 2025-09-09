@@ -56,7 +56,7 @@ main {
    ========================================================================== */
 /* Anton para títulos */
 h1, h2, h3, h4, h5, h6 {
-  margin: 3rem 0 0.5rem;
+  margin: 0.5rem 0 0.5rem;
   line-height: 1.2;
   color: rgb(var(--black));
   font-family: 'Anton', sans-serif;
@@ -796,87 +796,146 @@ footer {
     display: none; /* opcional: ocultar indicadores en móvil */
   }
 }
-
 /* =======================================================
-    CONTACTO
-    ======================================================= */
-#contacto {
-  margin-top: 50px;
-}
-/* 1. Contenedor principal que define el fondo */
-.contact-section {
+   CONTACTO (nuevo)
+   ======================================================= */
+
+#contacto.contacto {
   position: relative;
-  overflow: hidden;
+  padding: 0;
+  z-index: 0;
 }
 
-/* 2. Imagen de fondo full-bleed */
-.contact-background {
-  background: url('/images/equipo/grupal.jpg') center/cover no-repeat;
-  height: 400px;
-  width: 100%;
+/* Hero con parallax */
+.team-hero {
   position: relative;
+  min-height: 420px;
+  background: url('/images/equipo/todos.jpg') center / cover no-repeat fixed;
 }
-
-/* 3. Overlay semitransparente */
-.contact-overlay {
-  position: absolute;
-  inset: 0; /* top:0; right:0; bottom:0; left:0; */
-  background-color: rgba(0, 0, 0, 0.6);
+.team-hero__overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.55);
 }
-
-/* 4. Contenido encima del overlay */
-.contact-content {
-  position: relative;
-  z-index: 1;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 0 1rem;
+.team-hero__inner {
+  position: relative; z-index: 1;
+  min-height: 750px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 1rem;
 }
-
-/* 5. Tipografía */
-.contact-title {
+.team-hero__title {
   font-family: 'Anton', sans-serif;
-  font-size: 2.5rem;
-  color: #fff;
-  margin-bottom: 1rem;
+  text-transform: uppercase;
+  color: #fff; font-size: 2.75rem; margin-bottom: .5rem;
+}
+.team-hero__subtitle {
+  font-family: 'Source Serif Pro', serif;
+  color: #fff; font-size: 1.125rem; margin-bottom: 1rem;
+}
+.team-hero__btn { text-transform: uppercase; font-weight: 700; }
+
+/* Tarjetas */
+.contact-card, .info-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: var(--box-shadow);
+}
+.contact-heading {
+  font-family: 'Anton', sans-serif;
   text-transform: uppercase;
 }
 
-.contact-text {
-  font-family: 'Source Serif Pro', serif;
-  color: #fff;
-  font-size: 1.125rem;
-  margin-bottom: 1.5rem;
-  max-width: 600px;
+/* Formulario */
+.contact-card .form-label { font-weight: 600; }
+.contact-card .form-control,
+.contact-card .form-select {
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,.12);
+  box-shadow: none;
+}
+.contact-card .form-control:focus,
+.contact-card .form-select:focus {
+  border-color: var(--elementos-celeste);
+  box-shadow: 0 0 0 .2rem rgba(11,170,203,.15);
+}
+/* honeypot */
+.hp { 
+    position: absolute !important; left: -10000px; top: auto; 
+    width: 1px; height: 1px; overflow: hidden;
+  }
+
+
+/* Datos rápidos */
+.info-list { list-style: none; padding: 0; margin: 0; }
+.info-list li { display: grid; grid-template-columns: 120px 1fr; gap: .5rem; margin-bottom: .75rem; }
+.info-label {
+  font-family: 'Anton', sans-serif;
+  text-transform: uppercase;
+  color: rgb(var(--gray-dark));
+}
+.info-link { color: var(--accent); }
+.info-link:hover { color: var(--accent-dark); }
+
+.contact-privacy { color: #666; }
+
+/* Responsive */
+@media (max-width: 991.98px) {
+  .team-hero, .team-hero__inner { min-height: 360px; }
+  .team-hero__title { font-size: 2.1rem; }
+  .info-list li { grid-template-columns: 1fr; }
+}
+@media (max-width: 575.98px) {
+  .team-hero, .team-hero__inner { min-height: 320px; }
+  .team-hero__title { font-size: 1.8rem; }
+}
+/* CTA de contacto */
+.contact-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  justify-content: center;
+  margin-top: 1rem;
+  position: relative;
+  z-index: 2; /* por si el overlay intenta tapar */
 }
 
-.contact-link {
-  color: #F9EF23; /* amarillo botones */
-  text-decoration: underline;
-}
-
-/* 6. Botón de acción */
-.contact-btn {
+.team-hero__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .75rem 1.25rem;
+  border: none;
+  border-radius: 9999px;
+  text-decoration: none;
   font-family: 'Anton', sans-serif;
   font-weight: 700;
   text-transform: uppercase;
-  padding: 0.75rem 2rem;
-  font-size: 1rem;
+  letter-spacing: .5px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.25);
+  transition: transform .15s ease, opacity .15s ease;
+}
+.team-hero__btn:hover { transform: translateY(-1px); opacity: .95; }
+
+.team-hero__btn svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  display: inline-block;
 }
 
-/* 7. Responsive tweaks */
-@media (max-width: 768px) {
-  .contact-title {
-    font-size: 2rem;
-  }
-  .contact-text {
-    font-size: 1rem;
-  }
-  .contact-background {
-    height: 300px;
-  }
+/* Colores de acción */
+.btn-email {
+  background: #2563EB; /* azul */
+  color: #fff;
+}
+.btn-email:hover { background: #1D4ED8; }
+
+.btn-whatsapp {
+  background: #25D366; /* verde WhatsApp */
+  color: #fff;
+}
+.btn-whatsapp:hover { background: #1EBE5C; }
+
+/* En pantallas pequeñas, que no se “aplasten” */
+@media (max-width: 576px) {
+  .team-hero__btn { width: 100%; justify-content: center; }
 }
