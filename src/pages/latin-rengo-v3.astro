@@ -1,0 +1,1471 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import {
+  latinRengoEvent,
+  eventFacts,
+  tickets,
+  ticketIncludes,
+  reasonsToAttend,
+  eventAmenities,
+  faqs,
+} from '../data/latin-rengo';
+
+/* ---------- Schedule for v3 (brief spec: includes 22:15 entry) ---------- */
+const SCHEDULE = [
+  { time: "21:00", title: "Clase inicial de Salsa Cubana",   desc: "Para todos los niveles. Sin experiencia previa.",        accent: false },
+  { time: "22:00", title: "Bienvenida oficial",              desc: "Apertura del 1er Social de Salsa y Bachata de Rengo.", accent: true  },
+  { time: "22:15", title: "Presentaciones invitadas",        desc: "Academias y artistas invitados toman la pista.",        accent: false },
+  { time: "23:00", title: "Social Latino",                   desc: "Pista libre. Salsa, bachata y más.",                    accent: false },
+  { time: "03:00", title: "Cierre",                         desc: "",                                                       accent: false },
+];
+---
+
+<!doctype html>
+<html lang="es">
+<head>
+  <BaseHead
+    title={latinRengoEvent.seo.title}
+    description={latinRengoEvent.seo.description}
+    image={latinRengoEvent.seo.image}
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body class="page page--latin-rengo-v3">
+
+  <Header />
+
+  <main class="site-main v3-main" id="v3-top">
+
+    <!-- ══════════════════════════════════════════
+         HERO
+         ══════════════════════════════════════════ -->
+    <section class="v3-hero" aria-labelledby="v3-hero-title">
+      <div class="v3-hero__bg" aria-hidden="true">
+        <div class="v3-glow v3-glow--a"></div>
+        <div class="v3-glow v3-glow--b"></div>
+        <div class="v3-glow v3-glow--c"></div>
+      </div>
+
+      <div class="v3-shell">
+        <div class="v3-hero__layout">
+
+          <div class="v3-hero__body">
+            <p class="v3-kicker">
+              <span class="v3-kicker__dot" aria-hidden="true"></span>
+              Latin Rengo · Primer Aniversario
+            </p>
+
+            <h1 class="v3-hero__title" id="v3-hero-title">
+              <span class="v3-hero__title-sub">El 1er Social de</span>
+              <span class="v3-hero__title-main v3-neon-blue">Salsa y<br>Bachata</span>
+              <span class="v3-hero__title-loc">en Rengo</span>
+            </h1>
+
+            <p class="v3-hero__tagline">{latinRengoEvent.message}</p>
+
+            <ul class="v3-chips" aria-label="Datos del evento">
+              <li class="v3-chip">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                <time datetime={latinRengoEvent.dateTime}>{latinRengoEvent.date}</time>
+              </li>
+              <li class="v3-chip">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>{latinRengoEvent.startTime} – {latinRengoEvent.endTime}</span>
+              </li>
+              <li class="v3-chip">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>{latinRengoEvent.venue}</span>
+              </li>
+              <li class="v3-chip v3-chip--accent">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 20h.01M7 20v-4M12 20V10M17 20V4M22 20h.01"/></svg>
+                <span>Desde $3.000</span>
+              </li>
+            </ul>
+
+            <div class="v3-hero__actions">
+              <a class="v3-btn v3-btn--wa" href={latinRengoEvent.whatsappHref} target="_blank" rel="noopener noreferrer">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                Reservar entrada
+              </a>
+              <a class="v3-btn v3-btn--ghost" href="#cronograma">Ver programa</a>
+            </div>
+          </div>
+
+          <aside class="v3-hero__poster" aria-hidden="true">
+            <div class="v3-hero__poster-frame">
+              <img
+                src="/images/latin-rengo-social-poster.jpg"
+                alt="Afiche oficial Latin Rengo Social"
+                width="380"
+                height="536"
+                loading="eager"
+                fetchpriority="high"
+              />
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         FACTS STRIP
+         ══════════════════════════════════════════ -->
+    <div class="v3-facts-strip" role="region" aria-label="Información rápida del evento">
+      <div class="v3-shell">
+        <dl class="v3-facts">
+          {eventFacts.map((fact, i) => (
+            <>
+              {i > 0 && <div class="v3-fact-div" aria-hidden="true"></div>}
+              <div class="v3-fact">
+                <dt>{fact.label}</dt>
+                <dd class:list={[fact.label === 'Entradas' && 'v3-fact__dd--accent']}>{fact.value}</dd>
+              </div>
+            </>
+          ))}
+        </dl>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         ¿QUÉ ES UN SOCIAL?
+         ══════════════════════════════════════════ -->
+    <section class="v3-section v3-section--2" aria-labelledby="v3-que-es">
+      <div class="v3-shell v3-two-col">
+        <header>
+          <p class="v3-eyebrow">Antes de llegar</p>
+          <h2 class="v3-heading" id="v3-que-es">¿Qué es un social?</h2>
+        </header>
+        <div class="v3-prose">
+          <p>Un social es un espacio para bailar, compartir y conocer personas a través de la salsa y la bachata. No es una competencia y no necesitas asistir con pareja.</p>
+          <p>Tampoco necesitas experiencia previa. La noche comienza con una clase de Salsa Cubana para que quienes recién parten puedan aprender pasos básicos y entrar en ambiente.</p>
+          <p>Después de los shows invitados, la pista queda abierta para bailar, cambiar de pareja, conversar y disfrutar la música en comunidad.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         NACE SOCIAL DE RENGO
+         ══════════════════════════════════════════ -->
+    <section class="v3-section v3-section--brand" aria-labelledby="v3-nace">
+      <div class="v3-shell v3-two-col">
+        <header>
+          <p class="v3-eyebrow">Latin Rengo · 1er aniversario</p>
+          <h2 class="v3-heading" id="v3-nace">Nace Social de Rengo</h2>
+        </header>
+        <div class="v3-prose">
+          <p>Este evento marca el inicio de una iniciativa permanente para reunir a la comunidad salsera y bachatera de Rengo y sus alrededores.</p>
+          <p>Hace un año comenzamos con unas pocas personas que querían aprender a bailar. Hoy celebramos creando el primer Social de Salsa y Bachata de Rengo.</p>
+          <p class="v3-prose__accent">Gracias por ser parte de esta historia.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         ¿POR QUÉ ASISTIR?
+         ══════════════════════════════════════════ -->
+    <section class="v3-section v3-section--3" aria-labelledby="v3-por-que">
+      <div class="v3-shell">
+        <header class="v3-section-head">
+          <p class="v3-eyebrow">Razones para ir</p>
+          <h2 class="v3-heading" id="v3-por-que">¿Por qué asistir?</h2>
+        </header>
+        <ul class="v3-why" aria-label="Razones para asistir">
+          {reasonsToAttend.map((r) => (
+            <li class="v3-why__item">
+              <span class="v3-why__check" aria-hidden="true">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span>{r}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         QUÉ INCLUYE
+         ══════════════════════════════════════════ -->
+    <section class="v3-section v3-section--2" aria-labelledby="v3-incluye">
+      <div class="v3-shell v3-two-col">
+        <header>
+          <p class="v3-eyebrow">Tu entrada</p>
+          <h2 class="v3-heading" id="v3-incluye">¿Qué incluye?</h2>
+        </header>
+        <ul class="v3-includes">
+          {ticketIncludes.map((item) => (
+            <li class="v3-includes__item">
+              <span class="v3-includes__icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         ENTRADAS
+         ══════════════════════════════════════════ -->
+    <section id="entradas" class="v3-section v3-section--1" aria-labelledby="v3-entradas">
+      <div class="v3-shell">
+        <header class="v3-section-head">
+          <p class="v3-eyebrow">Valores</p>
+          <h2 class="v3-heading" id="v3-entradas">Entradas</h2>
+          <p class="v3-section-lead">Reserva por WhatsApp para asegurar tu lugar. El valor en puerta está sujeto a disponibilidad.</p>
+        </header>
+
+        <ul class="v3-tickets" aria-label="Opciones de entrada">
+          {tickets.map((t, i) => (
+            <li class:list={["v3-ticket", i === 1 && "v3-ticket--featured"]}>
+              {i === 0 && <span class="v3-ticket__tag v3-ticket__tag--orange">Mejor precio</span>}
+              {i === 1 && <span class="v3-ticket__tag v3-ticket__tag--blue">Más elegida</span>}
+              <h3 class="v3-ticket__name">{t.name}</h3>
+              <div class="v3-ticket__price">{t.price}</div>
+              {t.note && <p class="v3-ticket__note">{t.note}</p>}
+              <a class="v3-btn v3-btn--ticket" href={latinRengoEvent.whatsappHref} target="_blank" rel="noopener noreferrer">
+                Reservar por WhatsApp
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <p class="v3-footnote">
+          Todas las entradas incluyen clase de Salsa Cubana + ingreso al social.<br>
+          El cupo de preventa es limitado.
+        </p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         CRONOGRAMA
+         ══════════════════════════════════════════ -->
+    <section id="cronograma" class="v3-section v3-section--3" aria-labelledby="v3-cronograma">
+      <div class="v3-shell v3-two-col">
+        <header>
+          <p class="v3-eyebrow">Programa</p>
+          <h2 class="v3-heading" id="v3-cronograma">Cronograma</h2>
+          <p class="v3-section-lead--sm">Los horarios pueden ajustarse levemente.</p>
+        </header>
+        <ol class="v3-timeline" aria-label="Programa de la noche">
+          {SCHEDULE.map((item) => (
+            <li class:list={["v3-timeline__item", item.accent && "v3-timeline__item--accent"]}>
+              <time class="v3-timeline__time">{item.time}</time>
+              <div class="v3-timeline__body">
+                <strong class="v3-timeline__title">{item.title}</strong>
+                {item.desc && <p class="v3-timeline__desc">{item.desc}</p>}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         PRESENTACIONES
+         ══════════════════════════════════════════ -->
+    <section class="v3-section v3-section--2" aria-labelledby="v3-presentaciones">
+      <div class="v3-shell">
+        <header class="v3-section-head">
+          <p class="v3-eyebrow">Invitados</p>
+          <h2 class="v3-heading" id="v3-presentaciones">Presentaciones</h2>
+        </header>
+        <div class="v3-performers-ph">
+          <p class="v3-performers-ph__msg">
+            Pronto anunciaremos las academias, artistas y bailarines invitados.
+          </p>
+          <div class="v3-performers-ph__slots" aria-hidden="true">
+            {["Academia invitada", "Artista invitado", "Show invitado"].map((label) => (
+              <div class="v3-performers-ph__slot">
+                <div class="v3-performers-ph__icon">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <span>{label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         HABRÁ
+         ══════════════════════════════════════════ -->
+    <section class="v3-section v3-section--1" aria-labelledby="v3-habra">
+      <div class="v3-shell">
+        <header class="v3-section-head">
+          <p class="v3-eyebrow">Durante el evento</p>
+          <h2 class="v3-heading" id="v3-habra">Habrá</h2>
+        </header>
+        <ul class="v3-amenities" aria-label="Servicios disponibles en el evento">
+          {eventAmenities.map((a) => (
+            <li class="v3-amenity">
+              <h3 class="v3-amenity__title">{a.title}</h3>
+              <p class="v3-amenity__detail">{a.detail}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         UBICACIÓN
+         ══════════════════════════════════════════ -->
+    <section id="ubicacion" class="v3-section v3-section--3" aria-labelledby="v3-ubicacion">
+      <div class="v3-shell">
+        <header class="v3-section-head">
+          <p class="v3-eyebrow">Cómo llegar</p>
+          <h2 class="v3-heading" id="v3-ubicacion">Ubicación</h2>
+        </header>
+        <div class="v3-location">
+          <div class="v3-location__info">
+            <h3 class="v3-location__venue">{latinRengoEvent.venue}</h3>
+            <p class="v3-location__city">Rengo, Región de O'Higgins, Chile</p>
+            <dl class="v3-location__details">
+              <div>
+                <dt>Dirección exacta</dt>
+                <dd>{latinRengoEvent.address}</dd>
+              </div>
+              <div>
+                <dt>Referencias</dt>
+                <dd>Disponibles al reservar tu entrada</dd>
+              </div>
+              <div>
+                <dt>Estacionamiento</dt>
+                <dd>Consulta disponibilidad al reservar</dd>
+              </div>
+            </dl>
+          </div>
+          <div class="v3-location__map" aria-label="Solicitar ubicación exacta por WhatsApp">
+            <div class="v3-location__map-inner">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <p>¿Necesitas la dirección exacta?</p>
+              <a class="v3-btn v3-btn--ghost-sm" href={latinRengoEvent.whatsappHref} target="_blank" rel="noopener noreferrer">
+                Pedir por WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         FAQ
+         ══════════════════════════════════════════ -->
+    <section id="preguntas" class="v3-section v3-section--2" aria-labelledby="v3-faq">
+      <div class="v3-shell v3-shell--narrow">
+        <header class="v3-section-head">
+          <p class="v3-eyebrow">Antes de asistir</p>
+          <h2 class="v3-heading" id="v3-faq">Preguntas frecuentes</h2>
+        </header>
+        <div class="v3-faq">
+          {faqs.map((item) => (
+            <details class="v3-faq__item">
+              <summary class="v3-faq__q">
+                <span>{item.question}</span>
+                <span class="v3-faq__icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </summary>
+              <p class="v3-faq__a">{item.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         CTA FINAL
+         ══════════════════════════════════════════ -->
+    <section class="v3-cta" aria-labelledby="v3-cta-title">
+      <div class="v3-cta__bg" aria-hidden="true">
+        <div class="v3-cta__glow v3-cta__glow--a"></div>
+        <div class="v3-cta__glow v3-cta__glow--b"></div>
+      </div>
+      <div class="v3-shell v3-shell--narrow">
+        <p class="v3-eyebrow">Nuestra historia continúa</p>
+        <h2 class="v3-cta__title" id="v3-cta-title">
+          El comienzo de<br>
+          <em class="v3-neon-blue">Social de Rengo</em>
+        </h2>
+        <p class="v3-cta__desc">
+          Rengo tendrá su primer Social de Salsa y Bachata.<br>
+          Queremos que seas parte del comienzo.
+        </p>
+        <a class="v3-btn v3-btn--wa v3-btn--lg" href={latinRengoEvent.whatsappHref} target="_blank" rel="noopener noreferrer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          Comprar entrada por WhatsApp
+        </a>
+        <p class="v3-cta__contact">
+          {latinRengoEvent.contactLabel} · <a href="/" class="v3-link">Espacio Elementos</a>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+
+  <!-- Flotante WhatsApp -->
+  <a
+    class="v3-wa-float"
+    href={latinRengoEvent.whatsappHref}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Reservar entrada por WhatsApp"
+  >
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+    </svg>
+    <span class="v3-wa-float__label">Reservar</span>
+  </a>
+
+</body>
+</html>
+
+<!-- ═══════════════════════════════════════════════════════
+     GLOBAL OVERRIDES — scoped to body.page--latin-rengo-v3
+     Safe: Astro generates per-page CSS bundles (SSG).
+     ═══════════════════════════════════════════════════════ -->
+<style is:global>
+  body.page--latin-rengo-v3 {
+    background: #050505 !important;
+    color: #e8e8f0;
+    font-family: 'Montserrat', system-ui, sans-serif;
+  }
+
+  body.page--latin-rengo-v3::before,
+  body.page--latin-rengo-v3::after { display: none; }
+
+  body.page--latin-rengo-v3 .site-header {
+    background: rgba(5, 5, 5, 0.94) !important;
+    border-bottom: 1px solid rgba(84, 223, 255, 0.1) !important;
+  }
+
+  body.page--latin-rengo-v3 .site-header__link {
+    color: rgba(255, 255, 255, 0.72) !important;
+  }
+  body.page--latin-rengo-v3 .site-header__link:hover,
+  body.page--latin-rengo-v3 .site-header__link.active {
+    color: #54DFFF !important;
+  }
+
+  /* Hide "Cotiza por WhatsApp" — not relevant in this event landing */
+  body.page--latin-rengo-v3 .site-header__cta-wrap { display: none; }
+
+  body.page--latin-rengo-v3 .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+  }
+  body.page--latin-rengo-v3 .navbar-toggler-icon {
+    filter: brightness(0) invert(1);
+  }
+
+  @media (max-width: 991px) {
+    body.page--latin-rengo-v3 .navbar-collapse {
+      background: #0a0a0d;
+      padding: 0.75rem 1rem 1rem;
+      border-top: 1px solid rgba(84, 223, 255, 0.08);
+    }
+  }
+
+  body.page--latin-rengo-v3 .site-footer {
+    background: #0a0a0d !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.07) !important;
+    color: rgba(255, 255, 255, 0.45) !important;
+  }
+  body.page--latin-rengo-v3 .site-footer a {
+    color: rgba(255, 255, 255, 0.55) !important;
+  }
+  body.page--latin-rengo-v3 .site-footer a:hover {
+    color: #54DFFF !important;
+  }
+</style>
+
+<!-- ═══════════════════════════════════════════════════════
+     V3 COMPONENT STYLES — all classes prefixed with .v3-
+     ═══════════════════════════════════════════════════════ -->
+<style>
+  /* ─── TOKENS ────────────────────────────────────────────── */
+  .v3-main {
+    --c1:    #050505;
+    --c2:    #0d0d10;
+    --c3:    #101014;
+    --cb:    rgba(255, 255, 255, 0.04);
+    --ce:    rgba(255, 255, 255, 0.08);
+    --cw:    #ffffff;
+    --ct:    #e8e8f0;
+    --cm:    #c8c8d0;
+    --cd:    #888898;
+    --blue:  #54DFFF;
+    --org:   #FF9A4D;
+    --pur:   #C678FF;
+    --wa:    #25D366;
+    --gb:    0 0 8px rgba(84, 223, 255, 0.7), 0 0 24px rgba(84, 223, 255, 0.4), 0 0 60px rgba(84, 223, 255, 0.15);
+    --go:    0 0 8px rgba(255, 154, 77, 0.7), 0 0 24px rgba(255, 154, 77, 0.4);
+    --r:     10px;
+    --r-lg:  18px;
+    --t:     0.2s ease;
+    background: var(--c1);
+    color: var(--ct);
+    font-family: 'Montserrat', system-ui, sans-serif;
+  }
+
+  /* ─── NEON ──────────────────────────────────────────────── */
+  .v3-neon-blue {
+    font-style: normal;
+    color: var(--blue);
+    text-shadow: var(--gb);
+  }
+
+  /* ─── LAYOUT ────────────────────────────────────────────── */
+  .v3-shell {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .v3-shell--narrow { max-width: 720px; }
+
+  .v3-section        { padding: 5rem 0; }
+  .v3-section--1     { background: var(--c1); }
+  .v3-section--2     { background: var(--c2); }
+  .v3-section--3     { background: var(--c3); }
+  .v3-section--brand {
+    background: var(--c2);
+    border-top:    1px solid rgba(255, 154, 77, 0.12);
+    border-bottom: 1px solid rgba(255, 154, 77, 0.12);
+  }
+
+  .v3-two-col {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .v3-section-head { text-align: center; margin-bottom: 2.5rem; }
+
+  /* ─── TYPOGRAPHY ────────────────────────────────────────── */
+  .v3-eyebrow {
+    display: inline-block;
+    font-size: 0.67rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 0.6rem;
+  }
+
+  .v3-heading {
+    font-family: 'Bebas Neue', 'Anton', system-ui, sans-serif;
+    font-size: clamp(1.9rem, 4.5vw, 3.2rem);
+    font-weight: 400;
+    line-height: 1.0;
+    letter-spacing: 0.04em;
+    color: var(--cw);
+    margin: 0 0 1rem;
+    text-transform: uppercase;
+  }
+
+  .v3-prose p {
+    font-size: 1rem;
+    line-height: 1.82;
+    color: var(--cm);
+    margin: 0 0 1rem;
+  }
+  .v3-prose p:last-child { margin-bottom: 0; }
+  .v3-prose__accent { color: var(--cw) !important; font-weight: 600; }
+
+  .v3-section-lead {
+    font-size: 0.97rem;
+    color: var(--cm);
+    max-width: 52ch;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+  .v3-section-lead--sm {
+    font-size: 0.84rem;
+    color: var(--cd);
+    margin-top: 0.5rem;
+  }
+
+  .v3-footnote {
+    font-size: 0.76rem;
+    color: var(--cd);
+    text-align: center;
+    margin: 1.5rem 0 0;
+    line-height: 1.65;
+  }
+
+  .v3-link { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+  .v3-link:hover { color: #fff; }
+
+  /* ─── KICKER ────────────────────────────────────────────── */
+  .v3-kicker {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.69rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--org);
+    margin: 0 0 1rem;
+  }
+  .v3-kicker__dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--org);
+    box-shadow: var(--go);
+    flex-shrink: 0;
+  }
+
+  /* ─── BUTTONS ───────────────────────────────────────────── */
+  .v3-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.88rem 1.75rem;
+    border-radius: 999px;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 0.84rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid transparent;
+    min-height: 48px;
+    transition: transform var(--t), box-shadow var(--t), background-color var(--t), border-color var(--t), color var(--t);
+    -webkit-tap-highlight-color: transparent;
+    white-space: nowrap;
+  }
+  .v3-btn:focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; }
+
+  .v3-btn--wa {
+    background: var(--wa);
+    color: #ffffff;
+    border-color: var(--wa);
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  }
+  .v3-btn--wa:hover {
+    background: #1db355;
+    box-shadow: 0 6px 32px rgba(37, 211, 102, 0.65);
+    transform: translateY(-2px);
+    color: #ffffff;
+  }
+
+  .v3-btn--ghost {
+    background: transparent;
+    color: var(--cw);
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+  .v3-btn--ghost:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+    background: rgba(84, 223, 255, 0.06);
+  }
+
+  .v3-btn--ghost-sm {
+    background: transparent;
+    color: var(--blue);
+    border-color: rgba(84, 223, 255, 0.35);
+    font-size: 0.8rem;
+    padding: 0.6rem 1.25rem;
+    min-height: 42px;
+  }
+  .v3-btn--ghost-sm:hover {
+    background: rgba(84, 223, 255, 0.08);
+    border-color: var(--blue);
+  }
+
+  .v3-btn--ticket {
+    width: 100%;
+    background: transparent;
+    color: var(--blue);
+    border-color: rgba(84, 223, 255, 0.35);
+    font-size: 0.77rem;
+    padding: 0.76rem 1rem;
+    min-height: 44px;
+  }
+  .v3-btn--ticket:hover {
+    background: var(--blue);
+    color: #050505;
+    box-shadow: var(--gb);
+    transform: translateY(-1px);
+  }
+
+  .v3-btn--lg {
+    padding: 1.1rem 2.5rem;
+    font-size: 0.98rem;
+    min-height: 56px;
+  }
+
+  /* ─── CHIPS ─────────────────────────────────────────────── */
+  .v3-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+  }
+  .v3-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.38rem;
+    padding: 0.38rem 0.82rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    font-size: 0.77rem;
+    font-weight: 600;
+    color: var(--cm);
+  }
+  .v3-chip svg { color: var(--blue); flex-shrink: 0; }
+  .v3-chip--accent {
+    background: rgba(84, 223, 255, 0.07);
+    border-color: rgba(84, 223, 255, 0.25);
+    color: var(--blue);
+  }
+  .v3-chip--accent svg { color: var(--org); }
+
+  /* ─── HERO ──────────────────────────────────────────────── */
+  .v3-hero {
+    position: relative;
+    overflow: hidden;
+    background-color: #0b0607;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='36'%3E%3Crect x='2' y='2' width='80' height='14' rx='1' fill='%231a0a08' stroke='%230c0404' stroke-width='1'/%3E%3Crect x='44' y='20' width='80' height='14' rx='1' fill='%23150706' stroke='%230a0303' stroke-width='1'/%3E%3Crect x='-40' y='20' width='80' height='14' rx='1' fill='%23150706' stroke='%230a0303' stroke-width='1'/%3E%3C/svg%3E");
+    background-size: 84px 36px;
+    padding: 7rem 0 5rem;
+  }
+
+  .v3-hero__bg { position: absolute; inset: 0; pointer-events: none; }
+
+  .v3-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+  }
+  .v3-glow--a { width: 580px; height: 460px; background: rgba(255, 154,  77, 0.16); bottom: -160px; left:  -80px; }
+  .v3-glow--b { width: 420px; height: 420px; background: rgba(198, 120, 255, 0.10); top:    5%;      left:   25%;  }
+  .v3-glow--c { width: 620px; height: 520px; background: rgba(84,  223, 255, 0.08); top:  -100px;   right:  -80px; }
+
+  .v3-hero__layout {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .v3-hero__title {
+    font-family: 'Bebas Neue', 'Anton', system-ui, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    margin: 0 0 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .v3-hero__title-sub {
+    font-size: clamp(1.4rem, 3.2vw, 2.8rem);
+    color: var(--cm);
+    letter-spacing: 0.07em;
+    line-height: 1.1;
+    display: block;
+  }
+  .v3-hero__title-main {
+    font-size: clamp(3.8rem, 9.5vw, 8rem);
+    line-height: 0.88;
+    display: block;
+  }
+  .v3-hero__title-loc {
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.0;
+    display: block;
+    margin-top: 0.05em;
+  }
+
+  .v3-hero__tagline {
+    font-size: clamp(0.88rem, 2vw, 1.02rem);
+    color: var(--cm);
+    line-height: 1.65;
+    margin: 0 0 1.75rem;
+    max-width: 50ch;
+  }
+
+  .v3-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+  }
+
+  .v3-hero__poster { display: flex; align-items: center; justify-content: center; }
+
+  .v3-hero__poster-frame {
+    width: 260px;
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    background: linear-gradient(160deg, rgba(84, 223, 255, 0.06) 0%, rgba(198, 120, 255, 0.06) 100%);
+    border: 1px solid rgba(84, 223, 255, 0.2);
+    box-shadow:
+      0 0 0 1px rgba(84, 223, 255, 0.12),
+      0 0 40px rgba(84, 223, 255, 0.06),
+      0 24px 64px rgba(0, 0, 0, 0.7);
+    min-height: 370px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .v3-hero__poster-frame img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 380 / 536;
+    object-fit: cover;
+  }
+
+  /* ─── FACTS STRIP ───────────────────────────────────────── */
+  .v3-facts-strip {
+    background: var(--c2);
+    border-top: 1px solid rgba(84, 223, 255, 0.1);
+    border-bottom: 1px solid rgba(84, 223, 255, 0.1);
+    padding: 1.75rem 0;
+  }
+
+  .v3-facts {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .v3-fact {
+    flex: 1 1 0;
+    min-width: 130px;
+    text-align: center;
+    padding: 0 1rem;
+  }
+  .v3-fact dt {
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cd);
+    margin-bottom: 0.2rem;
+  }
+  .v3-fact dd {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--cw);
+    margin: 0;
+  }
+  .v3-fact__dd--accent { color: var(--blue) !important; text-shadow: var(--gb); }
+
+  .v3-fact-div {
+    flex: 0 0 1px;
+    background: rgba(255, 255, 255, 0.08);
+    align-self: stretch;
+    min-height: 36px;
+  }
+
+  /* ─── ¿POR QUÉ ASISTIR? ─────────────────────────────────── */
+  .v3-why {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.85rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .v3-why__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.72rem;
+    padding: 1.25rem;
+    background: var(--cb);
+    border: 1px solid var(--ce);
+    border-radius: var(--r);
+    font-size: 0.87rem;
+    font-weight: 600;
+    color: var(--ct);
+    line-height: 1.4;
+    transition: border-color var(--t), background-color var(--t);
+  }
+  .v3-why__item:hover {
+    border-color: rgba(84, 223, 255, 0.22);
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .v3-why__check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: rgba(84, 223, 255, 0.1);
+    border: 1px solid rgba(84, 223, 255, 0.25);
+    color: var(--blue);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ─── QUÉ INCLUYE ───────────────────────────────────────── */
+  .v3-includes {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .v3-includes__item {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    font-size: 0.94rem;
+    font-weight: 600;
+    color: var(--ct);
+  }
+  .v3-includes__item:first-child { border-top: 1px solid rgba(255, 255, 255, 0.06); }
+
+  .v3-includes__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: rgba(84, 223, 255, 0.08);
+    border: 1px solid rgba(84, 223, 255, 0.22);
+    color: var(--blue);
+    flex-shrink: 0;
+  }
+
+  /* ─── TICKETS ───────────────────────────────────────────── */
+  .v3-tickets {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    align-items: start;
+  }
+
+  .v3-ticket {
+    position: relative;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--r-lg);
+    padding: 2rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: border-color var(--t), box-shadow var(--t), transform var(--t);
+  }
+
+  .v3-ticket:nth-child(1) { border-color: rgba(255, 154, 77, 0.22); }
+  .v3-ticket:nth-child(1):hover { border-color: rgba(255, 154, 77, 0.5); transform: translateY(-3px); }
+
+  .v3-ticket--featured {
+    border-color: rgba(84, 223, 255, 0.38);
+    box-shadow: 0 0 0 1px rgba(84, 223, 255, 0.12), 0 0 40px rgba(84, 223, 255, 0.05);
+  }
+  .v3-ticket--featured:hover {
+    border-color: rgba(84, 223, 255, 0.6);
+    box-shadow: 0 0 0 1px rgba(84, 223, 255, 0.18), 0 12px 40px rgba(84, 223, 255, 0.08);
+    transform: translateY(-3px);
+  }
+
+  .v3-ticket:last-child { border-color: rgba(255, 255, 255, 0.08); }
+  .v3-ticket:last-child:hover { border-color: rgba(255, 255, 255, 0.18); transform: translateY(-3px); }
+
+  .v3-ticket__tag {
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.18rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.63rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .v3-ticket__tag--orange { background: var(--org); color: #050505; }
+  .v3-ticket__tag--blue   { background: var(--blue); color: #050505; }
+
+  .v3-ticket__name {
+    font-size: 0.67rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cd);
+    margin: 0;
+  }
+
+  .v3-ticket__price {
+    font-family: 'Bebas Neue', 'Anton', sans-serif;
+    font-size: clamp(2.8rem, 5.5vw, 4rem);
+    font-weight: 400;
+    line-height: 1;
+    color: var(--cw);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .v3-ticket--featured .v3-ticket__price {
+    color: var(--blue);
+    text-shadow: var(--gb);
+  }
+
+  .v3-ticket__note {
+    font-size: 0.74rem;
+    color: var(--cd);
+    margin: -0.25rem 0 0;
+    font-weight: 500;
+  }
+
+  /* ─── CRONOGRAMA ────────────────────────────────────────── */
+  .v3-timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .v3-timeline__item {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    gap: 0 1.25rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    align-items: flex-start;
+  }
+  .v3-timeline__item:first-child { border-top: 1px solid rgba(255, 255, 255, 0.05); }
+
+  .v3-timeline__time {
+    font-family: 'Bebas Neue', 'Anton', sans-serif;
+    font-size: 1.2rem;
+    color: var(--blue);
+    text-shadow: 0 0 10px rgba(84, 223, 255, 0.5);
+    letter-spacing: 0.05em;
+    text-align: right;
+    padding-top: 0.06rem;
+    display: block;
+  }
+  .v3-timeline__item--accent .v3-timeline__time {
+    color: var(--org);
+    text-shadow: 0 0 10px rgba(255, 154, 77, 0.55);
+  }
+
+  .v3-timeline__title {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--cw);
+    margin-bottom: 0.22rem;
+    font-family: 'Montserrat', system-ui, sans-serif;
+  }
+  .v3-timeline__item--accent .v3-timeline__title { color: var(--org); }
+
+  .v3-timeline__desc {
+    font-size: 0.82rem;
+    color: var(--cm);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* ─── PRESENTACIONES PLACEHOLDER ────────────────────────── */
+  .v3-performers-ph { text-align: center; }
+
+  .v3-performers-ph__msg {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--cm);
+    margin: 0 auto 2rem;
+    max-width: 48ch;
+    line-height: 1.65;
+  }
+
+  .v3-performers-ph__slots {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .v3-performers-ph__slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 2rem 1.5rem;
+    background: var(--cb);
+    border: 1px dashed rgba(84, 223, 255, 0.18);
+    border-radius: var(--r);
+    min-width: 180px;
+    flex: 1;
+    max-width: 220px;
+    color: var(--cd);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .v3-performers-ph__icon {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: rgba(84, 223, 255, 0.07);
+    border: 1px solid rgba(84, 223, 255, 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(84, 223, 255, 0.5);
+  }
+
+  /* ─── AMENIDADES ────────────────────────────────────────── */
+  .v3-amenities {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .v3-amenity {
+    background: var(--cb);
+    border: 1px solid var(--ce);
+    border-radius: var(--r);
+    padding: 1.5rem 1.25rem;
+    transition: border-color var(--t);
+  }
+  .v3-amenity:hover { border-color: rgba(84, 223, 255, 0.2); }
+
+  .v3-amenity__title {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--cw);
+    margin: 0 0 0.35rem;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .v3-amenity__detail {
+    font-size: 0.8rem;
+    color: var(--cd);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* ─── UBICACIÓN ─────────────────────────────────────────── */
+  .v3-location {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .v3-location__venue {
+    font-family: 'Bebas Neue', 'Anton', system-ui, sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 400;
+    color: var(--cw);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin: 0 0 0.25rem;
+  }
+
+  .v3-location__city {
+    font-size: 0.88rem;
+    color: var(--blue);
+    font-weight: 600;
+    margin: 0 0 1.5rem;
+  }
+
+  .v3-location__details {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+  }
+  .v3-location__details > div {
+    padding: 0.82rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 0 1rem;
+    align-items: baseline;
+  }
+  .v3-location__details > div:first-child { border-top: 1px solid rgba(255, 255, 255, 0.06); }
+
+  .v3-location__details dt {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cd);
+  }
+
+  .v3-location__details dd {
+    font-size: 0.87rem;
+    color: var(--cm);
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .v3-location__map {
+    border-radius: var(--r);
+    background: var(--cb);
+    border: 1px solid var(--ce);
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .v3-location__map-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+    text-align: center;
+    padding: 2rem;
+    color: var(--cd);
+  }
+  .v3-location__map-inner p {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--cm);
+    margin: 0;
+    max-width: 24ch;
+    line-height: 1.5;
+  }
+
+  /* ─── FAQ ───────────────────────────────────────────────── */
+  .v3-faq { display: flex; flex-direction: column; }
+
+  .v3-faq__item { border-bottom: 1px solid rgba(255, 255, 255, 0.07); }
+  .v3-faq__item:first-child { border-top: 1px solid rgba(255, 255, 255, 0.07); }
+
+  .v3-faq__q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.15rem 0;
+    font-size: 0.91rem;
+    font-weight: 600;
+    color: var(--cw);
+    cursor: pointer;
+    list-style: none;
+    transition: color var(--t);
+    user-select: none;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .v3-faq__q::-webkit-details-marker { display: none; }
+  .v3-faq__q::marker { display: none; }
+  .v3-faq__q:hover { color: var(--blue); }
+  .v3-faq__q:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 4px; }
+
+  .v3-faq__icon { flex-shrink: 0; color: var(--blue); transition: transform 0.22s ease; }
+  details[open] .v3-faq__icon { transform: rotate(180deg); }
+
+  .v3-faq__a {
+    font-size: 0.87rem;
+    color: var(--cm);
+    line-height: 1.8;
+    padding: 0 0 1.15rem;
+    margin: 0;
+  }
+
+  /* ─── CTA FINAL ─────────────────────────────────────────── */
+  .v3-cta {
+    position: relative;
+    background: var(--c1);
+    text-align: center;
+    padding: 7rem 0;
+    overflow: hidden;
+  }
+
+  .v3-cta__bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+
+  .v3-cta__glow {
+    position: absolute;
+    width: 520px; height: 520px;
+    border-radius: 50%;
+    filter: blur(100px);
+  }
+  .v3-cta__glow--a { background: rgba(198, 120, 255, 0.18); bottom: -180px; left:  -100px; }
+  .v3-cta__glow--b { background: rgba(84,  223, 255, 0.16); top:    -120px; right:  -80px; }
+
+  .v3-cta__title {
+    font-family: 'Bebas Neue', 'Anton', system-ui, sans-serif;
+    font-size: clamp(2.5rem, 6.5vw, 5.5rem);
+    font-weight: 400;
+    line-height: 0.95;
+    color: var(--cw);
+    margin: 0.5rem 0 1.5rem;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+  }
+
+  .v3-cta__desc {
+    font-size: 1.08rem;
+    font-weight: 600;
+    color: var(--cm);
+    margin: 0 auto 2.75rem;
+    line-height: 1.65;
+    position: relative;
+    z-index: 1;
+  }
+
+  .v3-cta__contact {
+    margin: 1.5rem 0 0;
+    font-size: 0.78rem;
+    color: var(--cd);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── FLOATING WA ───────────────────────────────────────── */
+  .v3-wa-float {
+    position: fixed;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--wa);
+    color: #ffffff;
+    border-radius: 999px;
+    padding: 0.85rem 1.25rem 0.85rem 1rem;
+    font-weight: 700;
+    font-size: 0.77rem;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-shadow: 0 4px 22px rgba(37, 211, 102, 0.45);
+    transition: transform var(--t), box-shadow var(--t), background-color var(--t);
+    -webkit-tap-highlight-color: transparent;
+    min-height: 48px;
+  }
+  .v3-wa-float:hover {
+    background: #1db355;
+    box-shadow: 0 6px 32px rgba(37, 211, 102, 0.65);
+    transform: translateY(-2px);
+    color: #ffffff;
+  }
+  .v3-wa-float:focus-visible { outline: 3px solid #ffffff; outline-offset: 3px; }
+
+  /* ─── REDUCED MOTION ────────────────────────────────────── */
+  @media (prefers-reduced-motion: reduce) {
+    .v3-btn, .v3-ticket, .v3-why__item, .v3-amenity, .v3-wa-float, .v3-faq__icon {
+      transition: none;
+    }
+    .v3-btn:hover, .v3-ticket:hover, .v3-why__item:hover, .v3-wa-float:hover { transform: none; }
+  }
+
+  /* ─── TABLET (≤ 960px) ──────────────────────────────────── */
+  @media (max-width: 960px) {
+    .v3-two-col { grid-template-columns: 1fr; gap: 1.5rem; }
+
+    .v3-hero__layout { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
+    .v3-hero__poster { order: -1; }
+    .v3-hero__poster-frame { width: 185px; min-height: 260px; margin: 0 auto; }
+    .v3-kicker           { justify-content: center; }
+    .v3-hero__title      { align-items: center; }
+    .v3-hero__tagline    { margin-left: auto; margin-right: auto; }
+    .v3-chips            { justify-content: center; }
+    .v3-hero__actions    { justify-content: center; }
+
+    .v3-fact-div { display: none; }
+    .v3-facts    { justify-content: center; flex-wrap: wrap; gap: 0.5rem; }
+    .v3-fact     { flex: 0 0 calc(50% - 0.25rem); min-width: 0; }
+
+    .v3-why      { grid-template-columns: repeat(2, 1fr); }
+    .v3-amenities { grid-template-columns: repeat(2, 1fr); }
+    .v3-location { grid-template-columns: 1fr; }
+    .v3-location__map { min-height: 160px; }
+
+    .v3-performers-ph__slots { gap: 1rem; }
+    .v3-performers-ph__slot  { min-width: 140px; }
+  }
+
+  /* ─── MOBILE (≤ 640px) ──────────────────────────────────── */
+  @media (max-width: 640px) {
+    .v3-section { padding: 3rem 0; }
+    .v3-cta     { padding: 4.5rem 0; }
+
+    .v3-hero { padding: 5.5rem 0 3.5rem; }
+    .v3-hero__poster-frame { width: 145px; min-height: 200px; }
+
+    .v3-hero__title-main { font-size: clamp(3rem, 16vw, 5rem); }
+    .v3-hero__title-sub  { font-size: clamp(1rem,  5vw, 1.8rem); }
+    .v3-hero__title-loc  { font-size: clamp(1.5rem, 8vw, 2.5rem); }
+
+    .v3-hero__actions { flex-direction: column; align-items: stretch; }
+
+    .v3-fact { flex: 0 0 calc(50% - 0.25rem); }
+
+    .v3-why { grid-template-columns: 1fr 1fr; gap: 0.65rem; }
+    .v3-why__item { padding: 1rem; font-size: 0.82rem; }
+
+    .v3-tickets {
+      grid-template-columns: 1fr;
+      max-width: 340px;
+      margin: 0 auto;
+    }
+
+    .v3-amenities { grid-template-columns: repeat(2, 1fr); }
+
+    .v3-timeline__item { grid-template-columns: 4.25rem 1fr; gap: 0 1rem; }
+    .v3-timeline__time { font-size: 1rem; }
+
+    .v3-location__details > div { grid-template-columns: 1fr; gap: 0.15rem; }
+
+    .v3-performers-ph__slots { flex-direction: column; align-items: center; }
+    .v3-performers-ph__slot  { width: 100%; max-width: 100%; flex-direction: row; }
+
+    .v3-btn--lg { width: 100%; }
+
+    .v3-wa-float__label { display: none; }
+    .v3-wa-float { width: 52px; height: 52px; padding: 0; border-radius: 50%; justify-content: center; }
+  }
+
+  /* ─── SMALL MOBILE (≤ 400px) ────────────────────────────── */
+  @media (max-width: 400px) {
+    .v3-shell { padding: 0 1rem; }
+    .v3-section-head { margin-bottom: 1.75rem; }
+    .v3-hero__title-main { font-size: clamp(2.75rem, 18vw, 4rem); }
+    .v3-hero__poster-frame { width: 125px; min-height: 175px; }
+    .v3-facts { flex-direction: column; align-items: stretch; }
+    .v3-fact  { flex: none; text-align: left; padding: 0.4rem 0; }
+    .v3-why { grid-template-columns: 1fr; }
+    .v3-timeline__item { grid-template-columns: 4rem 1fr; }
+    .v3-amenities { grid-template-columns: 1fr; }
+  }
+</style>
