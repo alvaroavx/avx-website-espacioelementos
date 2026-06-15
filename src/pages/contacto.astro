@@ -1,0 +1,124 @@
+---
+import DossierCard from '../components/DossierCard.astro';
+import PageHero from '../components/PageHero.astro';
+import { dossiers } from '../data/dossiers';
+import { CONTACT_BRIEF_ITEMS, INQUIRY_PATHS, SITE_CONTACT, SOCIAL_LINKS } from '../data/site';
+import MainLayout from '../layouts/MainLayout.astro';
+---
+
+<MainLayout
+	title="Contacto | Espacio Elementos"
+	description="Correo, WhatsApp, redes y solicitud de dossiers de Espacio Elementos."
+	image="/images/equipo/todos.jpg"
+>
+	<PageHero
+		eyebrow="Contacto"
+		title="Conversemos tu evento, tu organizacion o tu necesidad de equipo"
+		description="Esta pagina esta pensada para convertir conversaciones en propuestas claras. Si quieres cotizar una experiencia, solicitar un dossier o consultar por talleres, escribenos y te orientamos."
+		image="/images/equipo/todos.jpg"
+		imageAlt="Equipo de Espacio Elementos"
+		actions={[
+			{ label: 'Escribir por correo', href: SITE_CONTACT.emailHref },
+			{ label: 'Hablar por WhatsApp', href: SITE_CONTACT.whatsappHref, variant: 'secondary', target: '_blank' },
+		]}
+	/>
+
+	<section id="consultas" class="page-section page-section--wash-blue page-section--symbol-water">
+		<div class="container">
+			<div class="section-heading">
+				<p class="eyebrow">Tipos de consulta</p>
+				<h2>Elige la ruta que mejor se parece a tu necesidad</h2>
+				<p>
+					Si ya sabes el contexto de la solicitud, entrar por una de estas rutas ayuda a ordenar mejor la
+					conversacion desde el inicio.
+				</p>
+			</div>
+			<div class="path-grid">
+				{INQUIRY_PATHS.map((path) => (
+					<article class="path-card">
+						<h3>{path.title}</h3>
+						<p>{path.summary}</p>
+						<a
+							class="site-link"
+							href={path.href}
+							target={path.target}
+							rel={path.target === '_blank' ? 'noopener noreferrer' : undefined}
+						>
+							{path.label}
+						</a>
+					</article>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="page-section page-section--wash-gold page-section--symbol-fire">
+		<div class="container split-panel">
+			<div>
+				<p class="eyebrow">Para responder mejor</p>
+				<h2>Mientras mas contexto llegue, mas facil sera aterrizar una propuesta</h2>
+				<ul class="check-list">
+					{CONTACT_BRIEF_ITEMS.map((item) => (
+						<li>{item}</li>
+					))}
+				</ul>
+			</div>
+			<div class="trust-panel">
+				<h3>Que puedes pedirnos</h3>
+				<ul class="check-list">
+					<li>Cotizacion inicial</li>
+					<li>Derivacion al dossier adecuado</li>
+					<li>Orientacion sobre formatos posibles</li>
+					<li>Conversacion para adaptar la propuesta al contexto</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section class="page-section page-section--symbol-air">
+		<div class="container contact-grid">
+			<article class="contact-card">
+				<p class="eyebrow">Correo</p>
+				<h2>{SITE_CONTACT.email}</h2>
+				<p>Ideal para solicitudes institucionales, dossiers, propuestas y conversaciones mas detalladas.</p>
+				<a class="site-link" href={SITE_CONTACT.emailHref}>Abrir correo</a>
+			</article>
+
+			<article class="contact-card">
+				<p class="eyebrow">WhatsApp</p>
+				<h2>{SITE_CONTACT.whatsappLabel}</h2>
+				<p>Canal rapido para cotizaciones iniciales, consultas por eventos y talleres regulares.</p>
+				<a class="site-link" href={SITE_CONTACT.whatsappHref} target="_blank" rel="noopener noreferrer">Abrir WhatsApp</a>
+			</article>
+
+			<article class="contact-card">
+				<p class="eyebrow">Ubicacion</p>
+				<h2>Rengo</h2>
+				<p>{SITE_CONTACT.location}</p>
+				<p>Las coordinaciones pueden adaptarse a trabajo en terreno, eventos y alianzas con organizaciones.</p>
+			</article>
+		</div>
+	</section>
+
+	<section class="page-section page-section--wash-green page-section--symbol-earth">
+		<div class="container">
+			<div class="section-heading">
+				<p class="eyebrow">Redes y dossiers</p>
+				<h2>Canales activos y material comercial</h2>
+			</div>
+			<div class="social-row">
+				{SOCIAL_LINKS.map((link) => (
+					<a class="social-chip" href={link.href} target="_blank" rel="noopener noreferrer">
+						<img src={link.icon} alt={link.label} width="36" height="36" />
+						<span>{link.label}</span>
+					</a>
+				))}
+			</div>
+			<div class="dossier-grid">
+				{dossiers.map((dossier) => (
+					<DossierCard dossier={dossier} />
+				))}
+			</div>
+		</div>
+	</section>
+</MainLayout>

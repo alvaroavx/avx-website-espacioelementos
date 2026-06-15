@@ -1,0 +1,77 @@
+---
+import DossierCard from '../components/DossierCard.astro';
+import PageHero from '../components/PageHero.astro';
+import { dossiers } from '../data/dossiers';
+import { teamMembers } from '../data/team';
+import MainLayout from '../layouts/MainLayout.astro';
+---
+
+<MainLayout
+	title="Nosotros | Espacio Elementos"
+	description="Identidad, equipo y forma de trabajo de Espacio Elementos."
+	image="/images/equipo/todos.jpg"
+>
+	<PageHero
+		eyebrow="Nosotros"
+		title="Un proyecto que articula entrenamiento, escena, bienestar y comunidad"
+		description="Espacio Elementos se proyecta como un ecosistema profesional con base territorial en Rengo. No es solo un espacio de talleres ni solo una propuesta artistica: es una plataforma de trabajo con personas, equipos, instituciones y comunidad."
+		image="/images/equipo/todos.jpg"
+		imageAlt="Equipo de Espacio Elementos"
+	/>
+
+	<section class="page-section page-section--wash-blue page-section--symbol-water">
+		<div class="container split-panel">
+			<div>
+				<p class="eyebrow">Identidad</p>
+				<h2>Cercania real, criterio profesional y una mirada diversa del cuerpo</h2>
+				<p>
+					La propuesta de Espacio Elementos combina movimiento, artes escenicas, salud, entrenamiento y
+					trabajo con comunidad. Esa mezcla no aparece como adorno: organiza la forma de ensenar, crear y
+					vincularse con otros.
+				</p>
+			</div>
+			<div class="trust-panel">
+				<h3>Como nos queremos ver</h3>
+				<ul class="check-list">
+					<li>Profesionales sin frialdad</li>
+					<li>Humanos sin improvisacion</li>
+					<li>Coloridos sin sobrecarga</li>
+					<li>Cercanos sin perder claridad</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section class="page-section page-section--wash-green page-section--symbol-earth">
+		<div class="container">
+			<div class="section-heading">
+				<p class="eyebrow">Equipo</p>
+				<h2>Personas que sostienen el proyecto desde distintas disciplinas</h2>
+			</div>
+			<div class="team-grid">
+				{teamMembers.map((member) => (
+					<article class="team-card">
+						<img src={member.image} alt={member.imageAlt} />
+						<div class="team-card__body">
+							<h3>{member.name}</h3>
+							<p>{member.role}</p>
+						</div>
+					</article>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="page-section page-section--wash-orange page-section--symbol-fire">
+		<div class="container">
+			<div class="section-heading">
+				<p class="eyebrow">Dossier institucional</p>
+				<h2>Material institucional y profesional disponible para compartir</h2>
+			</div>
+			<div class="dossier-grid">
+				<DossierCard dossier={dossiers[0]} />
+				<DossierCard dossier={dossiers[3]} />
+			</div>
+		</div>
+	</section>
+</MainLayout>

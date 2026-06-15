@@ -1,0 +1,23 @@
+---
+import type { DossierItem } from '../data/dossiers';
+
+interface Props {
+	dossier: DossierItem;
+}
+
+const { dossier } = Astro.props;
+---
+
+<article class:list={['dossier-card', { 'dossier-card--pending': !dossier.href }]}>
+	<p class="eyebrow">Dossier</p>
+	<h2>{dossier.title}</h2>
+	<p>{dossier.description}</p>
+	<p class="dossier-card__audience">{dossier.audience}</p>
+	{dossier.href ? (
+		<a class="site-link" href={dossier.href} target="_blank" rel="noopener noreferrer">
+			Descargar dossier
+		</a>
+	) : (
+		<p class="placeholder-note">Disponible a solicitud.</p>
+	)}
+</article>

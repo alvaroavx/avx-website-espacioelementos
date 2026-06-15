@@ -1,0 +1,394 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import {
+	eventAmenities,
+	eventFacts,
+	faqs,
+	latinRengoEvent,
+	reasonsToAttend,
+	schedule,
+	ticketIncludes,
+	tickets,
+} from '../data/latin-rengo';
+import '../styles/latin-rengo.css';
+
+const currentYear = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<!-- TODO(asset): Reemplazar por afiche/OG de Latin Rengo Social en formato 1200x630. -->
+		<BaseHead
+			title={latinRengoEvent.seo.title}
+			description={latinRengoEvent.seo.description}
+			image={latinRengoEvent.seo.image}
+		/>
+	</head>
+	<body class="lr-page">
+		<a class="lr-skip-link" href="#contenido">Saltar al contenido</a>
+
+		<header class="lr-topbar">
+			<div class="lr-shell lr-topbar__inner">
+				<a class="lr-topbar__brand" href="/latin-rengo" aria-label="Latin Rengo Social, inicio">
+					<img src="/images/colaboradores/latinrengo.png" alt="" width="56" height="56" />
+					<span>Latin Rengo Social</span>
+				</a>
+				<nav class="lr-topbar__nav" aria-label="Navegación interna del evento">
+					<a href="#entradas">Entradas</a>
+					<a href="#cronograma">Cronograma</a>
+					<a href="#ubicacion">Ubicación</a>
+					<a href="#preguntas">Preguntas</a>
+				</nav>
+				<a
+					class="lr-topbar__cta"
+					href={latinRengoEvent.whatsappHref}
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					Comprar entrada
+				</a>
+			</div>
+		</header>
+
+		<main id="contenido">
+			<section class="lr-hero" aria-labelledby="latin-rengo-title">
+				<div class="lr-shell lr-hero__grid">
+					<div>
+						<p class="lr-kicker">{latinRengoEvent.context}</p>
+						<h1 id="latin-rengo-title">{latinRengoEvent.headline}</h1>
+						<p class="lr-hero__subtitle">{latinRengoEvent.subtitle}</p>
+						<p class="lr-hero__meta">
+							<time datetime={latinRengoEvent.dateTime}>{latinRengoEvent.date}</time>
+							· {latinRengoEvent.startTime} a {latinRengoEvent.endTime} · {latinRengoEvent.venue}
+						</p>
+						<p class="lr-hero__lead">{latinRengoEvent.message}</p>
+						<ul class="lr-hero__features" aria-label="Formato del evento">
+							<li>Clase inicial</li>
+							<li>Presentaciones</li>
+							<li>Salsa, bachata y más</li>
+						</ul>
+						<div class="lr-actions">
+							<a
+								class="lr-button"
+								href={latinRengoEvent.whatsappHref}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								Comprar por WhatsApp
+							</a>
+							<a class="lr-button lr-button--secondary" href="#cronograma">Ver cronograma</a>
+						</div>
+					</div>
+
+					<aside class="lr-purchase-card" aria-label="Compra de entradas">
+						<figure class="lr-purchase-card__logo">
+							<img
+								src="/images/colaboradores/latinrengo.png"
+								alt="Logo de Latin Rengo"
+								width="1106"
+								height="1013"
+							/>
+						</figure>
+						<p class="lr-purchase-card__label">Información clave</p>
+						<dl class="lr-purchase-card__facts">
+							<div>
+								<dt>Cuándo</dt>
+								<dd>{latinRengoEvent.date} · 21:00 a 03:00 hrs</dd>
+							</div>
+							<div>
+								<dt>Dónde</dt>
+								<dd>{latinRengoEvent.venue}</dd>
+							</div>
+							<div>
+								<dt>Entradas</dt>
+								<dd>Desde $3.000</dd>
+							</div>
+						</dl>
+						<a
+							class="lr-button lr-purchase-card__button"
+							href={latinRengoEvent.whatsappHref}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							Reservar por WhatsApp
+						</a>
+						<p class="lr-purchase-card__contact">{latinRengoEvent.contactLabel}</p>
+					</aside>
+				</div>
+			</section>
+
+			<section class="lr-facts" aria-label="Información principal del evento">
+				<div class="lr-shell">
+					<dl class="lr-facts__grid">
+						{eventFacts.map((fact) => (
+							<div class="lr-fact">
+								<dt>{fact.label}</dt>
+								<dd>{fact.value}</dd>
+							</div>
+						))}
+					</dl>
+				</div>
+			</section>
+
+			<section class="lr-section" aria-labelledby="que-es-un-social">
+				<div class="lr-shell lr-two-column">
+					<div>
+						<p class="lr-kicker">Una noche abierta a la comunidad</p>
+						<h2 id="que-es-un-social">¿Qué es un social?</h2>
+					</div>
+					<div class="lr-prose">
+						<p>
+							Un social es un espacio para bailar, compartir y conocer personas a través de la salsa y
+							la bachata. No es una competencia y no necesitas asistir con pareja.
+						</p>
+						<p>
+							Tampoco necesitas experiencia previa. La noche comienza con una clase de Salsa Cubana para
+							que quienes recién parten puedan aprender pasos básicos y entrar en ambiente.
+						</p>
+						<p>
+							Después de los shows invitados, la pista queda abierta para bailar, cambiar de pareja,
+							conversar y disfrutar la música en comunidad.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="lr-section lr-section--brand" aria-labelledby="social-de-rengo-title">
+				<div class="lr-shell lr-brand-story">
+					<div>
+						<p class="lr-kicker">Una nueva comunidad</p>
+						<h2 id="social-de-rengo-title">Nace Social de Rengo</h2>
+					</div>
+					<div class="lr-prose">
+						<p>
+							Este evento marca el inicio de una iniciativa permanente para reunir a la comunidad salsera
+							y bachatera de Rengo y sus alrededores.
+						</p>
+						<p>
+							Social de Rengo nace para crear nuevos espacios de encuentro, baile y colaboración. Esta
+							primera edición no es solo una fiesta: es el comienzo de una marca y una comunidad que
+							queremos sostener en el tiempo.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="lr-section" aria-labelledby="por-que-asistir">
+				<div class="lr-shell">
+					<div class="lr-section__heading">
+						<p class="lr-kicker">Una noche para participar</p>
+						<h2 id="por-que-asistir">¿Por qué asistir?</h2>
+					</div>
+					<ul class="lr-benefit-grid">
+						{reasonsToAttend.map((reason) => <li>{reason}</li>)}
+					</ul>
+				</div>
+			</section>
+
+			<section class="lr-section lr-section--cream" aria-labelledby="incluye">
+				<div class="lr-shell lr-two-column">
+					<div class="lr-section__heading">
+						<p class="lr-kicker">Tu entrada</p>
+						<h2 id="incluye">¿Qué incluye?</h2>
+					</div>
+					<ul class="lr-list">
+						{ticketIncludes.map((item) => <li>{item}</li>)}
+					</ul>
+				</div>
+			</section>
+
+			<section id="entradas" class="lr-section" aria-labelledby="entradas-title">
+				<div class="lr-shell">
+					<div class="lr-section__heading">
+						<p class="lr-kicker">Valores</p>
+						<h2 id="entradas-title">Entradas</h2>
+						<p class="lr-section__intro">
+							Reserva por WhatsApp para asegurar tu entrada. El valor en puerta está sujeto a
+							disponibilidad.
+						</p>
+					</div>
+
+					<div class="lr-card-grid">
+						{tickets.map((ticket) => (
+							<article class="lr-card">
+								<h3>{ticket.name}</h3>
+								<p class="lr-card__price">{ticket.price}</p>
+								{ticket.note && <p class="lr-card__note">{ticket.note}</p>}
+							</article>
+						))}
+					</div>
+
+					<div class="lr-actions">
+						<a
+							class="lr-button lr-button--dark"
+							href={latinRengoEvent.whatsappHref}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							Reservar entrada por WhatsApp
+						</a>
+					</div>
+				</div>
+			</section>
+
+			<section id="cronograma" class="lr-section lr-section--red" aria-labelledby="cronograma-title">
+				<div class="lr-shell lr-two-column">
+					<div class="lr-section__heading">
+						<p class="lr-kicker">Programa de la noche</p>
+						<h2 id="cronograma-title">Cronograma</h2>
+						<p class="lr-section__intro">
+							Los horarios pueden ajustarse levemente durante el evento.
+						</p>
+					</div>
+					<ol class="lr-schedule">
+						{schedule.map((item) => (
+							<li>
+								<time>{item.time}</time>
+								<strong>{item.title}</strong>
+							</li>
+						))}
+					</ol>
+				</div>
+			</section>
+
+			<section class="lr-section" aria-labelledby="presentaciones-title">
+				<div class="lr-shell">
+					<div class="lr-section__heading">
+						<p class="lr-kicker">Invitados</p>
+						<h2 id="presentaciones-title">Presentaciones</h2>
+					</div>
+
+					<div class="lr-placeholder">
+						<h3>Pronto anunciaremos las academias, artistas y bailarines invitados.</h3>
+						<p>
+							Esta sección está preparada para incorporar nombre, tipo de presentación, descripción,
+							Instagram y fotografía de cada invitado.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="lr-section lr-section--amenities" aria-labelledby="habra-title">
+				<div class="lr-shell">
+					<div class="lr-section__heading">
+						<p class="lr-kicker">Durante el evento</p>
+						<h2 id="habra-title">Habrá</h2>
+					</div>
+					<div class="lr-amenity-grid">
+						{eventAmenities.map((amenity) => (
+							<article class="lr-amenity">
+								<h3>{amenity.title}</h3>
+								<p>{amenity.detail}</p>
+							</article>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<section id="ubicacion" class="lr-section lr-section--cream" aria-labelledby="ubicacion-title">
+				<div class="lr-shell lr-location">
+					<div>
+						<p class="lr-kicker">Cómo llegar</p>
+						<h2 id="ubicacion-title">Ubicación</h2>
+						<dl class="lr-facts__grid lr-location__details">
+							<div class="lr-fact">
+								<dt>Lugar</dt>
+								<dd>{latinRengoEvent.venue}</dd>
+							</div>
+							<div class="lr-fact">
+								<dt>Dirección</dt>
+								<dd>{latinRengoEvent.address}</dd>
+							</div>
+							<div class="lr-fact">
+								<dt>Referencias de llegada</dt>
+								<dd>Disponibles por WhatsApp</dd>
+							</div>
+							<div class="lr-fact">
+								<dt>Estacionamiento</dt>
+								<dd>Consulta disponibilidad</dd>
+							</div>
+						</dl>
+					</div>
+
+					<div class="lr-location__map" aria-label="Información para solicitar la ubicación exacta">
+						<div>
+							<strong>¿Necesitas la ubicación exacta?</strong>
+							<p>Solicita la dirección y referencias de llegada directamente por WhatsApp.</p>
+							<a
+								class="lr-button lr-button--dark"
+								href={latinRengoEvent.whatsappHref}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								Pedir ubicación
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="preguntas" class="lr-section" aria-labelledby="preguntas-title">
+				<div class="lr-shell">
+					<div class="lr-section__heading">
+						<p class="lr-kicker">Antes de asistir</p>
+						<h2 id="preguntas-title">Preguntas frecuentes</h2>
+					</div>
+					<div class="lr-faq">
+						{faqs.map((faq) => (
+							<details>
+								<summary>{faq.question}</summary>
+								<p>{faq.answer}</p>
+							</details>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<section class="lr-section lr-section--story lr-final" aria-labelledby="cta-final-title">
+				<div class="lr-shell">
+					<div class="lr-section__heading">
+						<p class="lr-kicker">Nuestra historia continúa</p>
+						<h2 id="cta-final-title">El comienzo de Social de Rengo</h2>
+						<div class="lr-closing-copy">
+							<p>Hace un año comenzamos con unas pocas personas que querían aprender a bailar.</p>
+							<p>Hoy celebramos creando el primer Social de Salsa y Bachata de Rengo.</p>
+							<p>Gracias por ser parte de esta historia.</p>
+						</div>
+					</div>
+					<div class="lr-actions">
+						<a
+							class="lr-button"
+							href={latinRengoEvent.whatsappHref}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							Comprar entrada por WhatsApp
+						</a>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<footer class="lr-footer">
+			<div class="lr-shell lr-footer__inner">
+				<p>Latin Rengo Social · {currentYear}</p>
+				<p>
+					Contacto: <a href={latinRengoEvent.whatsappHref}>{latinRengoEvent.contactLabel}</a>
+					· <a href="/">Espacio Elementos</a>
+				</p>
+			</div>
+		</footer>
+
+		<a
+			class="lr-mobile-buy"
+			href={latinRengoEvent.whatsappHref}
+			target="_blank"
+			rel="noopener noreferrer"
+			aria-label="Comprar entrada para Latin Rengo Social por WhatsApp"
+		>
+			<span class="lr-floating-buy__desktop">Entradas por WhatsApp</span>
+			<span class="lr-floating-buy__mobile">WhatsApp</span>
+		</a>
+	</body>
+</html>

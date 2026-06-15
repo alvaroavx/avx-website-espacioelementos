@@ -1,0 +1,18 @@
+---
+import type { WorkshopItem } from '../data/workshops';
+
+interface Props {
+	workshop: WorkshopItem;
+}
+
+const { workshop } = Astro.props;
+---
+
+<article class="workshop-card">
+	<img src={workshop.image} alt={workshop.imageAlt} />
+	<div class="workshop-card__body">
+		<p class="eyebrow">{workshop.focus}</p>
+		<h2>{workshop.name}</h2>
+		<p>{workshop.summary}</p>
+	</div>
+</article>

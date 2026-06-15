@@ -1,0 +1,73 @@
+---
+import DossierCard from '../../components/DossierCard.astro';
+import PageHero from '../../components/PageHero.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { dossiers } from '../../data/dossiers';
+import { heroContent } from '../../data/page-heroes';
+import { services } from '../../data/services';
+import MainLayout from '../../layouts/MainLayout.astro';
+---
+
+<MainLayout
+	title="Servicios | Espacio Elementos"
+	description="Servicios de presentaciones, talleres y experiencias de movimiento, y produccion de eventos para instituciones, organizaciones y clientes privados."
+	image="/images/servicios/presentaciones.jpg"
+>
+	<PageHero
+		eyebrow={heroContent.services.eyebrow}
+		title={heroContent.services.title}
+		description={heroContent.services.description}
+		image={heroContent.services.image}
+		imageAlt={heroContent.services.imageAlt}
+		actions={heroContent.services.actions}
+	/>
+
+	<section class="page-section page-section--wash-gold page-section--symbol-fire">
+		<div class="container content-grid">
+			{services.map((service) => (
+				<ServiceCard service={service} />
+			))}
+		</div>
+	</section>
+
+	<section class="page-section page-section--wash-blue page-section--symbol-water">
+		<div class="container split-panel">
+			<div>
+				<p class="eyebrow">Como trabajamos</p>
+				<h2>La propuesta se adapta al contexto sin perder identidad</h2>
+				<p>
+					Cada servicio puede dialogar con jornadas institucionales, celebraciones, actividades
+					comunitarias, experiencias privadas y espacios educativos. La clave es entender el contexto y
+					disenar una experiencia clara, cercana y bien ejecutada.
+				</p>
+			</div>
+			<div class="trust-panel">
+				<h3>Lo que priorizamos</h3>
+				<ul class="check-list">
+					<li>Claridad para la contraparte</li>
+					<li>Experiencias cuidadas y con presencia humana</li>
+					<li>Capacidad de articular movimiento, escena y comunidad</li>
+					<li>Un trato profesional sin rigidez innecesaria</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section class="page-section page-section--wash-orange page-section--symbol-fire">
+		<div class="container">
+			<div class="section-heading">
+				<p class="eyebrow">Dossiers comerciales</p>
+				<h2>Material institucional y comercial listo para compartir</h2>
+				<p>
+					Las conversaciones pueden apoyarse con dossiers especificos y con el material institucional general
+					del proyecto.
+				</p>
+			</div>
+			<div class="dossier-grid">
+				{dossiers.map((dossier) => (
+					<DossierCard dossier={dossier} />
+				))}
+			</div>
+		</div>
+	</section>
+</MainLayout>

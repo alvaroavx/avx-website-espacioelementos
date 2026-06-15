@@ -1,941 +1,941 @@
-/* ==========================================================================  
-   1. IMPORTACIONES DE FUENTES  
-   ========================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;700&display=swap');
 
-/* ==========================================================================  
-   2. VARIABLES GLOBALES  
-   ========================================================================== */
 :root {
-  --accent: #2337ff;
-  --accent-dark: #000d8a;
-  --black: 15, 18, 25;
-  --gray: 96, 115, 159;
-  --gray-light: 229, 233, 240;
-  --gray-dark: 34, 41, 57;
-  --gray-gradient: rgba(var(--gray-light), 50%), #fff;
-  --box-shadow:
-    0 2px 6px rgba(var(--gray), 25%),
-    0 8px 24px rgba(var(--gray), 33%),
-    0 16px 32px rgba(var(--gray), 33%);
-  --elementos-azul: #0C4B7C;
-  --elementos-celeste: #0BAACB;
-  --elementos-naranjo: #EB8E1D;
-  --elementos-verde: #248C45;
-  --elementos-amarillo: #F5CF00;
+  --elementos-azul: #0c4b7c;
+  --elementos-celeste: #0baacb;
+  --elementos-naranjo: #eb8e1d;
+  --elementos-verde: #248c45;
+  --elementos-amarillo: #f5cf00;
+  --elementos-crema: #f6f2e8;
+  --elementos-tinta: #14202d;
+  --elementos-tinta-suave: #314152;
+  --elementos-borde: rgba(20, 32, 45, 0.12);
+  --surface: #ffffff;
+  --surface-soft: #f7f7f4;
+  --shadow: 0 18px 40px rgba(20, 32, 45, 0.12);
 }
 
-/* ==========================================================================  
-   3. ESTILOS BASE (reset / tipografía global)  
-   ========================================================================== */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
+  position: relative;
+  isolation: isolate;
+  --page-glow-a: rgba(11, 170, 203, 0.14);
+  --page-glow-b: rgba(235, 142, 29, 0.14);
+  --page-mark-primary: url('/images/marca/aire-alt.png');
+  --page-mark-secondary: url('/images/marca/fuego-alt.png');
+  --page-section-wash-a: rgba(11, 170, 203, 0.08);
+  --page-section-wash-b: rgba(245, 207, 0, 0.08);
+  --page-section-wash-c: rgba(235, 142, 29, 0.08);
+  --page-panel-border: rgba(20, 32, 45, 0.08);
+  --page-hero-overlay-a: rgba(12, 75, 124, 0.66);
+  --page-hero-overlay-b: rgba(20, 32, 45, 0.78);
   margin: 0;
-  padding: 0;
-  background: linear-gradient(var(--gray-gradient)) no-repeat;
-  background-size: 100% 600px;
-  color: rgb(var(--gray-dark));
+  background:
+    radial-gradient(circle at top left, var(--page-glow-a), transparent 30%),
+    radial-gradient(circle at top right, var(--page-glow-b), transparent 28%),
+    linear-gradient(180deg, #f8f3e7 0%, #ffffff 22%, #ffffff 100%);
+  color: var(--elementos-tinta);
   font-family: 'Source Serif Pro', serif;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 1.7;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  text-align: left;
+  font-size: 18px;
+  line-height: 1.65;
 }
 
-main {
-  max-width: 720px;
-  width: calc(100% - 2em);
-  margin: auto;
-  padding: 3em 1em;
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  z-index: -1;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.18;
 }
 
-/* ==========================================================================  
-   4. ENCABEZADOS Y TEXTOS  
-   ========================================================================== */
-/* Anton para títulos */
-h1, h2, h3, h4, h5, h6 {
-  margin: 0.5rem 0 0.5rem;
-  line-height: 1.2;
-  color: rgb(var(--black));
-  font-family: 'Anton', sans-serif;
-  font-weight: 400;
-  text-transform: uppercase;
-}
-h1 { font-size: 3.052em; }
-h2 { font-size: 2.441em; }
-h3 { font-size: 1.953em; }
-h4 { font-size: 1.563em; }
-h5 { font-size: 1.25em; }
-h6 { font-size: 1em; }
-
-/* Source Serif Pro para párrafos y listas */
-p, li {
-  margin-bottom: 1em;
-  font-family: 'Source Serif Pro', serif;
+body::before {
+  top: 4.75rem;
+  right: 0.25rem;
+  width: min(28vw, 22rem);
+  height: min(28vw, 22rem);
+  background-image: var(--page-mark-primary);
 }
 
-/* ==========================================================================  
-   5. ELEMENTOS DE FORMULARIO, TABLAS, CÓDIGO, IMÁGENES  
-   ========================================================================== */
-a {
-  color: var(--accent);
-  text-decoration: none;
-}
-a:hover {
-  color: var(--accent-dark);
+body::after {
+  bottom: 0.5rem;
+  left: -0.5rem;
+  width: min(32vw, 24rem);
+  height: min(32vw, 24rem);
+  background-image: var(--page-mark-secondary);
+  opacity: 0.14;
 }
 
-textarea, input {
-  font-size: 16px;
-  font-family: inherit;
+body.page--home {
+  --page-glow-a: rgba(11, 170, 203, 0.16);
+  --page-glow-b: rgba(245, 207, 0, 0.14);
+  --page-mark-primary: url('/images/marca/aire-alt.png');
+  --page-mark-secondary: url('/images/marca/tierra-alt.png');
+  --page-section-wash-a: rgba(11, 170, 203, 0.08);
+  --page-section-wash-b: rgba(245, 207, 0, 0.08);
+  --page-section-wash-c: rgba(235, 142, 29, 0.08);
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
+body.page--servicios {
+  --page-glow-a: rgba(235, 142, 29, 0.16);
+  --page-glow-b: rgba(245, 207, 0, 0.14);
+  --page-mark-primary: url('/images/marca/fuego-alt.png');
+  --page-mark-secondary: url('/images/marca/agua-alt.png');
+  --page-section-wash-a: rgba(235, 142, 29, 0.08);
+  --page-section-wash-b: rgba(245, 207, 0, 0.09);
+  --page-section-wash-c: rgba(11, 170, 203, 0.06);
+  --page-hero-overlay-a: rgba(235, 142, 29, 0.54);
 }
 
-code {
-  padding: 2px 5px;
-  background-color: rgb(var(--gray-light));
-  border-radius: 2px;
-  font-family: monospace;
+body.page--talleres {
+  --page-glow-a: rgba(36, 140, 69, 0.14);
+  --page-glow-b: rgba(11, 170, 203, 0.12);
+  --page-mark-primary: url('/images/marca/tierra-alt.png');
+  --page-mark-secondary: url('/images/marca/aire-alt.png');
+  --page-section-wash-a: rgba(36, 140, 69, 0.08);
+  --page-section-wash-b: rgba(11, 170, 203, 0.08);
+  --page-section-wash-c: rgba(245, 207, 0, 0.06);
+  --page-hero-overlay-a: rgba(36, 140, 69, 0.52);
 }
 
-pre {
-  padding: 1.5em;
-  border-radius: 8px;
-  background: rgb(var(--gray-light));
-}
-pre > code {
-  all: unset;
-  display: block;
-}
-
-blockquote {
-  margin: 0;
-  font-size: 1.333em;
-  border-left: 4px solid var(--accent);
-  padding-left: 20px;
+body.page--nosotros,
+body.page--contacto {
+  --page-glow-a: rgba(12, 75, 124, 0.14);
+  --page-glow-b: rgba(36, 140, 69, 0.1);
+  --page-mark-primary: url('/images/marca/agua-alt.png');
+  --page-mark-secondary: url('/images/marca/aire-alt.png');
+  --page-section-wash-a: rgba(12, 75, 124, 0.08);
+  --page-section-wash-b: rgba(36, 140, 69, 0.06);
+  --page-section-wash-c: rgba(245, 207, 0, 0.06);
 }
 
-hr {
-  border: none;
-  border-top: 1px solid rgb(var(--gray-light));
+body.page--proyectos {
+  --page-glow-a: rgba(36, 140, 69, 0.14);
+  --page-glow-b: rgba(12, 75, 124, 0.12);
+  --page-mark-primary: url('/images/marca/tierra-alt.png');
+  --page-mark-secondary: url('/images/marca/agua-alt.png');
+  --page-section-wash-a: rgba(36, 140, 69, 0.08);
+  --page-section-wash-b: rgba(12, 75, 124, 0.07);
+  --page-section-wash-c: rgba(11, 170, 203, 0.06);
+  --page-hero-overlay-a: rgba(36, 140, 69, 0.5);
 }
 
 img {
+  display: block;
   max-width: 100%;
   height: auto;
-  border-radius: 8px;
 }
 
-/* ==========================================================================
-   6. CLASES UTILITARIAS
-   ========================================================================== */
-.sr-only {
-  position: absolute !important;
-  width: 1px; height: 1px;
-  padding: 0; margin: 0;
-  overflow: hidden;
-  clip: rect(1px,1px,1px,1px);
-  white-space: nowrap;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-/* ==========================================================================  
-   7. MENU HEADER  
-   ========================================================================== */
-#menu .nav-link {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
   font-family: 'Anton', sans-serif;
   font-weight: 400;
-  font-size: 28px;
-  color: #000 !important;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
-/* ==========================================================================  
-   7.1 MENU RESPONSIVO: enlaces con Anton en negrita  
-   ========================================================================== */
-#mobileNav {
-  width: 100%;
-}
-       
-#mobileNav .nav-link {
-  font-family: 'Anton', sans-serif !important;
-  font-weight: 700             !important;
-  font-style: normal           !important;
-  font-size: 28px              !important;
-  text-transform: uppercase    !important;
-  color: #000                  !important;
-}
-
-#mobileNav li {
+p,
+ul,
+ol {
   margin: 0;
 }
-#mobileNav li hr {
-      border-color: red;
-    height: 7px;
+
+.container {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
 }
 
-
-/* ==========================================================================  
-   8. BANNER PRINCIPAL (#hero)  
-   ========================================================================== */
-#hero {
-  max-height: 700px;
-  overflow: hidden;
-}
-#hero .carousel-item {
-  height: 700px;
-}
-#hero .carousel-item img {
-  object-fit: cover;
-  height: 100%;
-  border-radius: 0;
-}
-#hero .carousel-caption h2 {
-  font-family: 'Anton', sans-serif;
-  color: white;
-  font-size: 70px;
-  max-width: 500px;
-  text-transform: uppercase;
-}
-#hero .btn-warning {
-  background-color: #F9EF23;
-  border-color: #F9EF23;
-  color: #141414;
-  padding: 10px 40px;
-  border-radius: 0;
-  text-transform: uppercase;
-}
-#hero .btn-warning:hover {
-  background-color: #e0a800;
-  border-color: #d39e00;
-}
-/* Limitar caption a la mitad izquierda */
-.caption-left {
-  position: absolute;
-  top: 0; bottom: 0; left: 0;
-  width: 50%;
-  padding: 0 2rem;
-}
-.caption-left.right {
-  right: auto;
-}
-
-/* ==========================================================================  
-   9. SECCIÓN “BAJADA” (.summary-section)  
-   ========================================================================== */
-.summary-section {
-  background: #fff;
-  padding: 0;
-  font-family: 'Source Serif Pro', serif;
-  font-weight: 600;
-  font-size: 24px;
-  margin-top: 40px;
-}
-.icons-col {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
-}
-.icons-col .icon-bottom {
-  margin-top: 100px;
-}
-.icons-col img {
-  opacity: 0.4;
-  transition: opacity 0.2s;
-}
-.icons-col img:hover {
-  opacity: 1;
-}
-
-/* ==========================================================================  
-   11. SECCIÓN “NUESTROS TALLERES”  
-   ========================================================================== */
-.taller-card {
+.site-main {
   position: relative;
-  overflow: hidden;
+  min-height: 60vh;
 }
-.taller-card img {
-  display: block;
-  width: 100%;
-  height: auto;
-  transition: transform 0.3s ease;
+
+.page-section {
+  position: relative;
+  padding: 5rem 0;
 }
-.taller-card:hover img {
-  transform: scale(1.05);
+
+.page-section > .container {
+  position: relative;
+  z-index: 1;
 }
-.taller-card .overlay {
+
+.page-section::before {
+  display: none;
+}
+
+.page-section::after {
+  content: '';
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-.taller-card:hover .overlay {
-  opacity: 1;
-}
-.taller-card .overlay h3 {
-  font-family: 'Anton', sans-serif;
-  font-size: 1.25rem;
-}
-.taller-card .overlay p {
-  font-family: 'Source Serif Pro', serif;
-  font-size: 0.9rem;
+  top: 0.75rem;
+  right: max(0.5rem, calc((100vw - min(1180px, calc(100% - 2rem))) / 2 - 1rem));
+  width: min(18vw, 14rem);
+  height: min(18vw, 14rem);
+  opacity: 0.16;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
-/* ==========================================================================  
-   12. MEDIA QUERIES GENERALES  
-   ========================================================================== */
-@media (max-width: 991.98px) {
-  #services .row.align-items-center {
-    flex-direction: column !important;
-    text-align: center;
-  }
-  #services .mb-lg-0 {
-    margin-bottom: 1rem !important;
-  }
-}
-@media (max-width: 767.98px) {
-  .icons-col {
-    display: none !important;
-  }
-  .text-content {
-    padding: 2rem 0;
-  }
-}
-@media (max-width: 720px) {
-  body {
-    font-size: 18px;
-  }
-  main {
-    padding: 1em;
-  }
+.page-section--symbol-air::after {
+  background-image: url('/images/marca/aire-alt.png');
 }
 
-/* ========================================================================== 
-   Ajustes menú responsive full-width, padding reducido y texto centrado 
-   ========================================================================== */
-.navbar a {
-  -webkit-transition: transform 0.2s ease;
-  transition: transform 0.2s ease;
-  transform-origin: center center;
-}
-.navbar a:hover {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
-@media (max-width: 767.98px) {
-  /* 1. Asegura que el collapse ocupe todo el ancho */
-  .navbar-collapse {
-    width: 100vw;
-    margin-left: calc(-1 * var(--bs-gutter-x) / 2); /* quita el gutter horizontal */
-    margin-right: calc(-1 * var(--bs-gutter-x) / 2);
-  }
-
-  /* 2. Quita padding extra del <ul> */
-  #mobileNav .nav {
-    padding: 0;
-    margin: 0;
-  }
-
-  /* 3. Estilo de cada enlace: ocupa todo el ancho, padding reducido y centrado */
-  #mobileNav .nav-link {
-    display: block;
-    width: 100%;
-    padding: 0.5rem 0;      /* menos padding vertical */
-    text-align: center;     /* texto centrado */
-    border-bottom: 1px solid rgba(0,0,0,0.1); /* opcional separación */
-  }
-
-  /* 4. Elimina márgenes innecesarios en el último ítem */
-  #mobileNav .nav-link:last-child {
-    border-bottom: none;
-  }
-
-  /* 5. Repartir equitativamente los logos de redes sociales */
-  #mobileNav .nav-item {
-    display: flex;
-  justify-content: space-evenly;
-  }
-  
+.page-section--symbol-fire::after {
+  background-image: url('/images/marca/fuego-alt.png');
 }
 
-/* ========================================================================== 
-   Ajustes para el banner responsivo 
-   ========================================================================== */
-@media (max-width: 767.98px) {
-  /* Haz que la leyenda ocupe todo el ancho */
-  .caption-left {
-    width: 100%;
-    padding: 1rem;          /* espacio interior */
-    top: auto;              /* si quieres que quede abajo: top:auto; bottom:0; */
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
-
-  /* Centra el contenido y ajusta tamaño */
-  #hero .carousel-caption {
-    justify-content: center;  /* centra verticalmente */
-    align-items: center;      /* y horizontalmente */
-    text-align: center;
-  }
-
-  #hero .carousel-caption h2 {
-    font-size: 1.75rem;       /* menos grosor en móvil */
-    max-width: 90%;
-  }
-
-  #hero .btn-warning {
-    padding: 0.5rem 1.5rem;   /* botón más pequeño */
-    font-size: 0.9rem;
-  }
-
-  /* Reduce la altura del slide si quieres */
-  #hero .carousel-item {
-    height: auto;
-  }
+.page-section--symbol-water::after {
+  background-image: url('/images/marca/agua-alt.png');
 }
 
-/* ========================================================================== 
-   Separadores 
-   ========================================================================== */
-.separator-svg-container {
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-}
-.separator-svg-container svg {
-  display: block;
-  width: 100%;
-  height: 80px;
-}
-.separator {
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-}
-.separator svg {
-  display: block;
-  width: 100%;
-  height: 80px;
-}
-.separator-bottom {
-  transform: scaleY(-1);
-}
-.separator-top {
-  margin-top: -1px;
-}
-.separator-bottom {
-  margin-bottom: -1px;
+.page-section--symbol-earth::after {
+  background-image: url('/images/marca/tierra-alt.png');
 }
 
-/* ========================================================================== 
-   Boton para volver arriba 
-   ========================================================================== */
-#backToTop {
-  position: fixed;
-  bottom: 1.5rem;          /* separación del borde inferior */
-  right: 1.5rem;           /* separación del borde derecho */
-  width: 3rem;
-  height: 3rem;
-  background-color: var(--elementos-amarillo);
-  color: #141414;
-  border: none;
-  border-radius: 50%;
-  font-size: 1.5rem;
-  cursor: pointer;
-  box-shadow: var(--box-shadow);
-  display: none;           /* oculto por defecto */
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  transition: opacity 0.3s;
+.page-section--wash-blue {
+  background:
+    linear-gradient(180deg, rgba(12, 75, 124, 0.08), rgba(255, 255, 255, 0.02)),
+    linear-gradient(90deg, rgba(11, 170, 203, 0.04), rgba(255, 255, 255, 0));
 }
 
-#backToTop:hover {
-  opacity: 0.8;
+.page-section--wash-gold {
+  background:
+    linear-gradient(180deg, rgba(245, 207, 0, 0.12), rgba(255, 255, 255, 0.02)),
+    linear-gradient(90deg, rgba(235, 142, 29, 0.06), rgba(255, 255, 255, 0));
 }
 
-/* ========================================================================== 
-   FOOTER 
-   ========================================================================== */
-
-footer {
-		padding: 2em 1em 6em 1em;
-		background-color: var(--elementos-azul);
-		color: white;
-		text-align: center;
-	}
-	.social-links {
-		display: flex;
-		justify-content: center;
-		gap: 1em;
-		margin-top: 1em;
-	}
-	.social-links a {
-		text-decoration: none;
-		color: rgb(var(--gray));
-	}
-	.social-links a:hover {
-		color: rgb(var(--gray-dark));
-	}
-
-  /* ========================================================================== 
-    SECCION EQUIPO DOCENTE 
-   ========================================================================== */
-   /* Fuente y espaciado de sección */
-#equipo {
-  font-family: 'Source Serif Pro', serif;
+.page-section--wash-green {
+  background:
+    linear-gradient(180deg, rgba(36, 140, 69, 0.09), rgba(255, 255, 255, 0.02)),
+    linear-gradient(90deg, rgba(11, 170, 203, 0.04), rgba(255, 255, 255, 0));
 }
-#equipo .display-5 {
-  font-family: 'Anton', sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
+
+.page-section--wash-orange {
+  background:
+    linear-gradient(180deg, rgba(235, 142, 29, 0.11), rgba(255, 255, 255, 0.02)),
+    linear-gradient(90deg, rgba(245, 207, 0, 0.05), rgba(255, 255, 255, 0));
 }
-#equipo .lead {
-  color: #555;
+
+.page-section--contact {
+  padding-top: 0;
+}
+
+.page-section--contact::after {
+  display: none;
+}
+
+.section-heading {
+  display: grid;
+  gap: 0.9rem;
+  max-width: 760px;
   margin-bottom: 2rem;
 }
 
-/* Cards de equipo */
-.equipo-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  background: none;
-}
-.equipo-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--box-shadow);
+.section-heading h2,
+.page-hero h1 {
+  font-size: clamp(1.98rem, 4.5vw, 4.41rem);
 }
 
-/* Titulares y textos */
-#equipo .card-title {
-  font-family: 'Anton', sans-serif;
-  font-size: 24px;
-  text-transform: uppercase;
-  margin-bottom: 0.25rem;
-}
-#equipo .card-subtitle,
-#equipo .card-text {
-  font-family: 'Source Serif Pro', serif;
-}
-
-/* Asegura que las imágenes estén centradas */
-.equipo-card img {
-  display: block;
-}
-/* ========================================================================== 
-    FONDO SERVICIOS
-   ========================================================================== */
-/* 1. Crea stacking context en la sección */
-#servicios {
-  position: relative;
-  z-index: 0;
-  padding: 0 !important;
+.section-heading p,
+.page-hero__description,
+.content-card__body p,
+.icon-card p,
+.trust-panel p,
+.team-card p,
+.contact-card p,
+.dossier-card p,
+.workshop-card p {
+  color: var(--elementos-tinta-suave);
 }
 
-/* 2. Pseudo-elemento que pinta el fondo fullscreen y parallax */
-#servicios::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: 
-    url('/images/fondos/servicios.png') 
-    center/cover no-repeat fixed;
-  z-index: -1;
-}
-/* 3. Asegura que el separador SVG esté encima del fondo */
-.separator-bottom {
-  position: relative;
-  z-index: 1; 
-}
-/* ========================================================================== 
-    FONDO TALLERES
-   ========================================================================== */
-/* 1. Crea stacking context en la sección */
-#talleres {
-  position: relative;
-  z-index: 0;
-  padding: 0 !important;
-}
-
-/* 2. Pseudo-elemento que pinta el fondo fullscreen y parallax */
-#talleres::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: 
-    url('/images/fondos/talleres.png') 
-    center/cover no-repeat fixed;
-  z-index: -1;
-}
-/* 3. Asegura que el separador SVG esté encima del fondo */
-.separator-bottom {
-  position: relative;
-  z-index: 1; 
-}
-/* ========================================================================== 
-    FONDO EQUIPO DOCENTE
-   ========================================================================== */
-/* 1. Crea stacking context en la sección */
-#equipo {
-  position: relative;
-  z-index: 0;
-  padding: 0 !important;
-}
-
-/* 2. Pseudo-elemento que pinta el fondo fullscreen y parallax */
-#equipo::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: 
-    url('/images/fondos/equipo.png') 
-    center/cover no-repeat fixed;
-  z-index: -1;
-  opacity: 0.5;
-}
-/* 3. Asegura que el separador SVG esté encima del fondo */
-.separator-bottom {
-  position: relative;
-  z-index: 1; 
-}
-/* ========================================================================== 
-    FONDO COMUNIDAD
-   ========================================================================== */
-/* 1. Crea stacking context en la sección */
-#comunidad {
-  position: relative;
-  z-index: 0;
-  padding: 0 !important;
-}
-
-/* 2. Pseudo-elemento que pinta el fondo fullscreen y parallax */
-#comunidad::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: 
-    url('/images/fondos/comunidad.png') 
-    center/cover no-repeat fixed;
-  z-index: -1;
-}
-/* 3. Asegura que el separador SVG esté encima del fondo */
-.separator-bottom {
-  position: relative;
-  z-index: 1; 
-}
-/* ========================================================================== 
-    COLABORADORES
-   ========================================================================== */
-/* Logos de colaboradores */
-.logo-link img {
-  transition: transform .2s ease, opacity .2s ease;
-}
-.logo-link:hover img {
-  transform: scale(1.1);
-  opacity: 0.8;
-}
-/* ========================================================================== 
-    TESTIMONIOS
-   ========================================================================== */
-/* 1. Contenedor y título */
-#testimonios {
-  position: relative;
-  padding: 4rem 0;
-}
-#testimonios .display-5 {
-  font-family: 'Anton', sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
-/* 2. Carousel inner */
-#testimonios .carousel-inner {
-  position: relative;
-  width: 100%;
-}
-
-/* 3. Cada item */
-#testimonios .carousel-item {
-  padding: 2rem 0;
-}
-
-/* 4. Imagen del alumno */
-#testimonios .carousel-item img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-bottom: 1rem;
-}
-
-/* 5. Blockquote styling */
-#testimonios blockquote {
-  font-family: 'Source Serif Pro', serif;
-  font-size: 1.125rem;
-  color: #333;
-  margin: 0 auto;
-  max-width: 600px;
-  position: relative;
-  padding: 1rem 1.5rem;
-}
-#testimonios blockquote::before {
-  content: "“";
-  font-size: 3rem;
-  position: absolute;
-  top: -10px;
-  left: 10px;
-  color: rgba(0,0,0,0.1);
-}
-#testimonios .blockquote-footer {
-  font-family: 'Anton', sans-serif;
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  color: #555;
-  margin-top: 0.5rem;
-}
-/* Sección Testimonios Mejorada */
-.testimonial {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 1rem;
-}
-.testimonial footer {
-  padding: 10px;
-}
-.testimonial-img {
-  width: 300px;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 8px;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
-  margin-bottom: 1.5rem;
-}
-.testimonial-blockquote {
-  position: relative;
-  font-family: 'Source Serif Pro', serif;
-  font-style: italic;
-  color: #333;
-  border-left: 0px;
-  padding-left: 1rem;
-}
-
-.testimonial-blockquote::before {
-  content: "“";
-  font-size: 4rem;
+.eyebrow {
   color: var(--elementos-azul);
-  position: absolute;
-  left: -10px;
-  top: -20px;
-}
-
-.testimonial-text {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  margin-bottom: 1rem;
-}
-
-.testimonial-author {
   font-family: 'Anton', sans-serif;
-  font-size: 1.1rem;
-  color: var(--elementos-naranjo);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-/* 6. Controles del carousel */
-#carouselTestimonios .carousel-control-prev,
-#carouselTestimonios .carousel-control-next {
-  width: 3rem;
-  height: 3rem;
-  top: 50%;
-  transform: translateY(-50%);
-  opacity: 0.7;
-  transition: opacity 0.2s;
-}
-#carouselTestimonios .carousel-control-prev:hover,
-#carouselTestimonios .carousel-control-next:hover {
-  opacity: 1;
-}
-
-/* 7. Indicadores (puntos) */
-#carouselTestimonios .carousel-indicators {
-  bottom: -1.5rem;
-}
-#carouselTestimonios .carousel-indicators button {
-  width: 0.75rem;
-  height: 0.75rem;
-  border-radius: 50%;
-  background-color: #ccc;
-  border: none;
-}
-#carouselTestimonios .carousel-indicators .active {
-  background-color: var(--elementos-amarillo);
-}
-
-/* 8. Responsive tweaks */
-@media (max-width: 768px) {
-  #testimonios blockquote {
-    padding: 1rem;
-    font-size: 1rem;
-  }
-  #carouselTestimonios .carousel-control-prev,
-  #carouselTestimonios .carousel-control-next {
-    display: none; /* opcional: ocultar controles en móvil */
-  }
-  #carouselTestimonios .carousel-indicators {
-    display: none; /* opcional: ocultar indicadores en móvil */
-  }
-}
-/* =======================================================
-   CONTACTO (nuevo)
-   ======================================================= */
-
-#contacto.contacto {
-  position: relative;
-  padding: 0;
-  z-index: 0;
-}
-
-/* Hero con parallax */
-.team-hero {
-  position: relative;
-  min-height: 420px;
-  background: url('/images/equipo/todos.jpg') center / cover no-repeat fixed;
-}
-.team-hero__overlay {
-  position: absolute; inset: 0;
-  background: rgba(0,0,0,0.55);
-}
-.team-hero__inner {
-  position: relative; z-index: 1;
-  min-height: 750px;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  text-align: center; padding: 1rem;
-}
-.team-hero__title {
-  font-family: 'Anton', sans-serif;
-  text-transform: uppercase;
-  color: #fff; font-size: 2.75rem; margin-bottom: .5rem;
-}
-.team-hero__subtitle {
-  font-family: 'Source Serif Pro', serif;
-  color: #fff; font-size: 1.125rem; margin-bottom: 1rem;
-}
-.team-hero__btn { text-transform: uppercase; font-weight: 700; }
-
-/* Tarjetas */
-.contact-card, .info-card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: var(--box-shadow);
-}
-.contact-heading {
-  font-family: 'Anton', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
-/* Formulario */
-.contact-card .form-label { font-weight: 600; }
-.contact-card .form-control,
-.contact-card .form-select {
-  border-radius: 8px;
-  border: 1px solid rgba(0,0,0,.12);
-  box-shadow: none;
-}
-.contact-card .form-control:focus,
-.contact-card .form-select:focus {
-  border-color: var(--elementos-celeste);
-  box-shadow: 0 0 0 .2rem rgba(11,170,203,.15);
-}
-/* honeypot */
-.hp { 
-    position: absolute !important; left: -10000px; top: auto; 
-    width: 1px; height: 1px; overflow: hidden;
-  }
-
-
-/* Datos rápidos */
-.info-list { list-style: none; padding: 0; margin: 0; }
-.info-list li { display: grid; grid-template-columns: 120px 1fr; gap: .5rem; margin-bottom: .75rem; }
-.info-label {
-  font-family: 'Anton', sans-serif;
-  text-transform: uppercase;
-  color: rgb(var(--gray-dark));
-}
-.info-link { color: var(--accent); }
-.info-link:hover { color: var(--accent-dark); }
-
-.contact-privacy { color: #666; }
-
-/* Responsive */
-@media (max-width: 991.98px) {
-  .team-hero, .team-hero__inner { min-height: 360px; }
-  .team-hero__title { font-size: 2.1rem; }
-  .info-list li { grid-template-columns: 1fr; }
-}
-@media (max-width: 575.98px) {
-  .team-hero, .team-hero__inner { min-height: 320px; }
-  .team-hero__title { font-size: 1.8rem; }
-}
-/* CTA de contacto */
-.contact-cta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .75rem;
-  justify-content: center;
-  margin-top: 1rem;
-  position: relative;
-  z-index: 2; /* por si el overlay intenta tapar */
-}
-
-.team-hero__btn {
+.site-button,
+.site-link {
   display: inline-flex;
   align-items: center;
-  gap: .6rem;
-  padding: .75rem 1.25rem;
-  border: none;
-  border-radius: 9999px;
-  text-decoration: none;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.site-button {
+  min-height: 3rem;
+  padding: 0.85rem 1.35rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: var(--elementos-amarillo);
+  color: var(--elementos-tinta);
   font-family: 'Anton', sans-serif;
-  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  letter-spacing: .5px;
-  box-shadow: 0 10px 25px rgba(0,0,0,.25);
-  transition: transform .15s ease, opacity .15s ease;
-}
-.team-hero__btn:hover { transform: translateY(-1px); opacity: .95; }
-
-.team-hero__btn svg {
-  width: 1.15rem;
-  height: 1.15rem;
-  display: inline-block;
 }
 
-/* Colores de acción */
-.btn-email {
-  background: #2563EB; /* azul */
-  color: #fff;
+.site-button:hover,
+.site-link:hover {
+  transform: translateY(-1px);
 }
-.btn-email:hover { background: #1D4ED8; }
 
-.btn-whatsapp {
-  background: #25D366; /* verde WhatsApp */
-  color: #fff;
+.site-button--secondary {
+  border-color: var(--elementos-azul);
+  background: transparent;
+  color: var(--elementos-azul);
 }
-.btn-whatsapp:hover { background: #1EBE5C; }
 
-/* En pantallas pequeñas, que no se “aplasten” */
-@media (max-width: 576px) {
-  .team-hero__btn { width: 100%; justify-content: center; }
+.site-button--small {
+  min-height: 2.5rem;
+  padding-inline: 1rem;
+  font-size: 0.78rem;
+}
+
+.site-link {
+  color: var(--elementos-azul);
+  font-family: 'Anton', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(14px);
+  background: rgba(255, 255, 255, 0.88);
+  border-bottom: 1px solid rgba(20, 32, 45, 0.08);
+}
+
+.site-header .navbar {
+  padding: 0;
+}
+
+.site-header__inner {
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+}
+
+.site-header__brand img {
+  width: min(270px, 58vw);
+}
+
+.site-header__nav {
+  gap: 0.25rem;
+}
+
+.site-header__link {
+  color: var(--elementos-tinta);
+  font-family: 'Anton', sans-serif;
+  font-size: 0.86rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.site-header__link.active {
+  color: var(--elementos-azul);
+}
+
+.site-header__social {
+  display: flex;
+  gap: 0.8rem;
+  padding-top: 1rem;
+}
+
+.site-header__social a {
+  display: inline-flex;
+}
+
+.page-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(26rem, 62vw, 38rem);
+  margin-bottom: 2.5rem;
+  background: linear-gradient(135deg, rgba(12, 75, 124, 0.96), rgba(11, 170, 203, 0.88));
+}
+
+.page-hero__carousel,
+.page-hero__carousel-item {
+  min-height: inherit;
+}
+
+.page-hero__carousel-item {
+  position: relative;
+}
+
+.page-hero__inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  min-height: clamp(26rem, 62vw, 38rem);
+  padding-top: 6.5rem;
+  padding-bottom: 3rem;
+}
+
+.page-hero--compact,
+.page-hero--compact .page-hero__inner {
+  min-height: clamp(23rem, 54vw, 32rem);
+}
+
+.page-hero__copy {
+  display: grid;
+  gap: 1rem;
+  max-width: 760px;
+}
+
+.page-hero__copy h1,
+.page-hero__copy h2,
+.page-hero__copy p {
+  color: white;
+}
+
+.page-hero__copy h2 {
+  font-size: clamp(1.98rem, 4.5vw, 4.41rem);
+}
+
+.page-hero__copy .eyebrow {
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.page-hero__description {
+  max-width: 700px;
+  font-size: 1.1rem;
+}
+
+.page-hero__backdrop,
+.page-hero__shade {
+  position: absolute;
+  inset: 0;
+}
+
+.page-hero__backdrop img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.page-hero__shade {
+  z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(20, 32, 45, 0.15) 0%, rgba(20, 32, 45, 0.42) 35%, var(--page-hero-overlay-b) 100%),
+    linear-gradient(90deg, var(--page-hero-overlay-a) 0%, rgba(12, 75, 124, 0.18) 52%, rgba(20, 32, 45, 0.06) 100%);
+}
+
+.page-hero__actions,
+.section-actions,
+.contact-banner__actions,
+.social-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.page-hero__indicators {
+  z-index: 3;
+  bottom: 1.25rem;
+  margin-bottom: 0;
+}
+
+.page-hero__indicators button {
+  width: 0.9rem !important;
+  height: 0.9rem !important;
+  border-radius: 999px;
+  border: none !important;
+  background-color: rgba(255, 255, 255, 0.46) !important;
+}
+
+.page-hero__indicators .active {
+  background-color: var(--elementos-amarillo) !important;
+}
+
+.page-hero__control {
+  z-index: 3;
+  width: 8%;
+  opacity: 1;
+}
+
+.page-hero__control .carousel-control-prev-icon,
+.page-hero__control .carousel-control-next-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  background-color: rgba(20, 32, 45, 0.38);
+  background-size: 46%;
+}
+
+.content-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.page-hero .site-button--secondary {
+  border-color: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+}
+
+.content-grid,
+.icon-card-grid,
+.workshop-grid,
+.team-grid,
+.contact-grid,
+.dossier-grid,
+.path-grid {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.content-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.icon-card-grid,
+.contact-grid,
+.dossier-grid,
+.path-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.workshop-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.team-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.content-card,
+.icon-card,
+.workshop-card,
+.team-card,
+.contact-card,
+.dossier-card,
+.path-card {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.trust-panel,
+.contact-banner {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--elementos-borde);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+}
+
+.content-card {
+  overflow: hidden;
+}
+
+.content-card__image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.content-card__body,
+.icon-card,
+.trust-panel,
+.workshop-card__body,
+.team-card__body,
+.contact-card,
+.dossier-card,
+.contact-banner,
+.path-card {
+  padding: 1.4rem;
+}
+
+.content-card__body,
+.workshop-card__body,
+.team-card__body,
+.dossier-card,
+.contact-card,
+.path-card {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.content-card__body h2,
+.icon-card h3,
+.trust-panel h3,
+.workshop-card__body h2,
+.team-card__body h3,
+.contact-card h2,
+.dossier-card h2,
+.contact-banner h2,
+.path-card h3 {
+  font-size: clamp(1.26rem, 2.7vw, 2.07rem);
+}
+
+.meta-list,
+.pill-list,
+.check-list,
+.site-footer__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.meta-list,
+.check-list {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.meta-list li,
+.check-list li,
+.site-footer__list li {
+  position: relative;
+  padding-left: 1.1rem;
+  color: var(--elementos-tinta-suave);
+}
+
+.meta-list li::before,
+.check-list li::before,
+.site-footer__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.72rem;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: var(--elementos-naranjo);
+  transform: translateY(-50%);
+}
+
+.pill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.pill-list li {
+  padding: 0.6rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(11, 170, 203, 0.1);
+  border: 1px solid rgba(11, 170, 203, 0.16);
+  font-family: 'Anton', sans-serif;
+  font-size: 0.84rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.pill-list--tight {
+  margin-top: 0;
+}
+
+.pill-list--tight li {
+  padding: 0.45rem 0.7rem;
+  font-size: 0.74rem;
+}
+
+.split-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+  gap: 1.25rem;
+}
+
+.split-panel--media {
+  align-items: center;
+}
+
+.trust-panel {
+  display: grid;
+  gap: 1rem;
+  background:
+    linear-gradient(180deg, rgba(12, 75, 124, 0.98), rgba(36, 140, 69, 0.94));
+  color: white;
+}
+
+.trust-panel h3,
+.trust-panel p,
+.trust-panel .check-list li {
+  color: white;
+}
+
+.trust-panel .check-list li::before {
+  background: var(--elementos-amarillo);
+}
+
+.icon-card h3,
+.team-card__body h3,
+.path-card h3 {
+  margin-bottom: 0.45rem;
+}
+
+.workshop-card,
+.content-card,
+.dossier-card,
+.contact-card,
+.team-card,
+.path-card {
+  backdrop-filter: none;
+}
+
+.workshop-card {
+  overflow: visible;
+}
+
+.workshop-card img,
+.team-card img {
+  width: 100%;
+}
+
+.workshop-card img {
+  aspect-ratio: 5 / 6;
+  object-fit: cover;
+  border-radius: 22px;
+}
+
+.team-card img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 999px;
+}
+
+.logo-cloud {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.logo-cloud--large {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.logo-cloud a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 150px;
+  padding: 1rem;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+}
+
+.logo-cloud img {
+  max-height: 80px;
+  width: auto;
+}
+
+.contact-banner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) auto;
+  gap: 1rem;
+  background:
+    linear-gradient(120deg, rgba(12, 75, 124, 0.98), rgba(11, 170, 203, 0.92));
+  color: white;
+}
+
+.path-card {
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid rgba(20, 32, 45, 0.08);
+  border-radius: 22px;
+  backdrop-filter: blur(10px);
+}
+
+.path-card p {
+  color: var(--elementos-tinta-suave);
+}
+
+.contact-banner h2,
+.contact-banner p {
+  color: white;
+}
+
+.contact-banner .eyebrow {
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.placeholder-note,
+.dossier-card__audience {
+  font-size: 0.95rem;
+}
+
+.dossier-card--pending {
+  background: linear-gradient(180deg, rgba(245, 207, 0, 0.14), rgba(255, 255, 255, 0.92));
+}
+
+.social-row {
+  margin-bottom: 1.5rem;
+}
+
+.social-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255, 255, 255, 0.52);
+  font-family: 'Anton', sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.site-footer {
+  padding: 3.5rem 0 1.5rem;
+  background: var(--elementos-azul);
+  color: white;
+}
+
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 1.4rem;
+}
+
+.site-footer__lead {
+  margin-top: 1rem;
+  max-width: 320px;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.site-footer__title {
+  margin-bottom: 0.8rem;
+  font-size: 1.25rem;
+}
+
+.site-footer__list {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.site-footer__list li,
+.site-footer__list a {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.site-footer__list li::before {
+  background: var(--elementos-amarillo);
+}
+
+.site-footer__social {
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+
+.site-footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.94rem;
+}
+
+.site-footer__bottom a {
+  text-decoration: underline;
+}
+
+@media (max-width: 991px) {
+  .content-grid,
+  .team-grid,
+  .path-grid,
+  .logo-cloud--large,
+  .site-footer__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .workshop-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .page-hero__inner,
+  .split-panel,
+  .contact-banner {
+    grid-template-columns: 1fr;
+  }
+
+  .site-header__cta-wrap {
+    padding-top: 0.8rem;
+  }
+
+}
+
+@media (max-width: 767px) {
+  body {
+    font-size: 17px;
+  }
+
+  .page-section {
+    padding: 4rem 0;
+  }
+
+  .icon-card-grid,
+  .content-grid,
+  .workshop-grid,
+  .team-grid,
+  .contact-grid,
+  .dossier-grid,
+  .path-grid,
+  .logo-cloud,
+  .logo-cloud--large,
+  .site-footer__grid,
+  .site-footer__bottom {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer__bottom {
+    display: grid;
+  }
+
+  .page-hero {
+    min-height: 22rem;
+  }
+
+  .page-hero__inner {
+    min-height: 22rem;
+    padding-top: 5.25rem;
+    padding-bottom: 2.25rem;
+  }
+
+  .page-hero__control {
+    width: 14%;
+  }
+
+  body::before,
+  body::after,
+  .page-section::after {
+    display: none;
+  }
+
 }

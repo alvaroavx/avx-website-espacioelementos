@@ -1,0 +1,59 @@
+---
+import DossierCard from '../../components/DossierCard.astro';
+import PageHero from '../../components/PageHero.astro';
+import { SITE_CONTACT } from '../../data/site';
+import { dossiers } from '../../data/dossiers';
+import MainLayout from '../../layouts/MainLayout.astro';
+---
+
+<MainLayout
+	title="Presentaciones | Espacio Elementos"
+	description="Presentaciones y formatos escenicos para eventos, celebraciones, instituciones y programacion cultural."
+	image="/images/servicios/presentaciones.jpg"
+>
+	<PageHero
+		eyebrow="Presentaciones"
+		title="Formatos escenicos para eventos, celebraciones y programacion"
+		description="Espacio Elementos desarrolla presentaciones y experiencias en vivo que cruzan movimiento, artes escenicas y presencia corporal para distintos tipos de publico."
+		image="/images/servicios/presentaciones.jpg"
+		imageAlt="Presentaciones de Espacio Elementos"
+		actions={[
+			{ label: 'Conversemos tu evento', href: SITE_CONTACT.whatsappHref, target: '_blank' },
+			{ label: 'Escribir por correo', href: SITE_CONTACT.emailHref, variant: 'secondary' },
+		]}
+	/>
+
+	<section class="page-section page-section--wash-gold page-section--symbol-fire">
+		<div class="container split-panel">
+			<div>
+				<p class="eyebrow">Aplicaciones</p>
+				<h2>Una propuesta pensada para contextos reales</h2>
+				<ul class="check-list">
+					<li>Eventos privados y celebraciones</li>
+					<li>Actividades de colegios y organizaciones</li>
+					<li>Instancias municipales o comunitarias</li>
+					<li>Encuentros con componente artistico o experiencial</li>
+				</ul>
+			</div>
+			<div class="trust-panel">
+				<h3>Que puedes esperar</h3>
+				<ul class="check-list">
+					<li>Propuesta con identidad, no generica</li>
+					<li>Trato cercano con contraparte clara</li>
+					<li>Posibilidad de articular presentacion y experiencia</li>
+					<li>Material comercial disponible a solicitud</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section class="page-section page-section--wash-orange page-section--symbol-fire">
+		<div class="container">
+			<div class="section-heading">
+				<p class="eyebrow">Dossier</p>
+				<h2>Presentaciones con material comercial listo para compartir</h2>
+			</div>
+			<DossierCard dossier={dossiers[1]} />
+		</div>
+	</section>
+</MainLayout>

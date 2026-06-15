@@ -1,0 +1,39 @@
+---
+import PageHero from '../components/PageHero.astro';
+import WorkshopCard from '../components/WorkshopCard.astro';
+import { heroContent } from '../data/page-heroes';
+import { workshops } from '../data/workshops';
+import MainLayout from '../layouts/MainLayout.astro';
+---
+
+<MainLayout
+	title="Talleres | Espacio Elementos"
+	description="Talleres regulares de movimiento, entrenamiento y artes escenicas en Espacio Elementos."
+	image="/images/talleres/lyra.jpg"
+>
+	<PageHero
+		eyebrow={heroContent.workshops.eyebrow}
+		title={heroContent.workshops.title}
+		description={heroContent.workshops.description}
+		image={heroContent.workshops.image}
+		imageAlt={heroContent.workshops.imageAlt}
+		actions={heroContent.workshops.actions}
+	/>
+
+	<section class="page-section page-section--wash-green page-section--symbol-earth">
+		<div class="container">
+			<div class="section-heading">
+				<p class="eyebrow">Oferta actual</p>
+				<h2>Disciplinas activas dentro del espacio</h2>
+				<p>
+					Horarios, cupos y valores deben confirmarse por mensaje directo para evitar informacion desactualizada.
+				</p>
+			</div>
+			<div class="workshop-grid">
+				{workshops.map((workshop) => (
+					<WorkshopCard workshop={workshop} />
+				))}
+			</div>
+		</div>
+	</section>
+</MainLayout>

@@ -1,0 +1,60 @@
+---
+import PageHero from '../../components/PageHero.astro';
+import WorkshopCard from '../../components/WorkshopCard.astro';
+import { SITE_CONTACT } from '../../data/site';
+import { workshops } from '../../data/workshops';
+import MainLayout from '../../layouts/MainLayout.astro';
+---
+
+<MainLayout
+	title="Talleres y experiencias | Espacio Elementos"
+	description="Talleres y experiencias de movimiento para empresas, colegios, municipios y organizaciones."
+	image="/images/servicios/bienestar.jpg"
+>
+	<PageHero
+		eyebrow="Talleres y experiencias"
+		title="Instancias practicas para equipos, cursos, grupos y comunidades"
+		description="Disenamos experiencias de movimiento y bienestar para contextos educativos, organizacionales y comunitarios, cuidando el tono, el ritmo y el objetivo de cada grupo."
+		image="/images/servicios/bienestar.jpg"
+		imageAlt="Talleres y experiencias de movimiento"
+		actions={[
+			{ label: 'Solicitar propuesta', href: SITE_CONTACT.whatsappHref, target: '_blank' },
+			{ label: 'Ver talleres regulares', href: '/talleres', variant: 'secondary' },
+		]}
+	/>
+
+	<section class="page-section page-section--wash-green page-section--symbol-earth">
+		<div class="container split-panel">
+			<div>
+				<p class="eyebrow">Contextos posibles</p>
+				<ul class="check-list">
+					<li>Jornadas de bienestar</li>
+					<li>Experiencias para equipos</li>
+					<li>Actividades para colegios y cursos</li>
+					<li>Talleres para organizaciones y comunidad</li>
+				</ul>
+			</div>
+			<div class="trust-panel">
+				<h3>Enfoque</h3>
+				<p>
+					La experiencia se disena desde lo concreto: quienes participan, para que se levanta la instancia
+					y que tipo de energia o aprendizaje se necesita activar.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="page-section page-section--wash-blue page-section--symbol-air">
+		<div class="container">
+			<div class="section-heading">
+				<p class="eyebrow">Referencias de disciplinas</p>
+				<h2>Lineas que hoy viven dentro del ecosistema</h2>
+			</div>
+			<div class="workshop-grid">
+				{workshops.slice(0, 6).map((workshop) => (
+					<WorkshopCard workshop={workshop} />
+				))}
+			</div>
+		</div>
+	</section>
+</MainLayout>

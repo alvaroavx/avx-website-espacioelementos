@@ -1,0 +1,60 @@
+---
+import PageHero from '../components/PageHero.astro';
+import { heroContent } from '../data/page-heroes';
+import { COMMUNITY_PARTNERS } from '../data/site';
+import MainLayout from '../layouts/MainLayout.astro';
+---
+
+<MainLayout
+	title="Proyectos comunitarios | Espacio Elementos"
+	description="Trabajo territorial, colaboraciones y proyectos comunitarios de Espacio Elementos."
+	image="/images/fondos/comunidad.png"
+>
+	<PageHero
+		eyebrow={heroContent.projects.eyebrow}
+		title={heroContent.projects.title}
+		description={heroContent.projects.description}
+		image={heroContent.projects.image}
+		imageAlt={heroContent.projects.imageAlt}
+		actions={heroContent.projects.actions}
+	/>
+
+	<section class="page-section page-section--wash-green page-section--symbol-earth">
+		<div class="container split-panel">
+			<div>
+				<p class="eyebrow">Enfoque</p>
+				<h2>Una forma de activar territorio desde la experiencia</h2>
+				<p>
+					Aqui caben procesos comunitarios, talleres abiertos, acciones con agrupaciones y experiencias
+					que acercan movimiento, escena y bienestar a contextos cotidianos.
+				</p>
+				<a class="site-link" href="/contacto">Conversar una colaboracion</a>
+			</div>
+			<div class="trust-panel">
+				<h3>Lineas de trabajo</h3>
+				<ul class="check-list">
+					<li>Activaciones con organizaciones y comunidad</li>
+					<li>Talleres en espacios colectivos</li>
+					<li>Experiencias con identidad territorial</li>
+					<li>Vinculo entre arte, bienestar y participacion</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section class="page-section page-section--wash-blue page-section--symbol-water">
+		<div class="container">
+			<div class="section-heading">
+				<p class="eyebrow">Colaboraciones visibles hoy</p>
+				<h2>Organizaciones y proyectos presentes en el ecosistema actual</h2>
+			</div>
+			<div class="logo-cloud logo-cloud--large">
+				{COMMUNITY_PARTNERS.map((partner) => (
+					<a href={partner.href} target="_blank" rel="noopener noreferrer" aria-label={partner.name}>
+						<img src={partner.logo} alt={partner.name} />
+					</a>
+				))}
+			</div>
+		</div>
+	</section>
+</MainLayout>

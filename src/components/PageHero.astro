@@ -1,0 +1,138 @@
+---
+interface Action {
+	label: string;
+	href: string;
+	variant?: 'primary' | 'secondary';
+	target?: string;
+}
+
+interface Props {
+	eyebrow?: string;
+	title: string;
+	description: string;
+	image?: string;
+	imageAlt?: string;
+	actions?: Action[];
+	compact?: boolean;
+	carouselId?: string;
+	autoplay?: boolean;
+	interval?: number;
+	slides?: Array<{
+		eyebrow?: string;
+		title: string;
+		description: string;
+		image: string;
+		imageAlt?: string;
+		actions?: Action[];
+	}>;
+}
+
+const {
+	eyebrow,
+	title,
+	description,
+	image,
+	imageAlt = '',
+	actions = [],
+	compact = false,
+	carouselId = 'pageHeroCarousel',
+	autoplay = true,
+	interval = 6000,
+	slides = [],
+} = Astro.props;
+---
+
+{slides.length > 0 ? (
+	<section class:list={['page-hero', 'page-hero--carousel', { 'page-hero--compact': compact }]}>
+		<div
+			id={carouselId}
+			class="carousel slide page-hero__carousel"
+			data-bs-ride={autoplay ? 'carousel' : undefined}
+			data-bs-interval={autoplay ? interval : undefined}
+		>
+			<div class="carousel-indicators page-hero__indicators">
+				{slides.map((slide, index) => (
+					<button
+						type="button"
+						data-bs-target={`#${carouselId}`}
+						data-bs-slide-to={index}
+						class:list={{ active: index === 0 }}
+						aria-current={index === 0 ? 'true' : undefined}
+						aria-label={`Mostrar ${slide.eyebrow ?? slide.title}`}
+					></button>
+				))}
+			</div>
+
+			<div class="carousel-inner">
+				{slides.map((slide, index) => (
+					<div class:list={['carousel-item page-hero__carousel-item', { active: index === 0 }]}>
+						<div class="page-hero__backdrop" aria-hidden="true">
+							<img src={slide.image} alt={slide.imageAlt ?? ''} />
+						</div>
+						<div class="page-hero__shade" aria-hidden="true"></div>
+						<div class="container page-hero__inner">
+							<div class="page-hero__copy">
+								{slide.eyebrow && <p class="eyebrow">{slide.eyebrow}</p>}
+								{index === 0 ? <h1>{slide.title}</h1> : <h2>{slide.title}</h2>}
+								<p class="page-hero__description">{slide.description}</p>
+								{slide.actions && slide.actions.length > 0 && (
+									<div class="page-hero__actions">
+										{slide.actions.map((action) => (
+											<a
+												class:list={['site-button', { 'site-button--secondary': action.variant === 'secondary' }]}
+												href={action.href}
+												target={action.target}
+												rel={action.target === '_blank' ? 'noopener noreferrer' : undefined}
+											>
+												{action.label}
+											</a>
+										))}
+									</div>
+								)}
+							</div>
+						</div>
+					</div>
+				))}
+			</div>
+
+			<button class="carousel-control-prev page-hero__control" type="button" data-bs-target={`#${carouselId}`} data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Anterior</span>
+			</button>
+			<button class="carousel-control-next page-hero__control" type="button" data-bs-target={`#${carouselId}`} data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Siguiente</span>
+			</button>
+		</div>
+	</section>
+) : (
+	<section class:list={['page-hero', { 'page-hero--compact': compact, 'page-hero--with-image': image }]}>
+		{image && (
+			<div class="page-hero__backdrop" aria-hidden="true">
+				<img src={image} alt={imageAlt} />
+			</div>
+		)}
+		<div class="page-hero__shade" aria-hidden="true"></div>
+		<div class="container page-hero__inner">
+			<div class="page-hero__copy">
+				{eyebrow && <p class="eyebrow">{eyebrow}</p>}
+				<h1>{title}</h1>
+				<p class="page-hero__description">{description}</p>
+				{actions.length > 0 && (
+					<div class="page-hero__actions">
+						{actions.map((action) => (
+							<a
+								class:list={['site-button', { 'site-button--secondary': action.variant === 'secondary' }]}
+								href={action.href}
+								target={action.target}
+								rel={action.target === '_blank' ? 'noopener noreferrer' : undefined}
+							>
+								{action.label}
+							</a>
+						))}
+					</div>
+				)}
+			</div>
+		</div>
+	</section>
+)}

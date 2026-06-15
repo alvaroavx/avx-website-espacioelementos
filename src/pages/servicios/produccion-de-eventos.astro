@@ -1,0 +1,46 @@
+---
+import PageHero from '../../components/PageHero.astro';
+import { SITE_CONTACT } from '../../data/site';
+import MainLayout from '../../layouts/MainLayout.astro';
+---
+
+<MainLayout
+	title="Produccion de eventos | Espacio Elementos"
+	description="Activacion y acompanamiento de eventos con identidad corporal, artistica y comunitaria."
+	image="/images/servicios/comunidad.jpg"
+>
+	<PageHero
+		eyebrow="Produccion de eventos"
+		title="Activaciones y experiencias para encuentros con identidad"
+		description="Cuando una instancia necesita cuerpo, presencia y una propuesta que conecte con personas reales, Espacio Elementos puede acompanar la activacion desde una mirada artistica y operativa."
+		image="/images/servicios/comunidad.jpg"
+		imageAlt="Produccion de eventos y activaciones"
+		actions={[
+			{ label: 'Hablemos de tu instancia', href: SITE_CONTACT.whatsappHref, target: '_blank' },
+			{ label: 'Ir a contacto', href: '/contacto', variant: 'secondary' },
+		]}
+	/>
+
+	<section class="page-section page-section--wash-blue page-section--symbol-water">
+		<div class="container split-panel">
+			<div>
+				<p class="eyebrow">Posibles usos</p>
+				<ul class="check-list">
+					<li>Jornadas institucionales</li>
+					<li>Encuentros de comunidad</li>
+					<li>Celebraciones y activaciones privadas</li>
+					<li>Eventos que integran taller, escena o experiencia</li>
+				</ul>
+			</div>
+			<div class="trust-panel">
+				<h3>Lo que aportamos</h3>
+				<ul class="check-list">
+					<li>Lectura sensible del contexto</li>
+					<li>Coherencia entre propuesta y publico</li>
+					<li>Capacidad de combinar activacion, taller o presentacion</li>
+					<li>Una ejecucion cercana, clara y profesional</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+</MainLayout>

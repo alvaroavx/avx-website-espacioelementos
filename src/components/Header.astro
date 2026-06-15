@@ -1,81 +1,51 @@
 ---
 import HeaderLink from './HeaderLink.astro';
 import { SITE_TITLE } from '../consts';
+import { NAV_ITEMS, SITE_CONTACT, SOCIAL_LINKS } from '../data/site';
 ---
 
-<header>
-  <nav class="navbar navbar-light sticky-top bg-white shadow-sm px-0 px-md-4">
-    <div class="container-fluid d-flex flex-nowrap justify-content-between align-items-center">
-      
-      <!-- Logo -->
-      <a class="navbar-brand flex-shrink-1 flex-md-shrink-0" href="/">
-        <img src="/images/logo-espacio-elementos.png" alt="Espacio Elementos" width="300" />
+<header class="site-header">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container site-header__inner">
+      <a class="navbar-brand site-header__brand" href="/" aria-label={SITE_TITLE}>
+        <img src="/images/logo-espacio-elementos.png" alt={SITE_TITLE} width="270" />
       </a>
 
-      <!-- Navegación principal (desktop) -->
-      <ul id="menu" class="nav d-none d-md-flex justify-content-center flex-grow-1">
-        <li class="nav-item"><a class="nav-link" href="/">INICIO</a></li>
-        <li class="nav-item"><a class="nav-link" href="#servicios">SERVICIOS</a></li>
-        <li class="nav-item"><a class="nav-link" href="#talleres">TALLERES</a></li>
-        <li class="nav-item"><a class="nav-link" href="#equipo">EQUIPO</a></li>
-        <li class="nav-item"><a class="nav-link" href="#comunidad">COMUNIDAD</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contacto">CONTACTO</a></li>
-      </ul>
-
-      <!-- Redes sociales (solo desktop) -->
-      <div class="d-none d-md-flex align-items-center gap-3">
-        <a href="https://www.instagram.com/espacio.elementos" target="_blank" aria-label="Instagram">
-          <img src="/images/rrss/instagram.png" alt="Instagram" width="50" />
-        </a>
-        <a href="https://www.facebook.com/espacio.elementos.rengo" target="_blank" aria-label="Facebook">
-          <img src="/images/rrss/facebook.png" alt="Facebook" width="50" />
-        </a>
-        <a href="https://www.youtube.com/@EspacioElementos" target="_blank" aria-label="YouTube">
-          <img src="/images/rrss/youtube.png" alt="YouTube" width="50" />
-        </a>
-      </div>
-
-      <!-- Botón hamburguesa (mobile) -->
       <button
-        class="navbar-toggler d-md-none mt-2"
+        class="navbar-toggler site-header__toggle"
         type="button"
         data-bs-toggle="collapse"
-        data-bs-target="#mobileNav"
-        aria-controls="mobileNav"
+        data-bs-target="#siteNav"
+        aria-controls="siteNav"
         aria-expanded="false"
-        aria-label="Toggle navigation"
+        aria-label="Abrir navegacion"
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-    </div>
 
-    <!-- Menú móvil colapsable -->
-    <div class="collapse d-md-none" id="mobileNav">
-      <ul class="nav flex-column px-3">
-        <li class="nav-item"><hr></li>
-        <li class="nav-item"><a class="nav-link" href="/">INICIO</a></li>
-        <li class="nav-item"><a class="nav-link" href="#bajada">NOSOTROS</a></li>
-        <li class="nav-item"><a class="nav-link" href="#servicios">SERVICIOS</a></li>
-        <li class="nav-item"><a class="nav-link" href="#talleres">TALLERES</a></li>
-        <li class="nav-item"><a class="nav-link" href="#equipo">EQUIPO</a></li>
-        <li class="nav-item"><a class="nav-link" href="#comunidad">COMUNIDAD</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contacto">CONTACTO</a></li>
-        <!-- Redes sociales al final -->
-        <li class="nav-item"><hr></li>
-        <li class="nav-item social-mobile">
-          <a href="https://www.instagram.com/espacio.elementos" target="_blank" aria-label="Instagram">
-            <img src="/images/rrss/instagram.png" alt="Instagram" width="50" />
-          </a>
-          <a href="https://www.facebook.com/espacio.elementos.rengo" target="_blank" aria-label="Facebook">
-            <img src="/images/rrss/facebook.png" alt="Facebook" width="50" />
-          </a>
-          <a href="https://www.youtube.com/@EspacioElementos" target="_blank" aria-label="YouTube">
-            <img src="/images/rrss/youtube.png" alt="YouTube" width="50" />
-          </a>
-        </li>
-        <li class="nav-item"><hr></li>
-      </ul>
+      <div class="collapse navbar-collapse" id="siteNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center site-header__nav">
+          {NAV_ITEMS.map((item) => (
+            <li class="nav-item">
+              <HeaderLink href={item.href} class="nav-link site-header__link">
+                {item.label}
+              </HeaderLink>
+            </li>
+          ))}
+          <li class="nav-item site-header__cta-wrap">
+            <a class="site-button site-button--small" href={SITE_CONTACT.whatsappHref} target="_blank" rel="noopener noreferrer">
+              Cotiza por WhatsApp
+            </a>
+          </li>
+        </ul>
+        <div class="site-header__social d-lg-none">
+          {SOCIAL_LINKS.map((link) => (
+            <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.label}>
+              <img src={link.icon} alt={link.label} width="34" height="34" />
+            </a>
+          ))}
+        </div>
+      </div>
     </div>
   </nav>
 </header>
-
