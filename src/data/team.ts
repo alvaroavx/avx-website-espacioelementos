@@ -3,6 +3,8 @@ export interface TeamMember {
 	role: string;
 	image: string;
 	imageAlt: string;
+	// bio: descripción breve en 1-2 oraciones — Álvaro valida y completa
+	bio?: string;
 }
 
 export const teamMembers: TeamMember[] = [

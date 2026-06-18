@@ -1,0 +1,206 @@
+---
+import FeaturedVideoBlock from '../components/FeaturedVideoBlock.astro';
+import InstagramCalendarCTA from '../components/InstagramCalendarCTA.astro';
+import PageHero from '../components/PageHero.astro';
+import SocialLinksBlock from '../components/SocialLinksBlock.astro';
+import VideoGallerySection from '../components/VideoGallerySection.astro';
+import { INSTAGRAM_URL, SOCIAL_LINKS, YOUTUBE_CHANNEL_URL } from '../data/site';
+import { heroContent } from '../data/page-heroes';
+import { videos, youtubePlaylists } from '../data/videos';
+import MainLayout from '../layouts/MainLayout.astro';
+
+// Mapea VideoItem al formato que espera VideoGallerySection.
+// Pendientes: videoUrl apunta al canal de YouTube como fallback hasta que Álvaro elija.
+const toGalleryItem = (v: (typeof videos)[number]) => ({
+	title: v.isPending ? `${v.title} — pendiente` : v.title,
+	description: v.description,
+	category: v.category,
+	thumbnail: v.thumbnail || undefined,
+	videoUrl: v.videoUrl || YOUTUBE_CHANNEL_URL,
+	ctaLabel: v.isPending ? 'Ver canal mientras se confirma' : (v.ctaLabel ?? 'Ver video'),
+	duration: v.duration,
+	date: v.date,
+});
+
+const featuredHome = videos.find((v) => v.id === 'featured-home');
+const obras = videos.filter((v) => v.category === 'obra').map(toGalleryItem);
+const shows = videos.filter((v) => v.category === 'shows' || v.category === 'circo-contemporaneo').map(toGalleryItem);
+const galasYComunidad = videos.filter((v) => v.category === 'galas' || v.category === 'comunidad').map(toGalleryItem);
+const procesos = videos.filter((v) => v.category === 'procesos').map(toGalleryItem);
+const talleresEnAccion = videos.filter((v) => v.category === 'talleres').map(toGalleryItem);
+
+const playlistObras = youtubePlaylists.find((p) => p.id === 'la-tarea-mas-dificil-funciones');
+const playlistShows = youtubePlaylists.find((p) => p.id === 'varietes-circo');
+const playlistGalas = youtubePlaylists.find((p) => p.id === 'gala-elementos');
+const playlistProcesos = youtubePlaylists.find((p) => p.id === 'la-tarea-mas-dificil-creacion');
+---
+
+<MainLayout
+	title="Videos y registros | Espacio Elementos"
+	description="Obras, shows, galas, talleres y proyectos comunitarios de Espacio Elementos. Circo contemporaneo, acrobacia y arte escenico en Rengo, Region de O'Higgins."
+	image="/images/fondos/servicios.png"
+>
+	<PageHero
+		eyebrow={heroContent.videos.eyebrow}
+		title={heroContent.videos.title}
+		description={heroContent.videos.description}
+		image={heroContent.videos.image}
+		imageAlt={heroContent.videos.imageAlt}
+		actions={heroContent.videos.actions}
+	/>
+
+	<!-- ── VIDEO DESTACADO ─────────────────────────────────────────────── -->
+	<section class="page-section page-section--wash-gold page-section--symbol-fire">
+		<div class="container">
+			<FeaturedVideoBlock
+				eyebrow="Destacado"
+				title={featuredHome?.isPending
+					? 'Video destacado pendiente de seleccion'
+					: (featuredHome?.title ?? 'Video destacado')}
+				description={featuredHome?.isPending
+					? 'Video pendiente de seleccion por Alvaro. Opciones: Gala Elementos 2025, variete de circo o registro comunitario de alto impacto visual.'
+					: (featuredHome?.description ?? '')}
+				thumbnail={featuredHome?.thumbnail || undefined}
+				videoUrl={featuredHome?.videoUrl || YOUTUBE_CHANNEL_URL}
+				ctaLabel={featuredHome?.isPending ? 'Ver canal de YouTube mientras tanto' : 'Ver video'}
+				secondaryCta={{ label: 'Ver todos los videos', href: '#obras' }}
+			/>
+		</div>
+	</section>
+
+	<!-- ── OBRAS Y PRESENTACIONES ──────────────────────────────────────── -->
+	<section id="obras" class="page-section page-section--wash-blue page-section--symbol-water">
+		<div class="container">
+			<VideoGallerySection
+				category="Obras"
+				title="Obras y presentaciones escenicas"
+				description="Registro de obras de la Compania Elementos: circo contemporaneo, funciones en teatro, colegios y espacios culturales."
+				videos={obras}
+				layout="grid"
+			/>
+			{playlistObras && (
+				<div class="section-actions">
+					<a class="site-link" href={playlistObras.url} target="_blank" rel="noopener noreferrer">
+						Ver playlist completa: {playlistObras.title}
+					</a>
+				</div>
+			)}
+		</div>
+	</section>
+
+	<!-- ── SHOWS Y ESCENA ──────────────────────────────────────────────── -->
+	<section class="page-section page-section--wash-green page-section--symbol-earth">
+		<div class="container">
+			<VideoGallerySection
+				category="Shows y escena"
+				title="Circo, acrobacia y presencia escenica en vivo"
+				description="Malabares, tela aerea, zancos, acrobacia grupal y variete de circo en distintos contextos y espacios."
+				videos={shows}
+				layout="grid"
+			/>
+			{playlistShows && (
+				<div class="section-actions">
+					<a class="site-link" href={playlistShows.url} target="_blank" rel="noopener noreferrer">
+						Ver playlist completa: {playlistShows.title}
+					</a>
+				</div>
+			)}
+		</div>
+	</section>
+
+	<!-- ── GALAS Y COMUNIDAD ───────────────────────────────────────────── -->
+	<section class="page-section page-section--wash-orange page-section--symbol-fire">
+		<div class="container">
+			<VideoGallerySection
+				category="Galas y comunidad"
+				title="Encuentros, galas y acciones con personas"
+				description="Galas internas, activaciones comunitarias y registros territoriales que muestran la dimension colectiva de Espacio Elementos."
+				videos={galasYComunidad}
+				layout="grid"
+			/>
+			{playlistGalas && (
+				<div class="section-actions">
+					<a class="site-link" href={playlistGalas.url} target="_blank" rel="noopener noreferrer">
+						Ver playlist completa: {playlistGalas.title}
+					</a>
+				</div>
+			)}
+		</div>
+	</section>
+
+	<!-- ── PROCESOS CREATIVOS ──────────────────────────────────────────── -->
+	{procesos.length > 0 && (
+		<section class="page-section page-section--wash-blue page-section--symbol-air">
+			<div class="container">
+				<VideoGallerySection
+					category="Procesos creativos"
+					title="Detras de las obras y las escenas"
+					description="Registros del proceso: ensayos, creacion y el trabajo cotidiano que sostiene las obras y shows de Espacio Elementos."
+					videos={procesos}
+					layout="stack"
+				/>
+				{playlistProcesos && (
+					<div class="section-actions">
+						<a class="site-link" href={playlistProcesos.url} target="_blank" rel="noopener noreferrer">
+							Ver playlist completa: {playlistProcesos.title}
+						</a>
+					</div>
+				)}
+			</div>
+		</section>
+	)}
+
+	<!-- ── TALLERES EN ACCIÓN ──────────────────────────────────────────── -->
+	{talleresEnAccion.length > 0 && (
+		<section class="page-section page-section--wash-green page-section--symbol-earth">
+			<div class="container">
+				<VideoGallerySection
+					category="Talleres en accion"
+					title="Las clases, la practica y el proceso semanal"
+					description="Registros de las clases regulares de lyra, entrenamiento funcional y otras disciplinas que se practican dentro del espacio."
+					videos={talleresEnAccion}
+					layout="grid"
+				/>
+			</div>
+		</section>
+	)}
+
+	<!-- ── INSTAGRAM + REDES ───────────────────────────────────────────── -->
+	<section class="page-section page-section--symbol-water">
+		<div class="container split-panel">
+			<InstagramCalendarCTA
+				title="Novedades y calendario en Instagram"
+				description="El calendario mensual, cambios de horario y novedades se actualizan primero en Instagram."
+				instagramUrl={INSTAGRAM_URL}
+				ctaLabel="Abrir Instagram"
+			/>
+			<SocialLinksBlock
+				title="Canales oficiales"
+				description="Sin feed embebido ni carga extra. Solo enlaces directos a los canales activos."
+				links={SOCIAL_LINKS}
+			/>
+		</div>
+	</section>
+
+	<!-- ── CTA FINAL: CANAL DE YOUTUBE ────────────────────────────────── -->
+	<section class="page-section page-section--contact">
+		<div class="container contact-banner">
+			<div>
+				<p class="eyebrow">Canal de YouTube</p>
+				<h2>Archivo vivo de funciones, galas y proceso</h2>
+				<p>
+					Obras, galas, shows y registros de anos de trabajo escenico y comunitario.
+					Todo reunido en el canal de Espacio Elementos.
+				</p>
+			</div>
+			<div class="contact-banner__actions">
+				<a class="site-button" href={YOUTUBE_CHANNEL_URL} target="_blank" rel="noopener noreferrer">
+					Ver canal de YouTube
+				</a>
+				<a class="site-button site-button--secondary" href="/servicios">
+					Contratar show o presentacion
+				</a>
+			</div>
+		</div>
+	</section>
+</MainLayout>

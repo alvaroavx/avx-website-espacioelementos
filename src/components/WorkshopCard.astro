@@ -2,17 +2,109 @@
 import type { WorkshopItem } from '../data/workshops';
 
 interface Props {
-	workshop: WorkshopItem;
+	workshop?: WorkshopItem & Partial<WorkshopFields>;
+	title?: string;
+	name?: string;
+	discipline?: string;
+	teacher?: string;
+	audience?: string;
+	level?: string;
+	schedule?: string;
+	duration?: string;
+	description?: string;
+	summary?: string;
+	focus?: string[] | string;
+	ctaLabel?: string;
+	ctaHref?: string;
+	image?: string;
+	imageAlt?: string;
+	compact?: boolean;
 }
 
-const { workshop } = Astro.props;
+interface WorkshopFields {
+	title: string;
+	discipline: string;
+	teacher: string;
+	audience: string;
+	level: string;
+	schedule: string;
+	duration: string;
+	description: string;
+	focus: string[];
+	ctaLabel: string;
+	ctaHref: string;
+}
+
+const {
+	workshop,
+	title,
+	name,
+	discipline,
+	teacher,
+	audience,
+	level,
+	schedule,
+	duration,
+	description,
+	summary,
+	focus,
+	ctaLabel,
+	ctaHref,
+	image,
+	imageAlt,
+	compact = false,
+} = Astro.props;
+
+const cardTitle = title ?? name ?? workshop?.title ?? workshop?.name;
+const cardDescription = description ?? summary ?? workshop?.description ?? workshop?.summary;
+const cardDiscipline = discipline ?? workshop?.discipline ?? (typeof workshop?.focus === 'string' ? workshop.focus : undefined);
+const cardTeacher = teacher ?? workshop?.teacher;
+const cardAudience = audience ?? workshop?.audience;
+const cardLevel = level ?? workshop?.level;
+const cardSchedule = schedule ?? workshop?.schedule;
+const cardDuration = duration ?? workshop?.duration;
+const cardImage = image ?? workshop?.image;
+const cardImageAlt = imageAlt ?? workshop?.imageAlt ?? '';
+const cardCtaLabel = ctaLabel ?? workshop?.ctaLabel;
+const cardCtaHref = ctaHref ?? workshop?.ctaHref;
+const rawFocus = focus ?? (Array.isArray(workshop?.focus) ? workshop.focus : []);
+const focusItems = Array.isArray(rawFocus) ? rawFocus : rawFocus ? [rawFocus] : [];
+const metaItems = [
+	cardTeacher && { label: 'Profesor/a', value: cardTeacher },
+	cardAudience && { label: 'Publico', value: cardAudience },
+	cardLevel && { label: 'Nivel', value: cardLevel },
+	cardSchedule && { label: 'Horario', value: cardSchedule },
+	cardDuration && { label: 'Duracion', value: cardDuration },
+].filter(Boolean) as Array<{ label: string; value: string }>;
 ---
 
-<article class="workshop-card">
-	<img src={workshop.image} alt={workshop.imageAlt} />
+<article class:list={['workshop-card', 'workshop-card--detailed', { 'workshop-card--compact': compact }]}>
+	{cardImage && <img src={cardImage} alt={cardImageAlt} width="520" height="624" loading="lazy" decoding="async" />}
 	<div class="workshop-card__body">
-		<p class="eyebrow">{workshop.focus}</p>
-		<h2>{workshop.name}</h2>
-		<p>{workshop.summary}</p>
+		{cardDiscipline && <p class="eyebrow">{cardDiscipline}</p>}
+		{cardTitle && <h2>{cardTitle}</h2>}
+		{cardDescription && <p>{cardDescription}</p>}
+		{metaItems.length > 0 && (
+			<dl class="detail-list">
+				{metaItems.map((item) => (
+					<div>
+						<dt>{item.label}</dt>
+						<dd>{item.value}</dd>
+					</div>
+				))}
+			</dl>
+		)}
+		{focusItems.length > 0 && (
+			<ul class="pill-list pill-list--tight">
+				{focusItems.map((item) => (
+					<li>{item}</li>
+				))}
+			</ul>
+		)}
+		{cardCtaHref && cardCtaLabel && (
+			<a class="site-button site-button--small" href={cardCtaHref}>
+				{cardCtaLabel}
+			</a>
+		)}
 	</div>
 </article>

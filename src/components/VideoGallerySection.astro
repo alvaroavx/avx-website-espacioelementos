@@ -1,0 +1,38 @@
+---
+import VideoCard from './VideoCard.astro';
+
+interface VideoItem {
+	title: string;
+	description: string;
+	category: string;
+	thumbnail?: string;
+	videoUrl: string;
+	ctaLabel: string;
+	duration?: string;
+	date?: string;
+}
+
+interface Props {
+	title: string;
+	description?: string;
+	videos: VideoItem[];
+	layout?: 'stack' | 'grid';
+	category?: string;
+}
+
+const { title, description, videos, layout = 'stack', category } = Astro.props;
+---
+
+<section class:list={['video-gallery-section', `video-gallery-section--${layout}`]}>
+	<header class="section-heading video-gallery-section__header">
+		{category && <p class="eyebrow">{category}</p>}
+		<h2>{title}</h2>
+		{description && <p>{description}</p>}
+	</header>
+
+	<div class="video-gallery-section__items">
+		{videos.map((video) => (
+			<VideoCard {...video} />
+		))}
+	</div>
+</section>

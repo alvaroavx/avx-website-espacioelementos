@@ -1,0 +1,30 @@
+---
+interface Props {
+	src?: string;
+	alt?: string;
+	caption?: string;
+	aspect?: 'wide' | 'square' | 'portrait';
+	priority?: boolean;
+}
+
+const { src, alt = '', caption, aspect = 'wide', priority = false } = Astro.props;
+---
+
+<figure class:list={['image-block', `image-block--${aspect}`, { 'image-block--placeholder': !src }]}>
+	{src ? (
+		<img
+			src={src}
+			alt={alt}
+			width={aspect === 'portrait' ? '720' : '1200'}
+			height={aspect === 'portrait' ? '960' : aspect === 'square' ? '1200' : '675'}
+			loading={priority ? 'eager' : 'lazy'}
+			fetchpriority={priority ? 'high' : undefined}
+			decoding="async"
+		/>
+	) : (
+		<div class="image-block__placeholder" role="img" aria-label="Imagen pendiente">
+			<span>Imagen pendiente</span>
+		</div>
+	)}
+	{caption && <figcaption>{caption}</figcaption>}
+</figure>

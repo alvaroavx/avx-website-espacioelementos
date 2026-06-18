@@ -1,9 +1,14 @@
 ---
 import DossierCard from '../../components/DossierCard.astro';
+import FeaturedVideoBlock from '../../components/FeaturedVideoBlock.astro';
 import PageHero from '../../components/PageHero.astro';
-import { SITE_CONTACT } from '../../data/site';
+import { SITE_CONTACT, YOUTUBE_CHANNEL_URL } from '../../data/site';
 import { dossiers } from '../../data/dossiers';
+import { videos } from '../../data/videos';
 import MainLayout from '../../layouts/MainLayout.astro';
+
+const videoCompania = videos.find((v) => v.id === 'show-variete-circo');
+const videoObra = videos.find((v) => v.id === 'la-tarea-mas-dificil-funcion');
 ---
 
 <MainLayout
@@ -44,6 +49,57 @@ import MainLayout from '../../layouts/MainLayout.astro';
 					<li>Material comercial disponible a solicitud</li>
 				</ul>
 			</div>
+		</div>
+	</section>
+
+	<section class="page-section page-section--wash-blue page-section--symbol-water">
+		<div class="container">
+			<div class="section-heading">
+				<p class="eyebrow">Registro en video</p>
+				<h2>La propuesta en accion</h2>
+			</div>
+			{/* PENDIENTE: Video de show/varieté de circo — Álvaro elige desde videos.ts (id: 'show-variete-circo').
+			    Elegir desde playlist "Varietés de circo". Registro de presentacion en escena con malabares,
+			    tela aerea, acrobacia grupal o zancos.
+			    Registro de presentacion de Compania Elementos — pendiente de seleccion y entrega por Álvaro. */}
+			<FeaturedVideoBlock
+				eyebrow="Compania Elementos en escena"
+				title={videoCompania?.isPending
+					? 'Registro de show pendiente de seleccion'
+					: (videoCompania?.title ?? 'Show de Compania Elementos')}
+				description={videoCompania?.isPending
+					? 'Video pendiente de seleccion por Alvaro. Se elegira desde la playlist de Varietes de circo: malabares, tela aerea, acrobacia grupal o zancos en escena.'
+					: (videoCompania?.description ?? '')}
+				thumbnail={videoCompania?.thumbnail || undefined}
+				videoUrl={videoCompania?.videoUrl || YOUTUBE_CHANNEL_URL}
+				ctaLabel={videoCompania?.isPending ? 'Ver canal mientras se confirma' : 'Ver video'}
+				secondaryCta={{ label: 'Cotizar show', href: SITE_CONTACT.whatsappHref, target: '_blank' }}
+			/>
+		</div>
+	</section>
+
+	<section class="page-section page-section--wash-green page-section--symbol-earth">
+		<div class="container">
+			<div class="section-heading">
+				<p class="eyebrow">La Tarea Mas Dificil</p>
+				<h2>La obra en accion</h2>
+			</div>
+			{/* PENDIENTE: Video de La Tarea Más Difícil — Álvaro elige desde videos.ts (id: 'la-tarea-mas-dificil-funcion').
+			    Elegir desde playlist "Funciones de La Tarea Más Difícil".
+			    Registro de funcion de La Tarea Mas Dificil — pendiente de seleccion y entrega por Álvaro. */}
+			<FeaturedVideoBlock
+				eyebrow="Circo contemporaneo"
+				title={videoObra?.isPending
+					? 'Registro de La Tarea Mas Dificil — pendiente'
+					: (videoObra?.title ?? 'La Tarea Mas Dificil')}
+				description={videoObra?.isPending
+					? 'Video pendiente de seleccion por Alvaro. Se elegira desde la playlist de Funciones de La Tarea Mas Dificil.'
+					: (videoObra?.description ?? '')}
+				thumbnail={videoObra?.thumbnail || undefined}
+				videoUrl={videoObra?.videoUrl || YOUTUBE_CHANNEL_URL}
+				ctaLabel={videoObra?.isPending ? 'Ver canal mientras se confirma' : 'Ver video'}
+				secondaryCta={{ label: 'Solicitar ficha tecnica', href: SITE_CONTACT.emailHref }}
+			/>
 		</div>
 	</section>
 

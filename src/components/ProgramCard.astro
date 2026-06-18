@@ -1,0 +1,79 @@
+---
+interface Action {
+	label: string;
+	href: string;
+	variant?: 'primary' | 'secondary';
+	target?: string;
+}
+
+interface Props {
+	eyebrow?: string;
+	title: string;
+	summary: string;
+	image?: string;
+	imageAlt?: string;
+	tags?: string[];
+	highlights?: string[];
+	actions?: Action[];
+	detailHref?: string;
+	detailLabel?: string;
+	dossierHref?: string;
+}
+
+const {
+	eyebrow,
+	title,
+	summary,
+	image,
+	imageAlt = '',
+	tags = [],
+	highlights = [],
+	actions = [],
+	detailHref,
+	detailLabel = 'Ver detalle',
+	dossierHref,
+} = Astro.props;
+---
+
+<article class="program-card content-card">
+	{image && <img class="program-card__image content-card__image" src={image} alt={imageAlt} width="720" height="540" loading="lazy" decoding="async" />}
+	<div class="program-card__body content-card__body">
+		{eyebrow && <p class="eyebrow">{eyebrow}</p>}
+		<h2>{title}</h2>
+		<p>{summary}</p>
+		{tags.length > 0 && (
+			<ul class="pill-list pill-list--tight">
+				{tags.map((tag) => (
+					<li>{tag}</li>
+				))}
+			</ul>
+		)}
+		{highlights.length > 0 && (
+			<ul class="meta-list">
+				{highlights.map((highlight) => (
+					<li>{highlight}</li>
+				))}
+			</ul>
+		)}
+		{(detailHref || actions.length > 0) && (
+			<div class="content-card__actions">
+				{detailHref && <a class="site-button site-button--small" href={detailHref}>{detailLabel}</a>}
+				{actions.map((action) => (
+					<a
+						class:list={['site-button site-button--small', { 'site-button--secondary': action.variant === 'secondary' }]}
+						href={action.href}
+						target={action.target}
+						rel={action.target === '_blank' ? 'noopener noreferrer' : undefined}
+					>
+						{action.label}
+					</a>
+				))}
+			</div>
+		)}
+		{dossierHref && (
+			<a class="site-link" href={dossierHref} target="_blank" rel="noopener noreferrer">
+				Descargar dossier
+			</a>
+		)}
+	</div>
+</article>

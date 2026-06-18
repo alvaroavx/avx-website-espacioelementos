@@ -1,0 +1,46 @@
+---
+interface PriceItem {
+	label: string;
+	price: number;
+}
+
+interface Props {
+	title: string;
+	note?: string;
+	items: PriceItem[];
+	clarification?: string;
+	secondaryItem?: PriceItem;
+}
+
+const { title, note, items, clarification, secondaryItem } = Astro.props;
+const formatter = new Intl.NumberFormat('es-CL', {
+	style: 'currency',
+	currency: 'CLP',
+	maximumFractionDigits: 0,
+});
+---
+
+<section class="price-table" aria-labelledby={`price-table-${title.replace(/\s+/g, '-').toLowerCase()}`}>
+	<header class="price-table__header">
+		<h2 id={`price-table-${title.replace(/\s+/g, '-').toLowerCase()}`}>{title}</h2>
+		{note && <p>{note}</p>}
+	</header>
+
+	<div class="price-table__items">
+		{items.map((item) => (
+			<div class="price-table__row">
+				<span>{item.label}</span>
+				<strong>{formatter.format(item.price)}</strong>
+			</div>
+		))}
+
+		{secondaryItem && (
+			<div class="price-table__row price-table__row--secondary">
+				<span>{secondaryItem.label}</span>
+				<strong>{formatter.format(secondaryItem.price)}</strong>
+			</div>
+		)}
+	</div>
+
+	{clarification && <p class="price-table__clarification">{clarification}</p>}
+</section>

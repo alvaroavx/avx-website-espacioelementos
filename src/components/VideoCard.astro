@@ -1,0 +1,43 @@
+---
+import PlaceholderMedia from './PlaceholderMedia.astro';
+
+interface Props {
+	title: string;
+	description: string;
+	category: string;
+	thumbnail?: string;
+	videoUrl: string;
+	ctaLabel: string;
+	duration?: string;
+	date?: string;
+}
+
+const { title, description, category, thumbnail, videoUrl, ctaLabel, duration, date } = Astro.props;
+---
+
+<article class="video-card">
+	<a class="video-card__media" href={videoUrl} target="_blank" rel="noopener noreferrer" aria-label={`${ctaLabel}: ${title}`}>
+		{thumbnail ? (
+			<img src={thumbnail} alt="" width="720" height="405" loading="lazy" decoding="async" />
+		) : (
+			<PlaceholderMedia label={`Thumbnail de ${title} pendiente`} type="video" />
+		)}
+		<span class="video-card__play" aria-hidden="true">Ver</span>
+	</a>
+
+	<div class="video-card__body">
+		<div class="video-card__meta">
+			<p class="eyebrow">{category}</p>
+			{(duration || date) && (
+				<p>
+					{duration && <span>{duration}</span>}
+					{duration && date && <span aria-hidden="true"> · </span>}
+					{date && <span>{date}</span>}
+				</p>
+			)}
+		</div>
+		<h2>{title}</h2>
+		<p>{description}</p>
+		<a class="site-link" href={videoUrl} target="_blank" rel="noopener noreferrer">{ctaLabel}</a>
+	</div>
+</article>

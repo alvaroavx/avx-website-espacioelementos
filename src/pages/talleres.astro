@@ -1,14 +1,21 @@
 ---
+import InstagramCalendarCTA from '../components/InstagramCalendarCTA.astro';
 import PageHero from '../components/PageHero.astro';
 import WorkshopCard from '../components/WorkshopCard.astro';
 import { heroContent } from '../data/page-heroes';
-import { workshops } from '../data/workshops';
+import { INSTAGRAM_URL, SITE_CONTACT } from '../data/site';
+import {
+	activeWorkshops,
+	WORKSHOP_CALENDAR_NOTE,
+	WORKSHOP_PRICING,
+	WORKSHOP_PRICING_NOTE,
+} from '../data/workshops';
 import MainLayout from '../layouts/MainLayout.astro';
 ---
 
 <MainLayout
-	title="Talleres | Espacio Elementos"
-	description="Talleres regulares de movimiento, entrenamiento y artes escenicas en Espacio Elementos."
+	title="Talleres regulares | Espacio Elementos"
+	description="Lyra y entrenamiento funcional en Rengo. Clases de lunes a jueves, 19:00 a 21:00 hrs. Desde $9.000 la clase. Abierto desde 14 anos, sin experiencia previa."
 	image="/images/talleres/lyra.jpg"
 >
 	<PageHero
@@ -20,19 +27,99 @@ import MainLayout from '../layouts/MainLayout.astro';
 		actions={heroContent.workshops.actions}
 	/>
 
+	<section class="page-section page-section--wash-blue page-section--symbol-air">
+		<div class="container split-panel">
+			<div>
+				<p class="eyebrow">Para quien son los talleres</p>
+				<h2>Sin experiencia previa, desde los 14 anos</h2>
+				<p>
+					Las dos disciplinas activas estan disenadas para nivel inicial y son adaptables a nivel
+					intermedio. El rango de participantes va desde los 14 hasta los 65 anos aproximadamente.
+					Si tienes dudas sobre cual es el taller para ti, escribenos y te orientamos.
+				</p>
+				<a class="site-link" href={SITE_CONTACT.whatsappHref} target="_blank" rel="noopener noreferrer">
+					Consultar por WhatsApp
+				</a>
+			</div>
+			<div class="trust-panel">
+				<h3>Como funcionan</h3>
+				<ul class="check-list">
+					<li>Clases de 2 horas, dos veces por semana</li>
+					<li>Instructor presente en cada sesion</li>
+					<li>Grupos reducidos para mayor atencion individual</li>
+					<li>Cupos limitados — confirma disponibilidad antes de venir</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
 	<section class="page-section page-section--wash-green page-section--symbol-earth">
 		<div class="container">
 			<div class="section-heading">
-				<p class="eyebrow">Oferta actual</p>
-				<h2>Disciplinas activas dentro del espacio</h2>
-				<p>
-					Horarios, cupos y valores deben confirmarse por mensaje directo para evitar informacion desactualizada.
-				</p>
+				<p class="eyebrow">Disciplinas activas</p>
+				<h2>Dos talleres con horario fijo esta temporada</h2>
+				<p>{WORKSHOP_CALENDAR_NOTE}</p>
 			</div>
 			<div class="workshop-grid">
-				{workshops.map((workshop) => (
+				{activeWorkshops.map((workshop) => (
 					<WorkshopCard workshop={workshop} />
 				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="page-section page-section--wash-gold page-section--symbol-fire">
+		<div class="container">
+			<div class="section-heading">
+				<p class="eyebrow">Valores</p>
+				<h2>Precios vigentes 2025</h2>
+				<p>{WORKSHOP_PRICING_NOTE}</p>
+			</div>
+			<div class="path-grid">
+				{WORKSHOP_PRICING.map((tier) => (
+					<article class="path-card">
+						<h3>{tier.label}</h3>
+						<p class="price-value" style="font-size: 1.5rem; font-weight: bold;">{tier.price}</p>
+						{tier.note && <p>{tier.note}</p>}
+					</article>
+				))}
+			</div>
+			<p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">{WORKSHOP_CALENDAR_NOTE}</p>
+		</div>
+	</section>
+
+	<section class="page-section page-section--wash-blue page-section--symbol-air">
+		<div class="container">
+			{/* PENDIENTE: Video de talleres en acción — clase de lyra o entrenamiento funcional.
+			    Que muestre el espacio, el instructor y participantes trabajando.
+			    Álvaro elige desde videos.ts (id: 'talleres-en-accion') o sube un reel desde Instagram.
+			    Thumbnail de clase de lyra o entrenamiento funcional — pendiente de entrega por Álvaro. */}
+			<InstagramCalendarCTA
+				title="Calendario y novedades en Instagram"
+				description={WORKSHOP_CALENDAR_NOTE}
+				instagramUrl={INSTAGRAM_URL}
+				ctaLabel="Ver Instagram"
+			/>
+		</div>
+	</section>
+
+	<section class="page-section page-section--wash-orange page-section--symbol-fire">
+		<div class="container contact-banner">
+			<div>
+				<p class="eyebrow">Cupos e informacion</p>
+				<h2>Antes de venir, confirma tu cupo</h2>
+				<p>
+					Los cupos son limitados. Escribe por WhatsApp o siguenos en Instagram para
+					ver el calendario mensual actualizado.
+				</p>
+			</div>
+			<div class="contact-banner__actions">
+				<a class="site-button" href={SITE_CONTACT.whatsappHref} target="_blank" rel="noopener noreferrer">
+					Reservar cupo por WhatsApp
+				</a>
+				<a class="site-button site-button--secondary" href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
+					Ver calendario en Instagram
+				</a>
 			</div>
 		</div>
 	</section>

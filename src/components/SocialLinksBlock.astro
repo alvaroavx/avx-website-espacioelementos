@@ -1,0 +1,36 @@
+---
+interface SocialLink {
+	label: string;
+	href: string;
+	description?: string;
+	icon?: string;
+}
+
+interface Props {
+	title: string;
+	description?: string;
+	links: SocialLink[];
+}
+
+const { title, description, links } = Astro.props;
+---
+
+<section class="social-links-block">
+	<header class="section-heading social-links-block__header">
+		<p class="eyebrow">Redes</p>
+		<h2>{title}</h2>
+		{description && <p>{description}</p>}
+	</header>
+
+	<div class="social-links-block__items">
+		{links.map((link) => (
+			<a class="social-link-card" href={link.href} target="_blank" rel="noopener noreferrer">
+				{link.icon && <img src={link.icon} alt="" width="42" height="42" loading="lazy" decoding="async" />}
+				<span>
+					<strong>{link.label}</strong>
+					{link.description && <small>{link.description}</small>}
+				</span>
+			</a>
+		))}
+	</div>
+</section>

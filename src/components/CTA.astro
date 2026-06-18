@@ -1,0 +1,40 @@
+---
+interface Action {
+	label: string;
+	href: string;
+	variant?: 'primary' | 'secondary';
+	target?: string;
+}
+
+interface Props {
+	eyebrow?: string;
+	title: string;
+	description?: string;
+	actions?: Action[];
+	tone?: 'blue' | 'green' | 'orange';
+}
+
+const { eyebrow, title, description, actions = [], tone = 'blue' } = Astro.props;
+---
+
+<section class:list={['cta-panel', `cta-panel--${tone}`]}>
+	<div>
+		{eyebrow && <p class="eyebrow">{eyebrow}</p>}
+		<h2>{title}</h2>
+		{description && <p>{description}</p>}
+	</div>
+	{actions.length > 0 && (
+		<div class="cta-panel__actions">
+			{actions.map((action) => (
+				<a
+					class:list={['site-button', { 'site-button--secondary': action.variant === 'secondary' }]}
+					href={action.href}
+					target={action.target}
+					rel={action.target === '_blank' ? 'noopener noreferrer' : undefined}
+				>
+					{action.label}
+				</a>
+			))}
+		</div>
+	)}
+</section>

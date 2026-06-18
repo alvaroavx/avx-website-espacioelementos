@@ -1,0 +1,38 @@
+---
+interface Action {
+	label: string;
+	href: string;
+	variant?: 'primary' | 'secondary';
+	target?: string;
+}
+
+interface Props {
+	eyebrow?: string;
+	title: string;
+	description?: string;
+	actions?: Action[];
+	align?: 'start' | 'center';
+}
+
+const { eyebrow, title, description, actions = [], align = 'start' } = Astro.props;
+---
+
+<header class:list={['section-heading', 'section-header', `section-header--${align}`]}>
+	{eyebrow && <p class="eyebrow">{eyebrow}</p>}
+	<h2>{title}</h2>
+	{description && <p>{description}</p>}
+	{actions.length > 0 && (
+		<div class="section-actions">
+			{actions.map((action) => (
+				<a
+					class:list={['site-button', { 'site-button--secondary': action.variant === 'secondary' }]}
+					href={action.href}
+					target={action.target}
+					rel={action.target === '_blank' ? 'noopener noreferrer' : undefined}
+				>
+					{action.label}
+				</a>
+			))}
+		</div>
+	)}
+</header>

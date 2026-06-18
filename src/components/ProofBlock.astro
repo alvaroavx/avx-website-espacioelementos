@@ -1,0 +1,59 @@
+---
+type ProofKind = 'territorio' | 'colaboracion' | 'proyecto' | 'foto' | 'testimonio';
+
+interface ProofItem {
+	kind?: ProofKind;
+	title: string;
+	description?: string;
+	image?: string;
+	imageAlt?: string;
+	quote?: string;
+	source?: string;
+	href?: string;
+	linkLabel?: string;
+}
+
+interface Props {
+	eyebrow?: string;
+	title?: string;
+	description?: string;
+	items: ProofItem[];
+}
+
+const { eyebrow, title, description, items } = Astro.props;
+---
+
+<section class="proof-block">
+	{(eyebrow || title || description) && (
+		<header class="section-heading proof-block__header">
+			{eyebrow && <p class="eyebrow">{eyebrow}</p>}
+			{title && <h2>{title}</h2>}
+			{description && <p>{description}</p>}
+		</header>
+	)}
+
+	<div class="proof-block__grid">
+		{items.map((item) => (
+			<article class:list={['proof-item', item.kind && `proof-item--${item.kind}`]}>
+				{item.image && <img src={item.image} alt={item.imageAlt ?? ''} width="720" height="540" loading="lazy" decoding="async" />}
+				<div class="proof-item__body">
+					{item.kind && <p class="eyebrow">{item.kind}</p>}
+					<h3>{item.title}</h3>
+					{item.quote ? (
+						<blockquote>
+							<p>{item.quote}</p>
+						</blockquote>
+					) : item.description && (
+						<p>{item.description}</p>
+					)}
+					{item.source && <p class="proof-item__source">{item.source}</p>}
+					{item.href && (
+						<a class="site-link" href={item.href}>
+							{item.linkLabel ?? 'Ver mas'}
+						</a>
+					)}
+				</div>
+			</article>
+		))}
+	</div>
+</section>

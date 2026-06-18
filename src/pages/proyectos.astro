@@ -1,13 +1,14 @@
 ---
 import PageHero from '../components/PageHero.astro';
 import { heroContent } from '../data/page-heroes';
-import { COMMUNITY_PARTNERS } from '../data/site';
+import { projects } from '../data/projects';
+import { COMMUNITY_PARTNERS, YOUTUBE_CHANNEL_URL } from '../data/site';
 import MainLayout from '../layouts/MainLayout.astro';
 ---
 
 <MainLayout
 	title="Proyectos comunitarios | Espacio Elementos"
-	description="Trabajo territorial, colaboraciones y proyectos comunitarios de Espacio Elementos."
+	description="Colaboraciones territoriales, activaciones comunitarias y proyectos de arte y bienestar de Espacio Elementos en Rengo y la Region de O'Higgins."
 	image="/images/fondos/comunidad.png"
 >
 	<PageHero
@@ -23,10 +24,12 @@ import MainLayout from '../layouts/MainLayout.astro';
 		<div class="container split-panel">
 			<div>
 				<p class="eyebrow">Enfoque</p>
-				<h2>Una forma de activar territorio desde la experiencia</h2>
+				<h2>Trabajo territorial desde la experiencia concreta</h2>
 				<p>
-					Aqui caben procesos comunitarios, talleres abiertos, acciones con agrupaciones y experiencias
-					que acercan movimiento, escena y bienestar a contextos cotidianos.
+					Los proyectos comunitarios son la forma en que Espacio Elementos se vincula con
+					organizaciones, agrupaciones y espacios colectivos fuera del contexto comercial.
+					Caben aqui talleres abiertos, activaciones con municipios, colaboraciones artisticas
+					y acciones que conectan cuerpo, movimiento y comunidad.
 				</p>
 				<a class="site-link" href="/contacto">Conversar una colaboracion</a>
 			</div>
@@ -34,9 +37,78 @@ import MainLayout from '../layouts/MainLayout.astro';
 				<h3>Lineas de trabajo</h3>
 				<ul class="check-list">
 					<li>Activaciones con organizaciones y comunidad</li>
-					<li>Talleres en espacios colectivos</li>
-					<li>Experiencias con identidad territorial</li>
-					<li>Vinculo entre arte, bienestar y participacion</li>
+					<li>Talleres en espacios colectivos y populares</li>
+					<li>Colaboraciones artisticas con agrupaciones locales</li>
+					<li>Eventos y encuentros con identidad territorial</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section class="page-section page-section--wash-gold page-section--symbol-fire">
+		<div class="container">
+			<div class="section-heading">
+				<p class="eyebrow">Proyectos y colaboraciones</p>
+				<h2>Acciones concretas dentro del ecosistema</h2>
+				<p>
+					Estas son algunas de las colaboraciones y proyectos que Espacio Elementos ha desarrollado
+					junto a otras organizaciones y agrupaciones del territorio.
+				</p>
+			</div>
+			<div class="content-grid">
+				{projects.map((project) => (
+					<article class="path-card">
+						{project.image && (
+							<img src={project.image} alt={project.imageAlt ?? project.title} />
+						)}
+						<div class="pill-list" style="margin-bottom: 0.5rem;">
+							{project.tags.map((tag) => (
+								<span>{tag}</span>
+							))}
+						</div>
+						<h3>{project.title}</h3>
+						{project.year && <p class="eyebrow">{project.year}</p>}
+						<p>{project.description}</p>
+						{project.partnerHref && (
+							<a
+								class="site-link"
+								href={project.partnerHref}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								Ver {project.partner}
+							</a>
+						)}
+					</article>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="page-section page-section--wash-gold page-section--symbol-air">
+		<div class="container split-panel">
+			<div>
+				<p class="eyebrow">Archivo vivo</p>
+				<h2>Procesos, funciones y encuentros que nacen desde Rengo</h2>
+				<p>
+					El registro audiovisual de los proyectos de Espacio Elementos esta en YouTube:
+					funciones de obras, galas internas, activaciones comunitarias y procesos creativos.
+					Un archivo vivo de lo que se construye desde el territorio.
+				</p>
+				{/* PENDIENTE: Video de comunidad y territorio — activacion con JJVV, Quetralmahue u OtreSer.
+				    No usar material de Latin Rengo. Imagen de comunidad en accion pendiente de entrega por Álvaro.
+				    Álvaro elige desde videos.ts (id: 'comunidad-territorio'). */}
+				<a class="site-link" href={YOUTUBE_CHANNEL_URL} target="_blank" rel="noopener noreferrer">
+					Ver canal de YouTube
+				</a>
+			</div>
+			<div class="trust-panel">
+				<h3>Que hay en el archivo</h3>
+				<ul class="check-list">
+					<li>Funciones de La Tarea Mas Dificil</li>
+					<li>Proceso de creacion de obras</li>
+					<li>Galas Elementos</li>
+					<li>Varietes y shows en distintos contextos</li>
 				</ul>
 			</div>
 		</div>
@@ -45,8 +117,8 @@ import MainLayout from '../layouts/MainLayout.astro';
 	<section class="page-section page-section--wash-blue page-section--symbol-water">
 		<div class="container">
 			<div class="section-heading">
-				<p class="eyebrow">Colaboraciones visibles hoy</p>
-				<h2>Organizaciones y proyectos presentes en el ecosistema actual</h2>
+				<p class="eyebrow">Organizaciones aliadas</p>
+				<h2>Parte del ecosistema comunitario de Espacio Elementos</h2>
 			</div>
 			<div class="logo-cloud logo-cloud--large">
 				{COMMUNITY_PARTNERS.map((partner) => (

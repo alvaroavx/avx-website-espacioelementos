@@ -7,9 +7,11 @@ interface Props {
 	title: string;
 	description: string;
 	image?: string;
+	canonicalPath?: string;
+	noindex?: boolean;
 }
 
-const { title, description, image } = Astro.props;
+const { title, description, image, canonicalPath, noindex = false } = Astro.props;
 const pathname = Astro.url.pathname;
 const firstSegment = pathname.split('/').filter(Boolean)[0] ?? 'home';
 const pageSlug = firstSegment === '' ? 'home' : firstSegment;
@@ -18,11 +20,12 @@ const pageSlug = firstSegment === '' ? 'home' : firstSegment;
 <!doctype html>
 <html lang="es">
 	<head>
-		<BaseHead title={title} description={description} image={image} />
+		<BaseHead title={title} description={description} image={image} canonicalPath={canonicalPath} noindex={noindex} />
 	</head>
 	<body class:list={['page', `page--${pageSlug}`]}>
+		<a class="skip-link" href="#contenido">Saltar al contenido</a>
 		<Header />
-		<main class:list={['site-main', `site-main--${pageSlug}`]}>
+		<main id="contenido" class:list={['site-main', `site-main--${pageSlug}`]}>
 			<slot />
 		</main>
 		<Footer />

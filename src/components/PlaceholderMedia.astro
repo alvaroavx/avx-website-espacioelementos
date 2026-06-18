@@ -1,0 +1,14 @@
+---
+interface Props {
+	label: string;
+	type: 'image' | 'video';
+	aspectRatio?: '16:9' | '4:3' | '1:1';
+}
+
+const { label, type, aspectRatio = '16:9' } = Astro.props;
+---
+
+<div class:list={['placeholder-media', `placeholder-media--${type}`, `placeholder-media--${aspectRatio.replace(':', '-')}`]} role="img" aria-label={label}>
+	<span class="placeholder-media__type">{type === 'video' ? 'Video' : 'Imagen'}</span>
+	<strong>{label}</strong>
+</div>

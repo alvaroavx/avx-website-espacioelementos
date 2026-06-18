@@ -46,15 +46,15 @@ export const heroContent = {
 		],
 	},
 	workshops: {
-		eyebrow: 'Talleres',
-		title: 'Practicas regulares para entrenar, explorar y sostener proceso',
+		eyebrow: 'Talleres regulares',
+		title: 'Lyra y entrenamiento funcional con horario fijo en Rengo',
 		description:
-			'Los talleres siguen siendo una linea activa del proyecto. Aqui reunimos las practicas que hoy ayudan a organizar la experiencia cotidiana de Espacio Elementos.',
-		image: '/images/talleres/yoga.jpg',
-		imageAlt: 'Talleres regulares de Espacio Elementos',
+			'Dos disciplinas activas esta temporada, abiertas desde los 14 anos sin experiencia previa requerida. Clases de 2 horas, dos veces por semana, con instructor presente.',
+		image: '/images/talleres/lyra.jpg',
+		imageAlt: 'Clase de lyra en Espacio Elementos, Rengo',
 		actions: [
-			{ label: 'Consultar cupos por WhatsApp', href: whatsappHref, target: '_blank' },
-			{ label: 'Volver a servicios', href: '/servicios', variant: 'secondary' },
+			{ label: 'Reservar cupo por WhatsApp', href: whatsappHref, target: '_blank' },
+			{ label: 'Ir a contacto', href: '/contacto', variant: 'secondary' },
 		],
 	},
 	projects: {
@@ -66,6 +66,18 @@ export const heroContent = {
 		imageAlt: 'Proyectos comunitarios de Espacio Elementos',
 		actions: [
 			{ label: 'Escribir por WhatsApp', href: whatsappHref, target: '_blank' },
+			{ label: 'Ir a servicios', href: '/servicios', variant: 'secondary' },
+		],
+	},
+	videos: {
+		eyebrow: 'Videos y registros',
+		title: 'Elementos en movimiento',
+		description:
+			'Obras, shows, talleres y experiencias comunitarias que muestran como vivimos el arte, el cuerpo y el territorio.',
+		image: '/images/fondos/servicios.png',
+		imageAlt: 'Espacio Elementos en escena — obras, shows y talleres',
+		actions: [
+			{ label: 'Ver canal de YouTube', href: 'https://www.youtube.com/@EspacioElementos', target: '_blank' },
 			{ label: 'Ir a servicios', href: '/servicios', variant: 'secondary' },
 		],
 	},

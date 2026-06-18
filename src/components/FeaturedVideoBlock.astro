@@ -1,0 +1,51 @@
+---
+import PlaceholderMedia from './PlaceholderMedia.astro';
+
+interface SecondaryCta {
+	label: string;
+	href: string;
+	target?: string;
+}
+
+interface Props {
+	eyebrow?: string;
+	title: string;
+	description: string;
+	thumbnail?: string;
+	videoUrl: string;
+	ctaLabel: string;
+	secondaryCta?: SecondaryCta;
+}
+
+const { eyebrow, title, description, thumbnail, videoUrl, ctaLabel, secondaryCta } = Astro.props;
+---
+
+<section class="featured-video-block">
+	<a class="featured-video-block__media" href={videoUrl} target="_blank" rel="noopener noreferrer" aria-label={`${ctaLabel}: ${title}`}>
+		{thumbnail ? (
+			<img src={thumbnail} alt="" width="1200" height="675" loading="lazy" decoding="async" />
+		) : (
+			<PlaceholderMedia label="Video destacado pendiente" type="video" />
+		)}
+		<span class="featured-video-block__play" aria-hidden="true">Ver video</span>
+	</a>
+
+	<div class="featured-video-block__body">
+		{eyebrow && <p class="eyebrow">{eyebrow}</p>}
+		<h2>{title}</h2>
+		<p>{description}</p>
+		<div class="featured-video-block__actions">
+			<a class="site-button" href={videoUrl} target="_blank" rel="noopener noreferrer">{ctaLabel}</a>
+			{secondaryCta && (
+				<a
+					class="site-button site-button--secondary"
+					href={secondaryCta.href}
+					target={secondaryCta.target}
+					rel={secondaryCta.target === '_blank' ? 'noopener noreferrer' : undefined}
+				>
+					{secondaryCta.label}
+				</a>
+			)}
+		</div>
+	</div>
+</section>

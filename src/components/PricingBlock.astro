@@ -1,0 +1,26 @@
+---
+import PriceTable from './PriceTable.astro';
+
+interface PriceItem {
+	label: string;
+	price: number;
+}
+
+interface Props {
+	title: string;
+	note?: string;
+	items: PriceItem[];
+	clarification?: string;
+	secondaryItem?: PriceItem;
+}
+
+const { title, note, items, clarification, secondaryItem } = Astro.props;
+---
+
+<PriceTable
+	title={title}
+	note={note}
+	items={items}
+	clarification={clarification}
+	secondaryItem={secondaryItem}
+/>

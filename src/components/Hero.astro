@@ -1,0 +1,78 @@
+---
+interface Action {
+	label: string;
+	href: string;
+	variant?: 'primary' | 'secondary';
+	target?: string;
+}
+
+interface HeroSlide {
+	eyebrow?: string;
+	title: string;
+	description: string;
+	image?: string;
+	imageAlt?: string;
+	actions?: Action[];
+}
+
+interface Props extends HeroSlide {
+	actions?: Action[];
+	compact?: boolean;
+	slides?: HeroSlide[];
+}
+
+const {
+	eyebrow,
+	title,
+	description,
+	image,
+	imageAlt = '',
+	actions = [],
+	compact = false,
+	slides = [],
+} = Astro.props;
+
+const primary = slides[0] ?? { eyebrow, title, description, image, imageAlt, actions };
+const supportingSlides = slides.slice(1, 4);
+---
+
+<section class:list={['hero', 'page-hero', { 'hero--compact page-hero--compact': compact, 'hero--with-image page-hero--with-image': primary.image }]}>
+	{primary.image && (
+		<div class="hero__backdrop page-hero__backdrop" aria-hidden="true">
+			<img src={primary.image} alt={primary.imageAlt ?? imageAlt} width="1600" height="900" fetchpriority="high" decoding="async" />
+		</div>
+	)}
+	<div class="hero__shade page-hero__shade" aria-hidden="true"></div>
+	<div class="container hero__inner page-hero__inner">
+		<div class="hero__copy page-hero__copy">
+			{primary.eyebrow && <p class="eyebrow">{primary.eyebrow}</p>}
+			<h1>{primary.title}</h1>
+			<p class="hero__description page-hero__description">{primary.description}</p>
+			{(primary.actions ?? actions).length > 0 && (
+				<div class="hero__actions page-hero__actions">
+					{(primary.actions ?? actions).map((action) => (
+						<a
+							class:list={['site-button', { 'site-button--secondary': action.variant === 'secondary' }]}
+							href={action.href}
+							target={action.target}
+							rel={action.target === '_blank' ? 'noopener noreferrer' : undefined}
+						>
+							{action.label}
+						</a>
+					))}
+				</div>
+			)}
+		</div>
+
+		{supportingSlides.length > 0 && (
+			<div class="hero__rail" aria-label="Rutas destacadas">
+				{supportingSlides.map((slide) => (
+					<article>
+						{slide.eyebrow && <p>{slide.eyebrow}</p>}
+						<h2>{slide.title}</h2>
+					</article>
+				))}
+			</div>
+		)}
+	</div>
+</section>

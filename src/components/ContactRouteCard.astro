@@ -1,0 +1,32 @@
+---
+type ContactRouteKind =
+	| 'lira-cupos'
+	| 'funcional-cupos'
+	| 'la-tarea-mas-dificil'
+	| 'compania-elementos-show'
+	| 'entrenamiento-personalizado'
+	| 'coreografia-matrimonio'
+	| 'cumpleanos-fiesta';
+
+interface Props {
+	route: ContactRouteKind;
+	title: string;
+	description?: string;
+	ctaLabel: string;
+	ctaHref: string;
+	meta?: string;
+}
+
+const { route, title, description, ctaLabel, ctaHref, meta } = Astro.props;
+---
+
+<article class:list={['contact-route-card', `contact-route-card--${route}`]}>
+	<div>
+		{meta && <p class="eyebrow">{meta}</p>}
+		<h2>{title}</h2>
+		{description && <p>{description}</p>}
+	</div>
+	<a class="site-button site-button--small" href={ctaHref}>
+		{ctaLabel}
+	</a>
+</article>

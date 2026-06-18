@@ -2,7 +2,7 @@
 import PageHero from '../../components/PageHero.astro';
 import WorkshopCard from '../../components/WorkshopCard.astro';
 import { SITE_CONTACT } from '../../data/site';
-import { workshops } from '../../data/workshops';
+import { activeWorkshops } from '../../data/workshops';
 import MainLayout from '../../layouts/MainLayout.astro';
 ---
 
@@ -27,6 +27,7 @@ import MainLayout from '../../layouts/MainLayout.astro';
 		<div class="container split-panel">
 			<div>
 				<p class="eyebrow">Contextos posibles</p>
+				<h2>Donde puede funcionar esta propuesta</h2>
 				<ul class="check-list">
 					<li>Jornadas de bienestar</li>
 					<li>Experiencias para equipos</li>
@@ -51,7 +52,7 @@ import MainLayout from '../../layouts/MainLayout.astro';
 				<h2>Lineas que hoy viven dentro del ecosistema</h2>
 			</div>
 			<div class="workshop-grid">
-				{workshops.slice(0, 6).map((workshop) => (
+				{activeWorkshops.map((workshop) => (
 					<WorkshopCard workshop={workshop} />
 				))}
 			</div>

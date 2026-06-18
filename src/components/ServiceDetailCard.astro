@@ -1,0 +1,131 @@
+---
+interface DossierLink {
+	label?: string;
+	href: string;
+}
+
+interface Props {
+	title: string;
+	category?: string;
+	audiences?: string[];
+	description: string;
+	duration?: string;
+	technicalRequirements?: string[];
+	priceRange?: string;
+	publicAudience?: string;
+	includes?: string[];
+	formats?: string[];
+	ctaLabel: string;
+	ctaHref: string;
+	secondaryCtaLabel?: string;
+	secondaryCtaHref?: string;
+	dossier?: DossierLink;
+	image?: string;
+	imageAlt?: string;
+	compact?: boolean;
+}
+
+const {
+	title,
+	category,
+	audiences = [],
+	description,
+	duration,
+	technicalRequirements = [],
+	priceRange,
+	publicAudience,
+	includes = [],
+	formats = [],
+	ctaLabel,
+	ctaHref,
+	secondaryCtaLabel,
+	secondaryCtaHref,
+	dossier,
+	image,
+	imageAlt = '',
+	compact = false,
+} = Astro.props;
+
+const serviceMeta = [
+	duration && { label: 'Duracion', value: duration },
+	priceRange && { label: 'Valores', value: priceRange },
+	publicAudience && { label: 'Publico', value: publicAudience },
+].filter(Boolean) as Array<{ label: string; value: string }>;
+---
+
+<article class:list={['service-detail-card', 'content-card', { 'service-detail-card--compact': compact }]}>
+	{image && <img class="content-card__image" src={image} alt={imageAlt} width="720" height="540" loading="lazy" decoding="async" />}
+	<div class="content-card__body service-detail-card__body">
+		{category && <p class="eyebrow">{category}</p>}
+		<h2>{title}</h2>
+		<p>{description}</p>
+
+		{serviceMeta.length > 0 && (
+			<dl class="detail-list service-detail-card__meta">
+				{serviceMeta.map((item) => (
+					<div>
+						<dt>{item.label}</dt>
+						<dd>{item.value}</dd>
+					</div>
+				))}
+			</dl>
+		)}
+
+		{audiences.length > 0 && (
+			<ul class="pill-list pill-list--tight" aria-label="Publicos">
+				{audiences.map((audience) => (
+					<li>{audience}</li>
+				))}
+			</ul>
+		)}
+
+		<div class="service-detail-card__columns">
+			{includes.length > 0 && (
+				<div>
+					<h3>Incluye</h3>
+					<ul class="meta-list">
+						{includes.map((item) => (
+							<li>{item}</li>
+						))}
+					</ul>
+				</div>
+			)}
+
+			{formats.length > 0 && (
+				<div>
+					<h3>Formatos</h3>
+					<ul class="meta-list">
+						{formats.map((item) => (
+							<li>{item}</li>
+						))}
+					</ul>
+				</div>
+			)}
+		</div>
+
+		{technicalRequirements.length > 0 && (
+			<div class="service-detail-card__requirements">
+				<h3>Requerimientos tecnicos</h3>
+				<ul class="meta-list">
+					{technicalRequirements.map((item) => (
+						<li>{item}</li>
+					))}
+				</ul>
+			</div>
+		)}
+
+		<div class="content-card__actions">
+			<a class="site-button site-button--small" href={ctaHref}>{ctaLabel}</a>
+			{secondaryCtaHref && secondaryCtaLabel && (
+				<a class="site-button site-button--secondary site-button--small" href={secondaryCtaHref} target="_blank" rel="noopener noreferrer">
+					{secondaryCtaLabel}
+				</a>
+			)}
+			{dossier?.href && (
+				<a class="site-button site-button--secondary site-button--small" href={dossier.href} target="_blank" rel="noopener noreferrer">
+					{dossier.label ?? 'Descargar dossier'}
+				</a>
+			)}
+		</div>
+	</div>
+</article>

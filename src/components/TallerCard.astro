@@ -1,0 +1,25 @@
+---
+import WorkshopCard from './WorkshopCard.astro';
+
+interface Props {
+	name: string;
+	summary: string;
+	image: string;
+	imageAlt?: string;
+	focus?: string;
+	href?: string;
+}
+
+const { name, summary, image, imageAlt = '', focus, href } = Astro.props;
+---
+
+<WorkshopCard
+	title={name}
+	description={summary}
+	image={image}
+	imageAlt={imageAlt}
+	discipline={focus}
+	ctaHref={href}
+	ctaLabel={href ? 'Ver detalle' : undefined}
+	compact
+/>

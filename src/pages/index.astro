@@ -15,7 +15,8 @@ import {
 	TRUST_POINTS,
 } from '../data/site';
 import { services } from '../data/services';
-import { workshops } from '../data/workshops';
+import { YOUTUBE_CHANNEL_URL } from '../data/site';
+import { activeWorkshops } from '../data/workshops';
 import MainLayout from '../layouts/MainLayout.astro';
 
 const homeHeroSlides = [
@@ -144,7 +145,7 @@ const homeHeroSlides = [
 				</p>
 			</div>
 			<div class="workshop-grid">
-				{workshops.slice(0, 4).map((workshop) => (
+				{activeWorkshops.map((workshop) => (
 					<WorkshopCard workshop={workshop} />
 				))}
 			</div>
@@ -171,6 +172,29 @@ const homeHeroSlides = [
 						<img src={partner.logo} alt={partner.name} />
 					</a>
 				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="page-section page-section--wash-gold page-section--symbol-fire">
+		<div class="container">
+			<div class="section-heading">
+				<p class="eyebrow">Videos y registros</p>
+				<h2>Mira como se vive Elementos</h2>
+				<p>
+					Obras, shows, galas y clases. El archivo vivo de Espacio Elementos esta en YouTube.
+				</p>
+			</div>
+			{/* PENDIENTE: Video destacado — Álvaro elige desde videos.ts (id: 'featured-home').
+			    Opciones: Gala Elementos 2025, varieté de circo o registro comunitario de alto impacto visual.
+			    Thumbnail de video destacado pendiente de seleccion y entrega. */}
+			<div class="video-placeholder-home" style="border: 2px dashed currentColor; padding: 2rem; text-align: center; opacity: 0.6; border-radius: 8px; margin-bottom: 1.5rem;">
+				<p style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;">Video destacado pendiente</p>
+				<p>Gala Elementos 2025, show escenico o registro comunitario — Alvaro elige el video final desde la playlist del canal.</p>
+			</div>
+			<div class="section-actions">
+				<a class="site-button" href="/videos">Ver videos y registros</a>
+				<a class="site-button site-button--secondary" href={YOUTUBE_CHANNEL_URL} target="_blank" rel="noopener noreferrer">Ver canal de YouTube</a>
 			</div>
 		</div>
 	</section>

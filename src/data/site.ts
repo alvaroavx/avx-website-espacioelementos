@@ -1,7 +1,22 @@
-const WHATSAPP_NUMBER = '56956490299';
+export const OFFICIAL_WHATSAPP_NUMBER = '56956490299';
+export const OFFICIAL_WHATSAPP_LABEL = '+56 9 5649 0299';
 
 export const buildWhatsAppHref = (message: string) =>
-	`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+	`https://wa.me/${OFFICIAL_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+export const WHATSAPP_MESSAGE_PRESETS = {
+	liraCupos: 'Hola Espacio Elementos, quiero consultar cupos para Lira.',
+	funcionalCupos: 'Hola Espacio Elementos, quiero consultar cupos para Entrenamiento funcional.',
+	cotizarShow: 'Hola Espacio Elementos, quiero cotizar un show o presentacion.',
+	cotizarLaTareaMasDificil: 'Hola Espacio Elementos, quiero cotizar La Tarea Mas Dificil.',
+	entrenamientoPersonalizado:
+		'Hola Espacio Elementos, quiero consultar por entrenamiento personalizado.',
+	coreografiaMatrimonio:
+		'Hola Espacio Elementos, quiero consultar por una coreografia para matrimonio.',
+} as const;
+
+export const buildWhatsAppPresetHref = (preset: keyof typeof WHATSAPP_MESSAGE_PRESETS) =>
+	buildWhatsAppHref(WHATSAPP_MESSAGE_PRESETS[preset]);
 
 export const buildMailHref = (subject: string, body?: string) => {
 	const params = new URLSearchParams({ subject });
@@ -18,14 +33,18 @@ export const NAV_ITEMS = [
 	{ label: 'Servicios', href: '/servicios' },
 	{ label: 'Talleres', href: '/talleres' },
 	{ label: 'Proyectos', href: '/proyectos' },
+	{ label: 'Videos', href: '/videos' },
 	{ label: 'Nosotros', href: '/nosotros' },
 	{ label: 'Contacto', href: '/contacto' },
 ];
 
+export const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@EspacioElementos';
+export const INSTAGRAM_URL = 'https://www.instagram.com/espacio.elementos';
+
 export const SITE_CONTACT = {
 	email: 'espacio.elementos@gmail.com',
 	emailHref: buildMailHref('Contacto desde espacioelementos.cl'),
-	whatsappLabel: '+56 9 5649 0299',
+	whatsappLabel: OFFICIAL_WHATSAPP_LABEL,
 	whatsappHref: buildWhatsAppHref(
 		'Hola Espacio Elementos, quiero cotizar una experiencia o servicio.'
 	),

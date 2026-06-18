@@ -1,4 +1,5 @@
 ---
+import ServiceDetailCard from './ServiceDetailCard.astro';
 import type { ServiceItem } from '../data/services';
 
 interface Props {
@@ -8,37 +9,19 @@ interface Props {
 const { service } = Astro.props;
 ---
 
-<article class="content-card">
-	<img class="content-card__image" src={service.image} alt={service.imageAlt} />
-	<div class="content-card__body">
-		<p class="eyebrow">Servicio</p>
-		<h2>{service.title}</h2>
-		<p>{service.summary}</p>
-		<ul class="pill-list pill-list--tight">
-			{service.audiences.slice(0, 3).map((audience) => (
-				<li>{audience}</li>
-			))}
-		</ul>
-		<ul class="meta-list">
-			{service.highlights.slice(0, 2).map((highlight) => (
-				<li>{highlight}</li>
-			))}
-		</ul>
-		<div class="content-card__actions">
-			<a class="site-button site-button--small" href={service.href}>Ver detalle</a>
-			<a
-				class="site-button site-button--secondary site-button--small"
-				href={service.contactHref}
-				target="_blank"
-				rel="noopener noreferrer"
-			>
-				{service.contactLabel}
-			</a>
-		</div>
-		{service.dossierHref && (
-			<a class="site-link" href={service.dossierHref} target="_blank" rel="noopener noreferrer">
-				Descargar dossier
-			</a>
-		)}
-	</div>
-</article>
+<ServiceDetailCard
+	title={service.title}
+	category="Servicio"
+	description={service.summary}
+	audiences={service.audiences.slice(0, 3)}
+	includes={service.highlights.slice(0, 2)}
+	formats={service.formats.slice(0, 3)}
+	ctaLabel="Ver detalle"
+	ctaHref={service.href}
+	secondaryCtaLabel={service.contactLabel}
+	secondaryCtaHref={service.contactHref}
+	dossier={service.dossierHref ? { href: service.dossierHref } : undefined}
+	image={service.image}
+	imageAlt={service.imageAlt}
+	compact
+/>
