@@ -2,10 +2,10 @@ import type { ImageMetadata } from 'astro';
 
 import essenciaLatinaImage from '../assets/artists/essencia-latina.jpg';
 import falakHanaImage from '../assets/artists/falak-hana.jpg';
+import gabrielaPinaImage from '../assets/artists/gabriela-pina.jpg';
 import ladiesMayImage from '../assets/artists/ladies-may-gema-dance-academy.jpg';
 import latinRengoImage from '../assets/artists/latin-rengo-mi-timbaton.jpg';
 import magiaLatinaImage from '../assets/artists/magia-latina.jpg';
-import rominaMarceloImage from '../assets/artists/romina-marcelo.jpg';
 import lauraAlvaroImage from '../assets/artists/laura-alvaro.jpg';
 
 export type EditorialStatus = 'confirmed' | 'provisional' | 'withheld';
@@ -51,9 +51,10 @@ export interface ScheduleItem extends Statused {
 export interface Artist {
 	id: string;
 	name: string;
-	presentation?: string;
-	image: ImageMetadata;
-	alt: string;
+	discipline?: string;
+	scheduleLabel?: string;
+	image?: ImageMetadata;
+	alt?: string;
 	credit?: string;
 	status: PublishableStatus;
 }
@@ -62,6 +63,18 @@ export interface ArtistPresentation {
 	artistId: string;
 	order: number;
 	status: PublishableStatus;
+}
+
+export interface PresentationScheduleItem extends Statused {
+	id: string;
+	kind: 'host' | 'artist' | 'closing';
+	timeLabel: string;
+	startDateTime: string;
+	endDateTime: string;
+	title: string;
+	artistId?: string;
+	discipline?: string;
+	role?: string;
 }
 
 export interface TicketTier extends Statused {
@@ -180,6 +193,8 @@ export const artistCatalog: Artist[] = [
 	{
 		id: 'falak-hana',
 		name: 'Falak Hana',
+		discipline: 'Danza árabe',
+		scheduleLabel: '23:04-23:12',
 		image: falakHanaImage,
 		alt: 'Afiche de Falak Hana para LatinRengo Social.',
 		status: 'confirmed',
@@ -187,41 +202,60 @@ export const artistCatalog: Artist[] = [
 	{
 		id: 'laura-alvaro',
 		name: 'Laura y Álvaro',
+		discipline: 'Bachata Cabaret Pareja',
+		scheduleLabel: '23:14-23:16',
 		image: lauraAlvaroImage,
 		alt: 'Afiche de Laura y Álvaro para LatinRengo Social.',
 		status: 'confirmed',
 	},
 	{
-		id: 'magia-latina',
-		name: 'Magia Latina',
-		image: magiaLatinaImage,
-		alt: 'Afiche de Magia Latina para LatinRengo Social.',
+		id: 'ladys-may',
+		name: 'Ladys May',
+		discipline: 'Bachata ladies',
+		scheduleLabel: '23:18-23:20',
+		image: ladiesMayImage,
+		alt: 'Afiche de Ladys May para LatinRengo Social.',
+		status: 'provisional',
+	},
+	{
+		id: 'gabriela-pina',
+		name: 'Gabriela Piña',
+		discipline: 'Bachata solista',
+		scheduleLabel: '23:22-23:24',
+		image: gabrielaPinaImage,
+		alt: 'Afiche de Gabriela Piña para LatinRengo Social.',
 		status: 'confirmed',
 	},
 	{
 		id: 'essencia-latina',
 		name: 'Essencia Latina',
+		discipline: 'Rueda de Casino',
+		scheduleLabel: '23:26-23:29',
 		image: essenciaLatinaImage,
 		alt: 'Afiche de Essencia Latina para LatinRengo Social.',
 		status: 'confirmed',
 	},
 	{
-		id: 'romina-marcelo',
-		name: 'Romina y Marcelo',
-		image: rominaMarceloImage,
-		alt: 'Afiche de Romina y Marcelo para LatinRengo Social.',
+		id: 'magia-latina',
+		name: 'Magia Latina',
+		discipline: 'Bachata ladies',
+		scheduleLabel: '23:31-23:33',
+		image: magiaLatinaImage,
+		alt: 'Afiche de Magia Latina para LatinRengo Social.',
 		status: 'confirmed',
 	},
 	{
-		id: 'ladies-may',
-		name: 'Ladies May',
-		image: ladiesMayImage,
-		alt: 'Afiche de Ladies May para LatinRengo Social.',
+		id: 'acabailas',
+		name: 'Acabailas',
+		discipline: 'Bachata cabaret pareja',
+		scheduleLabel: '23:35-23:38',
 		status: 'confirmed',
 	},
 	{
 		id: 'latin-rengo-mi-timbaton',
 		name: 'LatinRengo - Mi Timbatón',
+		discipline: 'Rueda de Casino',
+		scheduleLabel: '23:40-23:42',
 		image: latinRengoImage,
 		alt: 'Afiche de LatinRengo - Mi Timbatón para LatinRengo Social.',
 		status: 'confirmed',
@@ -231,11 +265,123 @@ export const artistCatalog: Artist[] = [
 export const presentationOrder: ArtistPresentation[] = [
 	{ artistId: 'falak-hana', order: 1, status: 'confirmed' },
 	{ artistId: 'laura-alvaro', order: 2, status: 'confirmed' },
-	{ artistId: 'magia-latina', order: 3, status: 'confirmed' },
-	{ artistId: 'essencia-latina', order: 4, status: 'confirmed' },
-	{ artistId: 'romina-marcelo', order: 5, status: 'confirmed' },
-	{ artistId: 'ladies-may', order: 6, status: 'confirmed' },
-	{ artistId: 'latin-rengo-mi-timbaton', order: 7, status: 'confirmed' },
+	{ artistId: 'ladys-may', order: 3, status: 'provisional' },
+	{ artistId: 'gabriela-pina', order: 4, status: 'confirmed' },
+	{ artistId: 'essencia-latina', order: 5, status: 'confirmed' },
+	{ artistId: 'magia-latina', order: 6, status: 'confirmed' },
+	{ artistId: 'acabailas', order: 7, status: 'confirmed' },
+	{ artistId: 'latin-rengo-mi-timbaton', order: 8, status: 'confirmed' },
+];
+
+export const presentationSchedule: PresentationScheduleItem[] = [
+	{
+		id: 'welcome',
+		kind: 'host',
+		status: 'confirmed',
+		timeLabel: '23:00-23:04',
+		startDateTime: '2026-07-18T23:00:00-04:00',
+		endDateTime: '2026-07-18T23:04:00-04:00',
+		title: 'Bienvenida y apertura',
+		role: 'Animación',
+	},
+	{
+		id: 'falak-hana',
+		kind: 'artist',
+		status: 'confirmed',
+		timeLabel: '23:04-23:12',
+		startDateTime: '2026-07-18T23:04:00-04:00',
+		endDateTime: '2026-07-18T23:12:00-04:00',
+		title: 'Falak Hana',
+		artistId: 'falak-hana',
+		discipline: 'Danza árabe',
+	},
+	{
+		id: 'laura-alvaro',
+		kind: 'artist',
+		status: 'confirmed',
+		timeLabel: '23:14-23:16',
+		startDateTime: '2026-07-18T23:14:00-04:00',
+		endDateTime: '2026-07-18T23:16:00-04:00',
+		title: 'Laura y Álvaro',
+		artistId: 'laura-alvaro',
+		discipline: 'Bachata Cabaret Pareja',
+	},
+	{
+		id: 'ladys-may',
+		kind: 'artist',
+		status: 'provisional',
+		timeLabel: '23:18-23:20',
+		startDateTime: '2026-07-18T23:18:00-04:00',
+		endDateTime: '2026-07-18T23:20:00-04:00',
+		title: 'Ladys May',
+		artistId: 'ladys-may',
+		discipline: 'Bachata ladies',
+	},
+	{
+		id: 'gabriela-pina',
+		kind: 'artist',
+		status: 'confirmed',
+		timeLabel: '23:22-23:24',
+		startDateTime: '2026-07-18T23:22:00-04:00',
+		endDateTime: '2026-07-18T23:24:00-04:00',
+		title: 'Gabriela Piña',
+		artistId: 'gabriela-pina',
+		discipline: 'Bachata solista',
+	},
+	{
+		id: 'essencia-latina',
+		kind: 'artist',
+		status: 'confirmed',
+		timeLabel: '23:26-23:29',
+		startDateTime: '2026-07-18T23:26:00-04:00',
+		endDateTime: '2026-07-18T23:29:00-04:00',
+		title: 'Essencia Latina',
+		artistId: 'essencia-latina',
+		discipline: 'Rueda de Casino',
+	},
+	{
+		id: 'magia-latina',
+		kind: 'artist',
+		status: 'confirmed',
+		timeLabel: '23:31-23:33',
+		startDateTime: '2026-07-18T23:31:00-04:00',
+		endDateTime: '2026-07-18T23:33:00-04:00',
+		title: 'Magia Latina',
+		artistId: 'magia-latina',
+		discipline: 'Bachata ladies',
+	},
+	{
+		id: 'acabailas',
+		kind: 'artist',
+		status: 'confirmed',
+		timeLabel: '23:35-23:38',
+		startDateTime: '2026-07-18T23:35:00-04:00',
+		endDateTime: '2026-07-18T23:38:00-04:00',
+		title: 'Acabailas',
+		artistId: 'acabailas',
+		discipline: 'Bachata cabaret pareja',
+	},
+	{
+		id: 'latin-rengo-mi-timbaton',
+		kind: 'artist',
+		status: 'confirmed',
+		timeLabel: '23:40-23:42',
+		startDateTime: '2026-07-18T23:40:00-04:00',
+		endDateTime: '2026-07-18T23:42:00-04:00',
+		title: 'LatinRengo - Mi Timbatón',
+		artistId: 'latin-rengo-mi-timbaton',
+		discipline: 'Rueda de Casino',
+	},
+	{
+		id: 'thanks-photo',
+		kind: 'closing',
+		status: 'confirmed',
+		timeLabel: '23:42-23:50',
+		startDateTime: '2026-07-18T23:42:00-04:00',
+		endDateTime: '2026-07-18T23:50:00-04:00',
+		title: 'Agradecimientos, aniversario y fotografía',
+		role: 'Cierre del bloque',
+	},
 ];
 
 export const ticketTiers: TicketTier[] = [
@@ -260,7 +406,7 @@ export const ticketTiers: TicketTier[] = [
 		status: 'confirmed',
 		label: 'Puerta',
 		price: 8000,
-		note: 'Solo sábado 18 de julio, sujeta a disponibilidad.',
+		note: 'Disponible en puerta el sábado 18 de julio, sujeta a disponibilidad.',
 		availability: 'available',
 	},
 ];
@@ -278,8 +424,8 @@ export const menuCategories: MenuCategory[] = [
 				name: 'Pepperoni',
 				description: 'Masa artesanal, salsa de tomate, queso mozzarella y pepperoni.',
 				prices: [
-					{ label: 'Individual 24 cm', price: 7500 },
-					{ label: 'Familiar 32 cm', price: 13000 },
+					{ label: 'Individual · 24 cm', price: 7500 },
+					{ label: 'Familiar · 32 cm', price: 13000 },
 				],
 			},
 			{
@@ -289,10 +435,10 @@ export const menuCategories: MenuCategory[] = [
 				description:
 					'Masa artesanal, salsa de tomate, queso mozzarella, champiñón, choclo, aceituna y pimentón.',
 				prices: [
-					{ label: 'Individual 24 cm', price: 7500 },
-					{ label: 'Familiar 32 cm', price: 13000 },
+					{ label: 'Individual · 24 cm', price: 7500 },
+					{ label: 'Familiar · 32 cm', price: 13000 },
 				],
-				tags: ['Apta para vegetarianos'],
+				tags: ['Vegetariano'],
 			},
 			{
 				id: 'mediterranea',
@@ -301,8 +447,8 @@ export const menuCategories: MenuCategory[] = [
 				description:
 					'Masa artesanal, salsa de tomate, queso mozzarella, jamón serrano, tomate cherry y pesto.',
 				prices: [
-					{ label: 'Individual 24 cm', price: 9000 },
-					{ label: 'Familiar 32 cm', price: 14500 },
+					{ label: 'Individual · 24 cm', price: 9000 },
+					{ label: 'Familiar · 32 cm', price: 14500 },
 				],
 			},
 			{
@@ -312,8 +458,8 @@ export const menuCategories: MenuCategory[] = [
 				description:
 					'Masa artesanal, salsa de tomate, queso mozzarella, pepperoni, jamón, carne molida y longaniza.',
 				prices: [
-					{ label: 'Individual 24 cm', price: 7500 },
-					{ label: 'Familiar 32 cm', price: 13000 },
+					{ label: 'Individual · 24 cm', price: 7500 },
+					{ label: 'Familiar · 32 cm', price: 13000 },
 				],
 			},
 		],
@@ -329,7 +475,7 @@ export const menuCategories: MenuCategory[] = [
 				name: 'Papas fritas',
 				description: 'Con salsa de la casa, aptas para vegetarianos y con opción de salsa vegana.',
 				prices: [{ label: 'Porción', price: 4500 }],
-				tags: ['Aptas para vegetarianos', 'Opción de salsa vegana'],
+				tags: ['Vegetariano', 'Opción vegana'],
 			},
 			{
 				id: 'papas-fritas-mechada',
@@ -344,7 +490,7 @@ export const menuCategories: MenuCategory[] = [
 				name: 'Papas fritas del Jardín',
 				description: 'Con champiñón, choclo, pimentón y salsa cheddar.',
 				prices: [{ label: 'Porción', price: 8000 }],
-				tags: ['Aptas para vegetarianos'],
+				tags: ['Vegetariano'],
 			},
 			{
 				id: 'aros-cebolla',
@@ -352,6 +498,34 @@ export const menuCategories: MenuCategory[] = [
 				name: 'Aros de cebolla',
 				description: 'Diez unidades con salsa a elección.',
 				prices: [{ label: '10 unidades', price: 4000 }],
+			},
+		],
+	},
+	{
+		id: 'bebidas-sin-alcohol',
+		status: 'confirmed',
+		title: 'Bebidas sin alcohol',
+		items: [
+			{
+				id: 'bebida-lata',
+				status: 'confirmed',
+				name: 'Bebida en lata',
+				description: 'Bebida sin alcohol.',
+				prices: [{ label: 'Unidad', price: 1500 }],
+			},
+			{
+				id: 'energetica',
+				status: 'confirmed',
+				name: 'Energética',
+				description: 'Bebida energética sin marca publicada.',
+				prices: [{ label: 'Unidad', price: 3000 }],
+			},
+			{
+				id: 'agua',
+				status: 'confirmed',
+				name: 'Agua con gas o sin gas',
+				description: 'Agua mineral con gas o sin gas.',
+				prices: [{ label: 'Unidad', price: 1000 }],
 			},
 		],
 	},
@@ -382,10 +556,23 @@ export const faqItems: FaqItem[] = [
 ];
 
 export const publicArtists = presentationOrder
-	.filter((item) => item.status === 'confirmed')
+	.filter((item) => item.status !== 'withheld')
 	.sort((a, b) => a.order - b.order)
 	.map((item) => artistCatalog.find((artist) => artist.id === item.artistId))
-	.filter((artist): artist is Artist => Boolean(artist) && artist.status === 'confirmed');
+	.filter((artist): artist is Artist => Boolean(artist) && artist.status !== 'withheld');
+
+export const publicPresentationSchedule = presentationSchedule
+	.filter((item) => item.status !== 'withheld')
+	.map((item) => ({
+		...item,
+		artist: item.artistId ? artistCatalog.find((artist) => artist.id === item.artistId) : undefined,
+	}))
+	.reduce<Array<PresentationScheduleItem & { artist?: Artist; artistNumber?: number }>>((items, item) => {
+		const artistNumber =
+			item.kind === 'artist' ? items.filter((existing) => existing.kind === 'artist').length + 1 : undefined;
+		items.push({ ...item, artistNumber });
+		return items;
+	}, []);
 
 export const publicTickets = ticketTiers.filter((item) => item.status === 'confirmed');
 export const publicMenuCategories = menuCategories
@@ -423,6 +610,7 @@ export function createEventJsonLd() {
 			price: ticket.price,
 			priceCurrency: 'CLP',
 			url: `${siteOrigin}${socialPath}#entradas`,
+			description: ticket.note,
 			availability:
 				ticket.availability === 'sold-out'
 					? 'https://schema.org/SoldOut'

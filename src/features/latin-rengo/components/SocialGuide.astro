@@ -7,8 +7,8 @@ import {
 	formatCLP,
 	latinRengoSocialEvent as event,
 	menuPath,
-	publicArtists,
 	publicFaqItems,
+	publicPresentationSchedule,
 	publicSchedule,
 	publicTickets,
 } from '../content/social';
@@ -16,7 +16,6 @@ import {
 const pageTitle = 'LatinRengo Social - Primer aniversario';
 const pageDescription =
 	'Guía pública de LatinRengo Social: fecha, programa, artistas, entradas, menú y contacto autorizado.';
-const artistsSectionId = 'artistas';
 ---
 
 <LatinRengoSocialLayout
@@ -80,46 +79,53 @@ const artistsSectionId = 'artistas';
 				<p class="lr-kicker">Programa público confirmado</p>
 				<h2 id="lr-schedule-title">Cronograma</h2>
 			</div>
-			<ol class="lr-timeline">
-				{publicSchedule.map((item) => (
-					<li>
-						<time datetime={item.startDateTime}>{item.timeLabel}</time>
-						<div>
-							<h3>{item.title}</h3>
-							{item.description && <p>{item.description}</p>}
-						</div>
-					</li>
-				))}
-			</ol>
-		</section>
-
-		<section id={artistsSectionId} class="lr-section" aria-labelledby="lr-artists-title">
-			<div class="lr-section__heading lr-section__heading--split">
-				<div>
-					<p class="lr-kicker">Bloque artístico</p>
-					<h2 id="lr-artists-title">Artistas invitados</h2>
-				</div>
-				<p class="lr-note">Orden de presentaciones sujeto a cambios.</p>
+			<div class="lr-program-block">
+				<h3>Programa general</h3>
+				<ol class="lr-timeline">
+					{publicSchedule.map((item) => (
+						<li>
+							<time datetime={item.startDateTime}>{item.timeLabel}</time>
+							<div>
+								<h4>{item.title}</h4>
+								{item.description && <p>{item.description}</p>}
+							</div>
+						</li>
+					))}
+				</ol>
 			</div>
-			<div class="lr-artist-grid">
-				{publicArtists.map((artist, index) => (
-					<article class="lr-artist-card">
-						<div class="lr-artist-card__image">
-							<Image
-								src={artist.image}
-								alt={artist.alt}
-								widths={[320, 480, 720]}
-								sizes="(min-width: 980px) 30vw, (min-width: 680px) 45vw, 92vw"
-								loading={index < 2 ? 'eager' : 'lazy'}
-								decoding="async"
-							/>
-						</div>
-						<div class="lr-artist-card__body">
-							<h3>{artist.name}</h3>
-							{artist.presentation && <p>{artist.presentation}</p>}
-						</div>
-					</article>
-				))}
+
+			<div class="lr-program-block lr-program-block--performances">
+				<div class="lr-section__heading lr-section__heading--split">
+					<div>
+						<p class="lr-kicker">Bloque artístico</p>
+						<h3>Orden de presentaciones</h3>
+					</div>
+					<p class="lr-note">Orden de presentaciones sujeto a cambios.</p>
+				</div>
+				<ol class="lr-performance-list">
+					{publicPresentationSchedule.map((item, index) => (
+						<li class:list={['lr-performance-item', `lr-performance-item--${item.kind}`]}>
+							<time datetime={item.startDateTime}>{item.timeLabel}</time>
+							{item.artistNumber && <span class="lr-performance-number">{item.artistNumber}</span>}
+							<div class="lr-performance-item__body">
+								<h4>{item.title}</h4>
+								<p>{item.discipline ?? item.role}</p>
+							</div>
+							{item.artist?.image && item.artist.alt && (
+								<div class="lr-performance-item__image">
+									<Image
+										src={item.artist.image}
+										alt={item.artist.alt}
+										widths={[96, 144, 240]}
+										sizes="(min-width: 760px) 9rem, 5.5rem"
+										loading={index < 2 ? 'eager' : 'lazy'}
+										decoding="async"
+									/>
+								</div>
+							)}
+						</li>
+					))}
+				</ol>
 			</div>
 		</section>
 

@@ -20,7 +20,7 @@ const pageDescription =
 				<h1>LatinRengo Social</h1>
 				<p>{event.dateLabel} · {event.venueName}</p>
 			</div>
-			<a class="lr-menu-return" href={socialPath}>Volver a la guía</a>
+			<a class="lr-menu-return" href={socialPath}>Volver a LatinRengo Social</a>
 		</header>
 
 		<section class="lr-menu-board" aria-labelledby="lr-menu-title">
@@ -28,6 +28,11 @@ const pageDescription =
 				<p class="lr-kicker">Comida confirmada</p>
 				<h2 id="lr-menu-title">Menú</h2>
 			</div>
+			<nav class="lr-menu-jump-nav" aria-label="Categorías del menú">
+				{publicMenuCategories.map((category) => (
+					<a href={`#menu-${category.id}`}>{category.title}</a>
+				))}
+			</nav>
 			<div class="lr-menu-grid">
 				{publicMenuCategories.map((category) => (
 					<section class="lr-menu-category" aria-labelledby={`menu-${category.id}`}>
@@ -63,7 +68,7 @@ const pageDescription =
 			</div>
 		</section>
 		<footer class="lr-menu-footer">
-			<p>No hay otros productos publicados hasta recibir lista final aprobada.</p>
+			<p>Solo se muestran productos confirmados para publicación.</p>
 			<p>URL: espacioelementos.cl/latin-rengo-social/menu</p>
 		</footer>
 	</main>

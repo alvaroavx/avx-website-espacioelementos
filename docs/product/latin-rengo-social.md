@@ -29,7 +29,7 @@ El modelo usa:
 - `provisional`: solo se puede renderizar si está expresamente rotulado y autorizado.
 - `withheld`: no debe llegar al HTML, metadatos, JSON-LD ni bundle público.
 
-Regla operativa: los componentes solo consumen colecciones filtradas como `publicArtists`, `publicTickets`, `publicSchedule`, `publicMenuCategories` y `publicFaqItems`.
+Regla operativa: los componentes solo consumen colecciones filtradas como `publicArtists`, `publicPresentationSchedule`, `publicTickets`, `publicSchedule`, `publicMenuCategories` y `publicFaqItems`.
 
 ## Datos confirmados publicados
 
@@ -45,28 +45,40 @@ Regla operativa: los componentes solo consumen colecciones filtradas como `publi
   - 23:00 a 23:50 - presentaciones.
   - 23:50 a 03:00 - social de salsa, bachata y otros ritmos.
   - 03:00 domingo 19 - cierre al público.
+- Orden público de presentaciones:
+  - 23:00-23:04 - bienvenida y apertura.
+  - 23:04-23:12 - Falak Hana, danza árabe.
+  - 23:14-23:16 - Laura y Álvaro, Bachata Cabaret Pareja.
+  - 23:18-23:20 - Ladys May, Bachata ladies.
+  - 23:22-23:24 - Gabriela Piña, Bachata solista.
+  - 23:26-23:29 - Essencia Latina, Rueda de Casino.
+  - 23:31-23:33 - Magia Latina, Bachata ladies.
+  - 23:35-23:38 - Acabailas, Bachata cabaret pareja.
+  - 23:40-23:42 - LatinRengo - Mi Timbatón, Rueda de Casino.
+  - 23:42-23:50 - agradecimientos, aniversario y fotografía.
 - Entradas:
   - Preventa: $3.000, agotada.
   - General: $5.000, disponible hasta el viernes 17 de julio.
-  - Puerta: $8.000, solo sábado 18 de julio y sujeta a disponibilidad.
+  - Puerta: $8.000, disponible en puerta el sábado 18 de julio y sujeta a disponibilidad.
 - Menú de comida confirmado:
   - Pizzas por Pizzis Pizzería.
   - Aperitivos listados en `content/social.ts`.
+  - Bebidas sin alcohol confirmadas: bebida en lata, energética y agua con gas o sin gas.
 
 ## Datos retenidos o no publicados
 
 - Dirección exacta y URL de mapa del Centro de Eventos Mariette.
-- Productos y precios de bebidas.
 - QR bancario de imágenes de referencia.
-- Registro de artista con discrepancia documental en el solo de bachata.
+- Otros productos de barra o bebidas no autorizados explícitamente para esta entrega.
 - Condiciones de venta, medio de pago, política etaria o vigencia de preventa no confirmadas.
 
 ## Cómo editar programa, artistas y menú
 
 Editar solamente `src/features/latin-rengo/content/social.ts`.
 
-- Programa: actualizar `publicSchedule` con `startDateTime` y `endDateTime` en zona conceptual `America/Santiago`.
-- Artistas: agregar o modificar `artistCatalog`. El orden público se controla por `presentationOrder`.
+- Programa general: actualizar `publicSchedule` con `startDateTime` y `endDateTime` en zona conceptual `America/Santiago`.
+- Orden de presentaciones: actualizar `presentationSchedule`. No publicar columna de duración.
+- Artistas: agregar o modificar `artistCatalog`. El orden artístico resumido se controla por `presentationOrder`.
 - Menú: editar `menuCategories`. No duplicar datos en la página del menú.
 - Entradas: editar `ticketTiers`.
 - FAQ: editar `faqItems`.
@@ -99,7 +111,8 @@ No debe depender del dataset vigente del evento.
 ## Pendientes P0
 
 - Verificar nombre oficial, dirección exacta, URL de mapa y correspondencia del marcador para Centro de Eventos Mariette.
-- Confirmar o descartar el registro artístico con discrepancia documental del solo de bachata.
-- Recibir lista final aprobada de bebidas si se quiere publicar esa parte del menú.
+- Confirmar escritura oficial de `Ladys May` versus `Ladies May`.
+- Confirmar duración real de Magia Latina: el cronograma público indica 23:31-23:33, pero una fuente operativa indicaba 3 minutos.
+- Recibir aprobación adulta responsable antes de publicar otros productos de barra o bebidas.
 - Probar lectura real del menú en TV a la distancia del recinto y decidir si hace falta `/latin-rengo-social/menu/tv`.
 - Borrar `/latin-rengo-v3` cuando los códigos QR impresos de este Social dejen de ser necesarios.
