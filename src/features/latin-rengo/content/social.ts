@@ -6,6 +6,7 @@ import gabrielaPinaImage from '../assets/artists/gabriela-pina.jpg';
 import ladiesMayImage from '../assets/artists/ladies-may-gema-dance-academy.jpg';
 import latinRengoImage from '../assets/artists/latin-rengo-mi-timbaton.jpg';
 import magiaLatinaImage from '../assets/artists/magia-latina.jpg';
+import rominaMarceloImage from '../assets/artists/romina-marcelo.jpg';
 import lauraAlvaroImage from '../assets/artists/laura-alvaro.jpg';
 
 export type EditorialStatus = 'confirmed' | 'provisional' | 'withheld';
@@ -35,6 +36,7 @@ export interface SocialEvent extends Statused {
 		venueName: string;
 		address?: string;
 		mapUrl?: string;
+		mapEmbedUrl?: string;
 		status: EditorialStatus;
 	};
 }
@@ -135,7 +137,10 @@ export const latinRengoSocialEvent: SocialEvent = {
 	},
 	location: {
 		venueName: 'Centro de Eventos Mariette',
-		status: 'provisional',
+		mapUrl: 'https://maps.app.goo.gl/FWgMPkF2G9vWgjTa8',
+		mapEmbedUrl:
+			'https://www.google.com/maps?q=Centro%20de%20Eventos%20Mariette&z=16&output=embed',
+		status: 'confirmed',
 	},
 };
 
@@ -245,10 +250,12 @@ export const artistCatalog: Artist[] = [
 		status: 'confirmed',
 	},
 	{
-		id: 'acabailas',
-		name: 'Acabailas',
+		id: 'romina-marcelo',
+		name: 'Romina y Marcelo',
 		discipline: 'Bachata cabaret pareja',
 		scheduleLabel: '23:35-23:38',
+		image: rominaMarceloImage,
+		alt: 'Afiche de Romina y Marcelo para LatinRengo Social.',
 		status: 'confirmed',
 	},
 	{
@@ -269,7 +276,7 @@ export const presentationOrder: ArtistPresentation[] = [
 	{ artistId: 'gabriela-pina', order: 4, status: 'confirmed' },
 	{ artistId: 'essencia-latina', order: 5, status: 'confirmed' },
 	{ artistId: 'magia-latina', order: 6, status: 'confirmed' },
-	{ artistId: 'acabailas', order: 7, status: 'confirmed' },
+	{ artistId: 'romina-marcelo', order: 7, status: 'confirmed' },
 	{ artistId: 'latin-rengo-mi-timbaton', order: 8, status: 'confirmed' },
 ];
 
@@ -351,14 +358,14 @@ export const presentationSchedule: PresentationScheduleItem[] = [
 		discipline: 'Bachata ladies',
 	},
 	{
-		id: 'acabailas',
+		id: 'romina-marcelo',
 		kind: 'artist',
 		status: 'confirmed',
 		timeLabel: '23:35-23:38',
 		startDateTime: '2026-07-18T23:35:00-04:00',
 		endDateTime: '2026-07-18T23:38:00-04:00',
-		title: 'Acabailas',
-		artistId: 'acabailas',
+		title: 'Romina y Marcelo',
+		artistId: 'romina-marcelo',
 		discipline: 'Bachata cabaret pareja',
 	},
 	{
@@ -603,6 +610,7 @@ export function createEventJsonLd() {
 		location: {
 			'@type': 'Place',
 			name: latinRengoSocialEvent.venueName,
+			sameAs: latinRengoSocialEvent.location.mapUrl,
 		},
 		offers: publicTickets.map((ticket) => ({
 			'@type': 'Offer',

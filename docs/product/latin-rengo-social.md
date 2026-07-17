@@ -53,7 +53,7 @@ Regla operativa: los componentes solo consumen colecciones filtradas como `publi
   - 23:22-23:24 - Gabriela Piña, Bachata solista.
   - 23:26-23:29 - Essencia Latina, Rueda de Casino.
   - 23:31-23:33 - Magia Latina, Bachata ladies.
-  - 23:35-23:38 - Acabailas, Bachata cabaret pareja.
+  - 23:35-23:38 - Romina y Marcelo, Bachata cabaret pareja.
   - 23:40-23:42 - LatinRengo - Mi Timbatón, Rueda de Casino.
   - 23:42-23:50 - agradecimientos, aniversario y fotografía.
 - Entradas:
@@ -64,10 +64,12 @@ Regla operativa: los componentes solo consumen colecciones filtradas como `publi
   - Pizzas por Pizzis Pizzería.
   - Aperitivos listados en `content/social.ts`.
   - Bebidas sin alcohol confirmadas: bebida en lata, energética y agua con gas o sin gas.
+- Cómo llegar:
+  - Se publica mapa de Google Maps con enlace confirmado: `https://maps.app.goo.gl/FWgMPkF2G9vWgjTa8`.
 
 ## Datos retenidos o no publicados
 
-- Dirección exacta y URL de mapa del Centro de Eventos Mariette.
+- Dirección textual exacta del Centro de Eventos Mariette, si se requiere mostrarla fuera del mapa.
 - QR bancario de imágenes de referencia.
 - Otros productos de barra o bebidas no autorizados explícitamente para esta entrega.
 - Condiciones de venta, medio de pago, política etaria o vigencia de preventa no confirmadas.
@@ -110,7 +112,7 @@ No debe depender del dataset vigente del evento.
 
 ## Pendientes P0
 
-- Verificar nombre oficial, dirección exacta, URL de mapa y correspondencia del marcador para Centro de Eventos Mariette.
+- Confirmar dirección textual exacta del Centro de Eventos Mariette si se quiere mostrar como texto.
 - Confirmar escritura oficial de `Ladys May` versus `Ladies May`.
 - Confirmar duración real de Magia Latina: el cronograma público indica 23:31-23:33, pero una fuente operativa indicaba 3 minutos.
 - Recibir aprobación adulta responsable antes de publicar otros productos de barra o bebidas.

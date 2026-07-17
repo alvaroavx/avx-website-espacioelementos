@@ -40,6 +40,7 @@ const pageDescription =
 					<a href="#programa">Programación</a>
 					<a href={menuPath}>Menú</a>
 					<a href="#entradas">Entradas</a>
+					<a href="#como-llegar">Cómo llegar</a>
 					<a href="#contacto">Contacto</a>
 				</nav>
 				<div class="lr-ticket-strip" aria-label="Resumen de entradas">
@@ -70,6 +71,10 @@ const pageDescription =
 				<a class="lr-action" href={event.contact.whatsappHref}>
 					<span>Consultar a LatinRengo</span>
 					<small>{event.contact.label}</small>
+				</a>
+				<a class="lr-action" href="#como-llegar">
+					<span>Cómo llegar</span>
+					<small>Mapa confirmado del recinto.</small>
 				</a>
 			</div>
 		</section>
@@ -112,16 +117,20 @@ const pageDescription =
 								<p>{item.discipline ?? item.role}</p>
 							</div>
 							{item.artist?.image && item.artist.alt && (
-								<div class="lr-performance-item__image">
+								<a
+									class="lr-performance-item__image"
+									href={item.artist.image.src}
+									aria-label={`Ver afiche de ${item.title} en grande`}
+								>
 									<Image
 										src={item.artist.image}
 										alt={item.artist.alt}
-										widths={[96, 144, 240]}
-										sizes="(min-width: 760px) 9rem, 5.5rem"
+										widths={[180, 260, 420]}
+										sizes="(min-width: 760px) 12rem, 13rem"
 										loading={index < 2 ? 'eager' : 'lazy'}
 										decoding="async"
 									/>
-								</div>
+								</a>
 							)}
 						</li>
 					))}
@@ -148,13 +157,36 @@ const pageDescription =
 			<a class="lr-primary-cta" href={event.contact.whatsappHref}>Consultar entradas por WhatsApp</a>
 		</section>
 
-		<section class="lr-section" aria-labelledby="lr-place-title">
+		<section id="como-llegar" class="lr-section" aria-labelledby="lr-place-title">
 			<div class="lr-section__heading">
 				<p class="lr-kicker">Lugar confirmado</p>
-				<h2 id="lr-place-title">Dónde es</h2>
+				<h2 id="lr-place-title">Cómo llegar</h2>
 			</div>
-			<div class="lr-info-panel">
-				<p><strong>{event.venueName}</strong></p>
+			<div class="lr-location-panel">
+				<div class="lr-info-panel">
+					<p><strong>{event.venueName}</strong></p>
+					{event.location.mapUrl && (
+						<a class="lr-primary-cta" href={event.location.mapUrl}>Abrir en Google Maps</a>
+					)}
+				</div>
+				{event.location.mapEmbedUrl && event.location.mapUrl && (
+					<div class="lr-map-frame">
+						<iframe
+							title={`Mapa de Google Maps: ${event.venueName}`}
+							src={event.location.mapEmbedUrl}
+							width="900"
+							height="520"
+							loading="lazy"
+							referrerpolicy="no-referrer-when-downgrade"
+							allowfullscreen
+							tabindex="-1"
+							aria-hidden="true"
+						></iframe>
+						<a class="lr-map-frame__link" href={event.location.mapUrl}>
+							<span>Abrir ruta en Google Maps</span>
+						</a>
+					</div>
+				)}
 			</div>
 		</section>
 
