@@ -1,0 +1,44 @@
+---
+import LatinRengoSocialLayout from '../layouts/LatinRengoSocialLayout.astro';
+import {
+	latinRengoSocialEvent as event,
+	menuPath,
+	socialPath,
+} from '../content/social';
+
+const pageTitle = 'LatinRengo Social - guía vigente';
+const pageDescription =
+	'Página de referencia para códigos QR de LatinRengo Social. Accede a la guía vigente del evento.';
+---
+
+<LatinRengoSocialLayout
+	title={pageTitle}
+	description={pageDescription}
+	canonicalPath={socialPath}
+	noindex
+>
+	<main id="contenido" data-latin-rengo class="lr-page lr-bridge-page">
+		<section class="lr-hero lr-bridge" aria-labelledby="lr-bridge-title">
+			<div class="lr-hero__inner">
+				<p class="lr-eyebrow">Referencia QR temporal</p>
+				<h1 id="lr-bridge-title">{event.shortName}</h1>
+				<div class="lr-hero__facts" aria-label="Resumen del evento">
+					<p>
+						<time datetime="2026-07-18">{event.dateLabel}</time>
+					</p>
+					<p>{event.venueName}</p>
+					<p>{event.quickSummary}</p>
+				</div>
+				<p class="lr-bridge__copy">
+					Esta URL se mantiene activa para los códigos QR impresos. La información vigente
+					del evento está en la guía LatinRengo Social.
+				</p>
+				<nav class="lr-quick-nav" aria-label="Accesos principales">
+					<a href={socialPath}>Ir a la guía vigente</a>
+					<a href={menuPath}>Ver menú</a>
+					<a href={`${socialPath}#programa`}>Programación</a>
+				</nav>
+			</div>
+		</section>
+	</main>
+</LatinRengoSocialLayout>

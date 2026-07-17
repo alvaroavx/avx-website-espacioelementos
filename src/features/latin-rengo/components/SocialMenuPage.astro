@@ -1,0 +1,70 @@
+---
+import LatinRengoSocialLayout from '../layouts/LatinRengoSocialLayout.astro';
+import {
+	formatCLP,
+	latinRengoSocialEvent as event,
+	publicMenuCategories,
+	socialPath,
+} from '../content/social';
+
+const pageTitle = 'Menú LatinRengo Social';
+const pageDescription =
+	'Menú público confirmado de comida para LatinRengo Social, disponible como texto accesible para teléfono y TV.';
+---
+
+<LatinRengoSocialLayout title={pageTitle} description={pageDescription} canonicalPath="/latin-rengo-social/menu">
+	<main id="contenido" data-latin-rengo class="lr-page lr-menu-page">
+		<header class="lr-menu-hero">
+			<div>
+				<p class="lr-eyebrow">Menú público</p>
+				<h1>LatinRengo Social</h1>
+				<p>{event.dateLabel} · {event.venueName}</p>
+			</div>
+			<a class="lr-menu-return" href={socialPath}>Volver a la guía</a>
+		</header>
+
+		<section class="lr-menu-board" aria-labelledby="lr-menu-title">
+			<div class="lr-section__heading">
+				<p class="lr-kicker">Comida confirmada</p>
+				<h2 id="lr-menu-title">Menú</h2>
+			</div>
+			<div class="lr-menu-grid">
+				{publicMenuCategories.map((category) => (
+					<section class="lr-menu-category" aria-labelledby={`menu-${category.id}`}>
+						<div class="lr-menu-category__header">
+							<h3 id={`menu-${category.id}`}>{category.title}</h3>
+							{category.provider && <p>{category.provider}</p>}
+						</div>
+						<div class="lr-menu-items">
+							{category.items.map((item) => (
+								<article class="lr-menu-item">
+									<div class="lr-menu-item__copy">
+										<h4>{item.name}</h4>
+										<p>{item.description}</p>
+										{item.tags && (
+											<ul class="lr-tag-list" aria-label="Características">
+												{item.tags.map((tag) => <li>{tag}</li>)}
+											</ul>
+										)}
+									</div>
+									<div class="lr-menu-item__prices" aria-label={`Precios de ${item.name}`}>
+										{item.prices.map((price) => (
+											<p>
+												<span>{price.label}</span>
+												<strong>{formatCLP(price.price)}</strong>
+											</p>
+										))}
+									</div>
+								</article>
+							))}
+						</div>
+					</section>
+				))}
+			</div>
+		</section>
+		<footer class="lr-menu-footer">
+			<p>No hay otros productos publicados hasta recibir lista final aprobada.</p>
+			<p>URL: espacioelementos.cl/latin-rengo-social/menu</p>
+		</footer>
+	</main>
+</LatinRengoSocialLayout>
