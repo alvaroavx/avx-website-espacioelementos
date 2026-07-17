@@ -165,6 +165,12 @@ summary:focus-visible {
 	color: #15040a;
 }
 
+.lr-primary-cta--secondary {
+	border-color: rgba(255, 245, 232, 0.24);
+	background: rgba(255, 245, 232, 0.08);
+	color: var(--lr-text);
+}
+
 .lr-ticket-strip {
 	display: grid;
 	gap: 0.55rem;
@@ -381,13 +387,19 @@ summary:focus-visible {
 }
 
 .lr-performance-item--host,
+.lr-performance-item--transition,
 .lr-performance-item--closing {
 	grid-template-columns: minmax(4.9rem, 5.7rem) minmax(0, 1fr);
 }
 
 .lr-performance-item--host .lr-performance-item__body,
+.lr-performance-item--transition .lr-performance-item__body,
 .lr-performance-item--closing .lr-performance-item__body {
 	grid-column: auto;
+}
+
+.lr-performance-item--transition {
+	background: rgba(255, 245, 232, 0.055);
 }
 
 .lr-artist-grid {
@@ -522,6 +534,12 @@ summary:focus-visible {
 .lr-contact-panel p {
 	font-size: 1.4rem;
 	font-weight: 900;
+}
+
+.lr-contact-panel__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.65rem;
 }
 
 .lr-faq-list {
@@ -659,6 +677,34 @@ summary:focus-visible {
 	font-weight: 850;
 }
 
+.lr-menu-notice {
+	display: grid;
+	gap: 0.45rem;
+	border: 1px solid rgba(255, 245, 232, 0.2);
+	border-radius: 12px;
+	background: rgba(255, 245, 232, 0.07);
+	color: var(--lr-muted);
+	margin-top: 0.75rem;
+	padding: 0.75rem;
+}
+
+.lr-menu-notice strong {
+	color: var(--lr-text);
+	font-size: 0.95rem;
+}
+
+.lr-menu-notice ul {
+	display: grid;
+	gap: 0.25rem;
+	margin: 0;
+	padding-left: 1.1rem;
+}
+
+.lr-menu-notice li {
+	font-size: 0.92rem;
+	line-height: 1.35;
+}
+
 .lr-menu-items {
 	display: grid;
 	gap: 0.75rem;
@@ -790,6 +836,7 @@ summary:focus-visible {
 	}
 
 	.lr-performance-item--host,
+	.lr-performance-item--transition,
 	.lr-performance-item--closing {
 		grid-template-columns: 7.5rem minmax(0, 1fr);
 	}
@@ -901,6 +948,21 @@ summary:focus-visible {
 
 	.lr-menu-item__prices strong {
 		font-size: 1.12rem;
+	}
+
+	.lr-menu-notice {
+		gap: 0.25rem;
+		margin-top: 0.55rem;
+		padding: 0.5rem;
+	}
+
+	.lr-menu-notice strong {
+		font-size: 0.82rem;
+	}
+
+	.lr-menu-notice li {
+		font-size: 0.72rem;
+		line-height: 1.2;
 	}
 
 	.lr-tag-list {

@@ -30,6 +30,7 @@ export interface SocialEvent extends Statused {
 	contact: {
 		label: string;
 		phone: string;
+		telHref: string;
 		whatsappHref: string;
 	};
 	location: {
@@ -69,7 +70,7 @@ export interface ArtistPresentation {
 
 export interface PresentationScheduleItem extends Statused {
 	id: string;
-	kind: 'host' | 'artist' | 'closing';
+	kind: 'host' | 'artist' | 'transition' | 'closing';
 	timeLabel: string;
 	startDateTime: string;
 	endDateTime: string;
@@ -84,7 +85,7 @@ export interface TicketTier extends Statused {
 	label: string;
 	price: number;
 	note?: string;
-	availability?: 'available' | 'sold-out';
+	availability?: 'available' | 'sold-out' | 'ended';
 }
 
 export interface MenuPrice {
@@ -104,6 +105,10 @@ export interface MenuCategory extends Statused {
 	id: string;
 	title: string;
 	provider?: string;
+	notice?: {
+		label: string;
+		items: string[];
+	};
 	items: MenuItem[];
 }
 
@@ -132,11 +137,13 @@ export const latinRengoSocialEvent: SocialEvent = {
 	contact: {
 		label: '+56 9 7989 8502',
 		phone: '+56979898502',
+		telHref: 'tel:+56979898502',
 		whatsappHref:
 			'https://wa.me/56979898502?text=Hola%20LatinRengo%2C%20quiero%20consultar%20por%20LatinRengo%20Social.',
 	},
 	location: {
 		venueName: 'Centro de Eventos Mariette',
+		// TODO: publicar address solo cuando exista calle, numero y comuna confirmados.
 		mapUrl: 'https://maps.app.goo.gl/FWgMPkF2G9vWgjTa8',
 		mapEmbedUrl:
 			'https://www.google.com/maps?q=Centro%20de%20Eventos%20Mariette&z=16&output=embed',
@@ -175,7 +182,7 @@ export const publicSchedule: ScheduleItem[] = [
 		startDateTime: '2026-07-18T23:00:00-04:00',
 		endDateTime: '2026-07-18T23:50:00-04:00',
 		title: 'Presentaciones',
-		description: 'Orden de presentaciones sujeto a cambios.',
+		description: 'Horario programado, sujeto a ajustes operativos.',
 	},
 	{
 		id: 'main-social',
@@ -214,13 +221,13 @@ export const artistCatalog: Artist[] = [
 		status: 'confirmed',
 	},
 	{
-		id: 'ladys-may',
-		name: 'Ladys May',
+		id: 'ladies-may',
+		name: 'Ladies May',
 		discipline: 'Bachata ladies',
 		scheduleLabel: '23:18-23:20',
 		image: ladiesMayImage,
-		alt: 'Afiche de Ladys May para LatinRengo Social.',
-		status: 'provisional',
+		alt: 'Afiche de Ladies May para LatinRengo Social.',
+		status: 'confirmed',
 	},
 	{
 		id: 'gabriela-pina',
@@ -244,7 +251,7 @@ export const artistCatalog: Artist[] = [
 		id: 'magia-latina',
 		name: 'Magia Latina',
 		discipline: 'Bachata ladies',
-		scheduleLabel: '23:31-23:33',
+		scheduleLabel: '23:31-23:34',
 		image: magiaLatinaImage,
 		alt: 'Afiche de Magia Latina para LatinRengo Social.',
 		status: 'confirmed',
@@ -253,7 +260,7 @@ export const artistCatalog: Artist[] = [
 		id: 'romina-marcelo',
 		name: 'Romina y Marcelo',
 		discipline: 'Bachata cabaret pareja',
-		scheduleLabel: '23:35-23:38',
+		scheduleLabel: '23:36-23:39',
 		image: rominaMarceloImage,
 		alt: 'Afiche de Romina y Marcelo para LatinRengo Social.',
 		status: 'confirmed',
@@ -262,7 +269,7 @@ export const artistCatalog: Artist[] = [
 		id: 'latin-rengo-mi-timbaton',
 		name: 'LatinRengo - Mi Timbatón',
 		discipline: 'Rueda de Casino',
-		scheduleLabel: '23:40-23:42',
+		scheduleLabel: '23:41-23:43',
 		image: latinRengoImage,
 		alt: 'Afiche de LatinRengo - Mi Timbatón para LatinRengo Social.',
 		status: 'confirmed',
@@ -272,7 +279,7 @@ export const artistCatalog: Artist[] = [
 export const presentationOrder: ArtistPresentation[] = [
 	{ artistId: 'falak-hana', order: 1, status: 'confirmed' },
 	{ artistId: 'laura-alvaro', order: 2, status: 'confirmed' },
-	{ artistId: 'ladys-may', order: 3, status: 'provisional' },
+	{ artistId: 'ladies-may', order: 3, status: 'confirmed' },
 	{ artistId: 'gabriela-pina', order: 4, status: 'confirmed' },
 	{ artistId: 'essencia-latina', order: 5, status: 'confirmed' },
 	{ artistId: 'magia-latina', order: 6, status: 'confirmed' },
@@ -303,6 +310,15 @@ export const presentationSchedule: PresentationScheduleItem[] = [
 		discipline: 'Danza árabe',
 	},
 	{
+		id: 'transition-1',
+		kind: 'transition',
+		status: 'confirmed',
+		timeLabel: '23:12-23:14',
+		startDateTime: '2026-07-18T23:12:00-04:00',
+		endDateTime: '2026-07-18T23:14:00-04:00',
+		title: 'Transición',
+	},
+	{
 		id: 'laura-alvaro',
 		kind: 'artist',
 		status: 'confirmed',
@@ -314,15 +330,33 @@ export const presentationSchedule: PresentationScheduleItem[] = [
 		discipline: 'Bachata Cabaret Pareja',
 	},
 	{
-		id: 'ladys-may',
+		id: 'transition-2',
+		kind: 'transition',
+		status: 'confirmed',
+		timeLabel: '23:16-23:18',
+		startDateTime: '2026-07-18T23:16:00-04:00',
+		endDateTime: '2026-07-18T23:18:00-04:00',
+		title: 'Transición',
+	},
+	{
+		id: 'ladies-may',
 		kind: 'artist',
-		status: 'provisional',
+		status: 'confirmed',
 		timeLabel: '23:18-23:20',
 		startDateTime: '2026-07-18T23:18:00-04:00',
 		endDateTime: '2026-07-18T23:20:00-04:00',
-		title: 'Ladys May',
-		artistId: 'ladys-may',
+		title: 'Ladies May',
+		artistId: 'ladies-may',
 		discipline: 'Bachata ladies',
+	},
+	{
+		id: 'transition-3',
+		kind: 'transition',
+		status: 'confirmed',
+		timeLabel: '23:20-23:22',
+		startDateTime: '2026-07-18T23:20:00-04:00',
+		endDateTime: '2026-07-18T23:22:00-04:00',
+		title: 'Transición',
 	},
 	{
 		id: 'gabriela-pina',
@@ -336,6 +370,15 @@ export const presentationSchedule: PresentationScheduleItem[] = [
 		discipline: 'Bachata solista',
 	},
 	{
+		id: 'transition-4',
+		kind: 'transition',
+		status: 'confirmed',
+		timeLabel: '23:24-23:26',
+		startDateTime: '2026-07-18T23:24:00-04:00',
+		endDateTime: '2026-07-18T23:26:00-04:00',
+		title: 'Transición',
+	},
+	{
 		id: 'essencia-latina',
 		kind: 'artist',
 		status: 'confirmed',
@@ -347,34 +390,61 @@ export const presentationSchedule: PresentationScheduleItem[] = [
 		discipline: 'Rueda de Casino',
 	},
 	{
+		id: 'transition-5',
+		kind: 'transition',
+		status: 'confirmed',
+		timeLabel: '23:29-23:31',
+		startDateTime: '2026-07-18T23:29:00-04:00',
+		endDateTime: '2026-07-18T23:31:00-04:00',
+		title: 'Transición',
+	},
+	{
 		id: 'magia-latina',
 		kind: 'artist',
 		status: 'confirmed',
-		timeLabel: '23:31-23:33',
+		timeLabel: '23:31-23:34',
 		startDateTime: '2026-07-18T23:31:00-04:00',
-		endDateTime: '2026-07-18T23:33:00-04:00',
+		endDateTime: '2026-07-18T23:34:00-04:00',
 		title: 'Magia Latina',
 		artistId: 'magia-latina',
 		discipline: 'Bachata ladies',
 	},
 	{
+		id: 'transition-6',
+		kind: 'transition',
+		status: 'confirmed',
+		timeLabel: '23:34-23:36',
+		startDateTime: '2026-07-18T23:34:00-04:00',
+		endDateTime: '2026-07-18T23:36:00-04:00',
+		title: 'Transición',
+	},
+	{
 		id: 'romina-marcelo',
 		kind: 'artist',
 		status: 'confirmed',
-		timeLabel: '23:35-23:38',
-		startDateTime: '2026-07-18T23:35:00-04:00',
-		endDateTime: '2026-07-18T23:38:00-04:00',
+		timeLabel: '23:36-23:39',
+		startDateTime: '2026-07-18T23:36:00-04:00',
+		endDateTime: '2026-07-18T23:39:00-04:00',
 		title: 'Romina y Marcelo',
 		artistId: 'romina-marcelo',
 		discipline: 'Bachata cabaret pareja',
 	},
 	{
+		id: 'transition-7',
+		kind: 'transition',
+		status: 'confirmed',
+		timeLabel: '23:39-23:41',
+		startDateTime: '2026-07-18T23:39:00-04:00',
+		endDateTime: '2026-07-18T23:41:00-04:00',
+		title: 'Transición',
+	},
+	{
 		id: 'latin-rengo-mi-timbaton',
 		kind: 'artist',
 		status: 'confirmed',
-		timeLabel: '23:40-23:42',
-		startDateTime: '2026-07-18T23:40:00-04:00',
-		endDateTime: '2026-07-18T23:42:00-04:00',
+		timeLabel: '23:41-23:43',
+		startDateTime: '2026-07-18T23:41:00-04:00',
+		endDateTime: '2026-07-18T23:43:00-04:00',
 		title: 'LatinRengo - Mi Timbatón',
 		artistId: 'latin-rengo-mi-timbaton',
 		discipline: 'Rueda de Casino',
@@ -383,14 +453,15 @@ export const presentationSchedule: PresentationScheduleItem[] = [
 		id: 'thanks-photo',
 		kind: 'closing',
 		status: 'confirmed',
-		timeLabel: '23:42-23:50',
-		startDateTime: '2026-07-18T23:42:00-04:00',
+		timeLabel: '23:43-23:50',
+		startDateTime: '2026-07-18T23:43:00-04:00',
 		endDateTime: '2026-07-18T23:50:00-04:00',
 		title: 'Agradecimientos, aniversario y fotografía',
 		role: 'Cierre del bloque',
 	},
 ];
 
+// Para el dia del evento, actualizar estos estados aqui y verificar la disponibilidad JSON-LD en createEventJsonLd.
 export const ticketTiers: TicketTier[] = [
 	{
 		id: 'preventa',
@@ -540,6 +611,14 @@ export const menuCategories: MenuCategory[] = [
 		id: 'bebestibles',
 		status: 'confirmed',
 		title: 'Bebestibles',
+		notice: {
+			label: 'Condiciones de venta',
+			items: [
+				'Venta exclusiva para mayores de 18 años.',
+				'Se solicitará identificación cuando corresponda.',
+				'Venta sujeta a las condiciones y permisos del evento.',
+			],
+		},
 		items: [
 			{
 				id: 'cerveza',
@@ -676,7 +755,7 @@ export function createEventJsonLd() {
 			url: `${siteOrigin}${socialPath}#entradas`,
 			description: ticket.note,
 			availability:
-				ticket.availability === 'sold-out'
+				ticket.availability === 'sold-out' || ticket.availability === 'ended'
 					? 'https://schema.org/SoldOut'
 					: 'https://schema.org/InStock',
 		})),

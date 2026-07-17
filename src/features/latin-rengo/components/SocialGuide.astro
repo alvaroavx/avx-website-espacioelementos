@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import LatinRengoAnalytics from './LatinRengoAnalytics.astro';
 import LatinRengoSocialLayout from '../layouts/LatinRengoSocialLayout.astro';
 import {
 	archivePath,
@@ -24,6 +25,7 @@ const pageDescription =
 	canonicalPath="/latin-rengo-social"
 	jsonLd={createEventJsonLd()}
 >
+	<LatinRengoAnalytics sourcePage="latin-rengo-social" />
 	<main id="contenido" data-latin-rengo class="lr-page lr-guide">
 		<section class="lr-hero" aria-labelledby="lr-title">
 			<div class="lr-hero__inner">
@@ -37,7 +39,16 @@ const pageDescription =
 					<p>{event.quickSummary}</p>
 				</div>
 				<nav class="lr-quick-nav" aria-label="Accesos rápidos">
-					<a href="#programa">Programación</a>
+					<a
+						href="#programa"
+						data-lr-event="select_schedule"
+						data-lr-site-section="quick_nav"
+						data-lr-source-page="latin-rengo-social"
+						data-lr-destination="schedule"
+						data-lr-link-type="anchor"
+					>
+						Programación
+					</a>
 					<a href={menuPath}>Menú</a>
 					<a href="#entradas">Entradas</a>
 					<a href="#como-llegar">Cómo llegar</a>
@@ -60,15 +71,32 @@ const pageDescription =
 				<h2 id="lr-access-title">Accesos útiles</h2>
 			</div>
 			<div class="lr-action-grid">
-				<a class="lr-action" href="#programa">
+				<a
+					class="lr-action"
+					href="#programa"
+					data-lr-event="select_schedule"
+					data-lr-site-section="access_grid"
+					data-lr-source-page="latin-rengo-social"
+					data-lr-destination="schedule"
+					data-lr-link-type="anchor"
+				>
 					<span>Ver horarios</span>
 					<small>Clase, social, presentaciones y cierre.</small>
 				</a>
 				<a class="lr-action" href={menuPath}>
 					<span>Ver menú</span>
-					<small>Comida confirmada en texto accesible.</small>
+					<small>Comida y bebestibles confirmados.</small>
 				</a>
-				<a class="lr-action" href={event.contact.whatsappHref}>
+				<a
+					class="lr-action"
+					href={event.contact.whatsappHref}
+					data-lr-event="select_contact"
+					data-lr-site-section="access_grid"
+					data-lr-source-page="latin-rengo-social"
+					data-lr-destination="whatsapp"
+					data-lr-contact-method="whatsapp"
+					data-lr-link-type="whatsapp"
+				>
 					<span>Consultar a LatinRengo</span>
 					<small>{event.contact.label}</small>
 				</a>
@@ -105,7 +133,7 @@ const pageDescription =
 						<p class="lr-kicker">Bloque artístico</p>
 						<h3>Orden de presentaciones</h3>
 					</div>
-					<p class="lr-note">Orden de presentaciones sujeto a cambios.</p>
+					<p class="lr-note">Horario programado, sujeto a ajustes operativos.</p>
 				</div>
 				<ol class="lr-performance-list">
 					{publicPresentationSchedule.map((item, index) => (
@@ -114,13 +142,18 @@ const pageDescription =
 							{item.artistNumber && <span class="lr-performance-number">{item.artistNumber}</span>}
 							<div class="lr-performance-item__body">
 								<h4>{item.title}</h4>
-								<p>{item.discipline ?? item.role}</p>
+								{(item.discipline || item.role) && <p>{item.discipline ?? item.role}</p>}
 							</div>
 							{item.artist?.image && item.artist.alt && (
 								<a
 									class="lr-performance-item__image"
 									href={item.artist.image.src}
 									aria-label={`Ver afiche de ${item.title} en grande`}
+									data-lr-event="view_artist_poster"
+									data-lr-site-section="performance_schedule"
+									data-lr-source-page="latin-rengo-social"
+									data-lr-artist-slug={item.artist.id}
+									data-lr-link-type="poster"
 								>
 									<Image
 										src={item.artist.image}
@@ -154,7 +187,18 @@ const pageDescription =
 					</article>
 				))}
 			</div>
-			<a class="lr-primary-cta" href={event.contact.whatsappHref}>Consultar entradas por WhatsApp</a>
+			<a
+				class="lr-primary-cta"
+				href={event.contact.whatsappHref}
+				data-lr-event="select_ticket_contact"
+				data-lr-site-section="tickets"
+				data-lr-source-page="latin-rengo-social"
+				data-lr-destination="whatsapp"
+				data-lr-contact-method="whatsapp"
+				data-lr-link-type="whatsapp"
+			>
+				Consultar entradas por WhatsApp
+			</a>
 		</section>
 
 		<section id="como-llegar" class="lr-section" aria-labelledby="lr-place-title">
@@ -166,7 +210,17 @@ const pageDescription =
 				<div class="lr-info-panel">
 					<p><strong>{event.venueName}</strong></p>
 					{event.location.mapUrl && (
-						<a class="lr-primary-cta" href={event.location.mapUrl}>Abrir en Google Maps</a>
+						<a
+							class="lr-primary-cta"
+							href={event.location.mapUrl}
+							data-lr-event="select_map"
+							data-lr-site-section="location"
+							data-lr-source-page="latin-rengo-social"
+							data-lr-destination="google_maps"
+							data-lr-link-type="external"
+						>
+							Abrir en Google Maps
+						</a>
 					)}
 				</div>
 				{event.location.mapEmbedUrl && event.location.mapUrl && (
@@ -182,7 +236,15 @@ const pageDescription =
 							tabindex="-1"
 							aria-hidden="true"
 						></iframe>
-						<a class="lr-map-frame__link" href={event.location.mapUrl}>
+						<a
+							class="lr-map-frame__link"
+							href={event.location.mapUrl}
+							data-lr-event="select_map"
+							data-lr-site-section="location"
+							data-lr-source-page="latin-rengo-social"
+							data-lr-destination="google_maps"
+							data-lr-link-type="map_overlay"
+						>
 							<span>Abrir ruta en Google Maps</span>
 						</a>
 					</div>
@@ -197,7 +259,32 @@ const pageDescription =
 			</div>
 			<div class="lr-contact-panel">
 				<p>{event.contact.label}</p>
-				<a class="lr-primary-cta" href={event.contact.whatsappHref}>Escribir a LatinRengo</a>
+				<div class="lr-contact-panel__actions">
+					<a
+						class="lr-primary-cta"
+						href={event.contact.whatsappHref}
+						data-lr-event="select_contact"
+						data-lr-site-section="contact"
+						data-lr-source-page="latin-rengo-social"
+						data-lr-destination="whatsapp"
+						data-lr-contact-method="whatsapp"
+						data-lr-link-type="whatsapp"
+					>
+						Escribir a LatinRengo
+					</a>
+					<a
+						class="lr-primary-cta lr-primary-cta--secondary"
+						href={event.contact.telHref}
+						data-lr-event="select_contact"
+						data-lr-site-section="contact"
+						data-lr-source-page="latin-rengo-social"
+						data-lr-destination="phone"
+						data-lr-contact-method="phone"
+						data-lr-link-type="tel"
+					>
+						Llamar a LatinRengo
+					</a>
+				</div>
 			</div>
 		</section>
 
@@ -225,11 +312,29 @@ const pageDescription =
 				LatinRengo Social es la guía pública del evento de aniversario. La página principal de
 				LatinRengo mantiene su identidad de clases y comunidad regular.
 			</p>
-			<a href="/latin-rengo">Ir a LatinRengo</a>
+			<a
+				href="/latin-rengo"
+				data-lr-event="select_main_latinrengo"
+				data-lr-site-section="relationship"
+				data-lr-source-page="latin-rengo-social"
+				data-lr-destination="latin_rengo"
+				data-lr-link-type="internal"
+			>
+				Ir a LatinRengo
+			</a>
 		</section>
 	</main>
 	<footer data-latin-rengo class="lr-footer">
-		<a href="/latin-rengo">LatinRengo</a>
+		<a
+			href="/latin-rengo"
+			data-lr-event="select_main_latinrengo"
+			data-lr-site-section="footer"
+			data-lr-source-page="latin-rengo-social"
+			data-lr-destination="latin_rengo"
+			data-lr-link-type="internal"
+		>
+			LatinRengo
+		</a>
 		<a href={menuPath}>Menú del evento</a>
 		<a href={archivePath}>Ver archivo de LatinRengo Social</a>
 	</footer>

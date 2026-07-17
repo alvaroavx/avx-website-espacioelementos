@@ -1,4 +1,5 @@
 ---
+import LatinRengoAnalytics from './LatinRengoAnalytics.astro';
 import LatinRengoSocialLayout from '../layouts/LatinRengoSocialLayout.astro';
 import {
 	latinRengoSocialEvent as event,
@@ -17,6 +18,7 @@ const pageDescription =
 	canonicalPath={socialPath}
 	noindex
 >
+	<LatinRengoAnalytics sourcePage="latin-rengo-v3" />
 	<main id="contenido" data-latin-rengo class="lr-page lr-bridge-page">
 		<section class="lr-hero lr-bridge" aria-labelledby="lr-bridge-title">
 			<div class="lr-hero__inner">
@@ -34,9 +36,36 @@ const pageDescription =
 					del evento está en la guía LatinRengo Social.
 				</p>
 				<nav class="lr-quick-nav" aria-label="Accesos principales">
-					<a href={socialPath}>Ir a la guía vigente</a>
-					<a href={menuPath}>Ver menú</a>
-					<a href={`${socialPath}#programa`}>Programación</a>
+					<a
+						href={socialPath}
+						data-lr-event="qr_bridge_continue"
+						data-lr-site-section="qr_bridge"
+						data-lr-source-page="latin-rengo-v3"
+						data-lr-destination="social_guide"
+						data-lr-link-type="internal"
+					>
+						Ir a la guía vigente
+					</a>
+					<a
+						href={menuPath}
+						data-lr-event="qr_bridge_continue"
+						data-lr-site-section="qr_bridge"
+						data-lr-source-page="latin-rengo-v3"
+						data-lr-destination="menu"
+						data-lr-link-type="internal"
+					>
+						Ver menú
+					</a>
+					<a
+						href={`${socialPath}#programa`}
+						data-lr-event="qr_bridge_continue"
+						data-lr-site-section="qr_bridge"
+						data-lr-source-page="latin-rengo-v3"
+						data-lr-destination="schedule"
+						data-lr-link-type="anchor"
+					>
+						Programación
+					</a>
 				</nav>
 			</div>
 		</section>

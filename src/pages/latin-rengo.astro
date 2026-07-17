@@ -1,11 +1,20 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
+import LatinRengoAnalytics from '../features/latin-rengo/components/LatinRengoAnalytics.astro';
 import '../styles/latin-rengo.css';
 
 const WA_NUMBER  = '56979898502';
 const WA_MESSAGE = 'Hola! Quiero consultar sobre las clases de LatinRengo 🎶';
 const WA_HREF    = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_MESSAGE)}`;
 const CONTACT    = '+56 9 7989 8502';
+const CONTACT_ANALYTICS = {
+  'data-lr-event': 'select_contact',
+  'data-lr-site-section': 'latin_rengo',
+  'data-lr-source-page': 'latin-rengo',
+  'data-lr-destination': 'whatsapp',
+  'data-lr-contact-method': 'whatsapp',
+  'data-lr-link-type': 'whatsapp',
+};
 
 const FACTS = [
   { label: 'Cuándo',   value: 'Todos los sábados'  },
@@ -89,6 +98,7 @@ const currentYear = new Date().getFullYear();
   </head>
   <body class="lr-page">
     <a class="lr-skip-link" href="#contenido">Saltar al contenido</a>
+    <LatinRengoAnalytics sourcePage="latin-rengo" />
 
     <header class="lr-topbar">
       <div class="lr-shell lr-topbar__inner">
@@ -104,7 +114,7 @@ const currentYear = new Date().getFullYear();
           <a href="#ubicacion">Ubicación</a>
           <a href="#preguntas">Preguntas</a>
         </nav>
-        <a class="lr-topbar__cta" href={WA_HREF} target="_blank" rel="noopener noreferrer">
+        <a class="lr-topbar__cta" href={WA_HREF} target="_blank" rel="noopener noreferrer" {...CONTACT_ANALYTICS}>
           Consultar cupo
         </a>
       </div>
@@ -130,7 +140,7 @@ const currentYear = new Date().getFullYear();
               <li>Comunidad LatinRengo</li>
             </ul>
             <div class="lr-actions">
-              <a class="lr-button" href={WA_HREF} target="_blank" rel="noopener noreferrer">
+              <a class="lr-button" href={WA_HREF} target="_blank" rel="noopener noreferrer" {...CONTACT_ANALYTICS}>
                 Consultar cupo por WhatsApp
               </a>
               <a class="lr-button lr-button--secondary" href="#horario">Ver horario</a>
@@ -171,6 +181,7 @@ const currentYear = new Date().getFullYear();
               href={WA_HREF}
               target="_blank"
               rel="noopener noreferrer"
+              {...CONTACT_ANALYTICS}
             >
               Consultar cupo por WhatsApp
             </a>
@@ -283,7 +294,7 @@ const currentYear = new Date().getFullYear();
             </p>
           </div>
           <div class="lr-actions">
-            <a class="lr-button lr-button--dark" href={WA_HREF} target="_blank" rel="noopener noreferrer">
+            <a class="lr-button lr-button--dark" href={WA_HREF} target="_blank" rel="noopener noreferrer" {...CONTACT_ANALYTICS}>
               Consultar por WhatsApp
             </a>
           </div>
@@ -328,7 +339,7 @@ const currentYear = new Date().getFullYear();
             ))}
           </div>
           <div class="lr-actions">
-            <a class="lr-button lr-button--dark" href={WA_HREF} target="_blank" rel="noopener noreferrer">
+            <a class="lr-button lr-button--dark" href={WA_HREF} target="_blank" rel="noopener noreferrer" {...CONTACT_ANALYTICS}>
               Quiero probar una clase
             </a>
           </div>
@@ -411,7 +422,7 @@ const currentYear = new Date().getFullYear();
             </div>
           </div>
           <div class="lr-actions">
-            <a class="lr-button" href={WA_HREF} target="_blank" rel="noopener noreferrer">
+            <a class="lr-button" href={WA_HREF} target="_blank" rel="noopener noreferrer" {...CONTACT_ANALYTICS}>
               Consultar cupo por WhatsApp
             </a>
           </div>
@@ -434,7 +445,7 @@ const currentYear = new Date().getFullYear();
               @latin.rengo
             </a>
           </p>
-          <p>WhatsApp: <a href={WA_HREF}>{CONTACT}</a></p>
+          <p>WhatsApp: <a href={WA_HREF} {...CONTACT_ANALYTICS}>{CONTACT}</a></p>
           <p>LatinRengo · {currentYear}</p>
         </div>
       </div>
@@ -446,6 +457,7 @@ const currentYear = new Date().getFullYear();
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Consultar cupo para las clases de LatinRengo por WhatsApp"
+      {...CONTACT_ANALYTICS}
     >
       <span class="lr-floating-buy__desktop">Consultar por WhatsApp</span>
       <span class="lr-floating-buy__mobile">WhatsApp</span>

@@ -1,4 +1,5 @@
 ---
+import LatinRengoAnalytics from './LatinRengoAnalytics.astro';
 import LatinRengoSocialLayout from '../layouts/LatinRengoSocialLayout.astro';
 import {
 	formatCLP,
@@ -13,6 +14,7 @@ const pageDescription =
 ---
 
 <LatinRengoSocialLayout title={pageTitle} description={pageDescription} canonicalPath="/latin-rengo-social/menu">
+	<LatinRengoAnalytics sourcePage="latin-rengo-social-menu" initialEvent="select_menu" />
 	<main id="contenido" data-latin-rengo class="lr-page lr-menu-page">
 		<header class="lr-menu-hero">
 			<div>
@@ -40,6 +42,14 @@ const pageDescription =
 							<h3 id={`menu-${category.id}`}>{category.title}</h3>
 							{category.provider && <p>{category.provider}</p>}
 						</div>
+						{category.notice && (
+							<aside class="lr-menu-notice" aria-label={category.notice.label}>
+								<strong>{category.notice.label}</strong>
+								<ul>
+									{category.notice.items.map((item) => <li>{item}</li>)}
+								</ul>
+							</aside>
+						)}
 						<div class="lr-menu-items">
 							{category.items.map((item) => (
 								<article class="lr-menu-item">
