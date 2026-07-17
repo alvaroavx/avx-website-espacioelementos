@@ -536,6 +536,62 @@ export const menuCategories: MenuCategory[] = [
 			},
 		],
 	},
+	{
+		id: 'bebestibles',
+		status: 'confirmed',
+		title: 'Bebestibles',
+		items: [
+			{
+				id: 'cerveza',
+				status: 'confirmed',
+				name: 'Cerveza',
+				description: 'Opciones publicadas: Corona, Royal o Budweiser.',
+				prices: [{ label: 'Unidad', price: 2000 }],
+			},
+			{
+				id: 'pisco-con-bebida',
+				status: 'confirmed',
+				name: 'Pisco c/bebida',
+				description: 'Pisco con bebida.',
+				prices: [{ label: 'Unidad', price: 5000 }],
+			},
+			{
+				id: 'ron-con-bebida',
+				status: 'confirmed',
+				name: 'Ron c/bebida',
+				description: 'Ron con bebida.',
+				prices: [{ label: 'Unidad', price: 5000 }],
+			},
+			{
+				id: 'whisky-con-bebida',
+				status: 'confirmed',
+				name: 'Whisky c/bebida',
+				description: 'Whisky con bebida.',
+				prices: [{ label: 'Unidad', price: 5000 }],
+			},
+			{
+				id: 'whisky',
+				status: 'confirmed',
+				name: 'Whisky',
+				description: 'Whisky.',
+				prices: [{ label: 'Unidad', price: 6000 }],
+			},
+			{
+				id: 'ramazotti',
+				status: 'confirmed',
+				name: 'Ramazotti',
+				description: 'Ramazotti.',
+				prices: [{ label: 'Unidad', price: 6000 }],
+			},
+			{
+				id: 'mojito-sabores',
+				status: 'confirmed',
+				name: 'Mojito Sabores',
+				description: 'Mojito sabores.',
+				prices: [{ label: 'Unidad', price: 6000 }],
+			},
+		],
+	},
 ];
 
 export const faqItems: FaqItem[] = [

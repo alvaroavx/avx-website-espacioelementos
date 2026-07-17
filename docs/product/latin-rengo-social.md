@@ -64,6 +64,7 @@ Regla operativa: los componentes solo consumen colecciones filtradas como `publi
   - Pizzas por Pizzis Pizzería.
   - Aperitivos listados en `content/social.ts`.
   - Bebidas sin alcohol confirmadas: bebida en lata, energética y agua con gas o sin gas.
+  - Bebestibles confirmados: cerveza, combinados y cocteles listados en `content/social.ts`.
 - Cómo llegar:
   - Se publica mapa de Google Maps con enlace confirmado: `https://maps.app.goo.gl/FWgMPkF2G9vWgjTa8`.
 
@@ -71,7 +72,6 @@ Regla operativa: los componentes solo consumen colecciones filtradas como `publi
 
 - Dirección textual exacta del Centro de Eventos Mariette, si se requiere mostrarla fuera del mapa.
 - QR bancario de imágenes de referencia.
-- Otros productos de barra o bebidas no autorizados explícitamente para esta entrega.
 - Condiciones de venta, medio de pago, política etaria o vigencia de preventa no confirmadas.
 
 ## Cómo editar programa, artistas y menú
@@ -115,6 +115,5 @@ No debe depender del dataset vigente del evento.
 - Confirmar dirección textual exacta del Centro de Eventos Mariette si se quiere mostrar como texto.
 - Confirmar escritura oficial de `Ladys May` versus `Ladies May`.
 - Confirmar duración real de Magia Latina: el cronograma público indica 23:31-23:33, pero una fuente operativa indicaba 3 minutos.
-- Recibir aprobación adulta responsable antes de publicar otros productos de barra o bebidas.
 - Probar lectura real del menú en TV a la distancia del recinto y decidir si hace falta `/latin-rengo-social/menu/tv`.
 - Borrar `/latin-rengo-v3` cuando los códigos QR impresos de este Social dejen de ser necesarios.
