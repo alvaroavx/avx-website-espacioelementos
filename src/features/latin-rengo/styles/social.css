@@ -885,9 +885,20 @@ summary:focus-visible {
 	background: var(--lr-orange);
 	color: #15040a;
 	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.4rem;
 	font: inherit;
 	font-weight: 900;
 	padding: 0.72rem 1rem;
+}
+
+.lr-menu-payment__actions svg {
+	fill: none;
+	flex: 0 0 auto;
+	stroke: currentColor;
+	stroke-width: 2;
 }
 
 .lr-menu-payment__actions button:hover {
@@ -1131,8 +1142,7 @@ summary:focus-visible {
 		display: none;
 	}
 
-	.lr-menu-category--pizzas .lr-menu-item__copy p,
-	.lr-menu-category--aperitivos .lr-menu-item__copy p {
+	.lr-menu-category .lr-menu-item__copy p {
 		display: block;
 		font-size: 0.72rem;
 		line-height: 1.25;

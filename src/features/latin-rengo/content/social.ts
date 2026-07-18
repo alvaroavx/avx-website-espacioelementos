@@ -634,7 +634,7 @@ export const menuCategories: MenuCategory[] = [
 				id: 'bebida-lata',
 				status: 'confirmed',
 				name: 'Bebida en lata',
-				description: 'Coca-Cola, Sprite o Fanta.',
+				description: 'Coca Cola, Fanta y Sprite.',
 				prices: [{ label: 'Unidad', price: 2500 }],
 			},
 			{
@@ -664,14 +664,6 @@ export const menuCategories: MenuCategory[] = [
 		id: 'bebestibles',
 		status: 'confirmed',
 		title: 'Bebestibles',
-		notice: {
-			label: 'Condiciones de venta',
-			items: [
-				'Venta exclusiva para mayores de 18 años.',
-				'Se solicitará identificación cuando corresponda.',
-				'Venta sujeta a las condiciones y permisos del evento.',
-			],
-		},
 		items: [
 			{
 				id: 'cerveza',
@@ -684,28 +676,28 @@ export const menuCategories: MenuCategory[] = [
 				id: 'pisco-con-bebida',
 				status: 'confirmed',
 				name: 'Pisco Mistral 35° con bebida',
-				description: 'Pisco Mistral 35° con bebida.',
+				description: 'Bebida a elección: Coca-Cola, Coca-Cola Zero, Sprite o Ginger ale.',
 				prices: [{ label: 'Unidad', price: 5500 }],
 			},
 			{
 				id: 'ron-barcelo-dorado-con-bebida',
 				status: 'confirmed',
 				name: 'Ron Barceló Dorado con bebida',
-				description: 'Ron Barceló Dorado con bebida.',
+				description: 'Bebida a elección: Coca-Cola, Coca-Cola Zero, Sprite o Ginger ale.',
 				prices: [{ label: 'Unidad', price: 5500 }],
 			},
 			{
 				id: 'ron-barcelo-anejo-con-bebida',
 				status: 'confirmed',
 				name: 'Ron Barceló Añejo con bebida',
-				description: 'Ron Barceló Añejo con bebida.',
+				description: 'Bebida a elección: Coca-Cola, Coca-Cola Zero, Sprite o Ginger ale.',
 				prices: [{ label: 'Unidad', price: 6000 }],
 			},
 			{
 				id: 'whisky-johnnie-walker-con-bebida',
 				status: 'confirmed',
 				name: 'Whisky Johnnie Walker con bebida',
-				description: 'Whisky Johnnie Walker con bebida.',
+				description: 'Bebida a elección: Coca-Cola, Coca-Cola Zero, Sprite o Ginger ale.',
 				prices: [{ label: 'Unidad', price: 6500 }],
 			},
 			{

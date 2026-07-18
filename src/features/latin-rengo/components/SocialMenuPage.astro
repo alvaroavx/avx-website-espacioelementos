@@ -121,7 +121,13 @@ const transferCopyText =
 							<p>{publicMenuTransferDetails.description}</p>
 						</div>
 						<div class="lr-menu-payment__actions">
-							<button type="button" data-lr-transfer-copy>{publicMenuTransferDetails.copyLabel}</button>
+							<button type="button" data-lr-transfer-copy>
+								<svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18">
+									<rect x="8" y="8" width="11" height="11" rx="2"></rect>
+									<path d="M5 15H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"></path>
+								</svg>
+								<span>{publicMenuTransferDetails.copyLabel}</span>
+							</button>
 							<p data-lr-transfer-status role="status" aria-live="polite"></p>
 						</div>
 					</div>
