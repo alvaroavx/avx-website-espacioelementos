@@ -1,6 +1,5 @@
 import type { ImageMetadata } from 'astro';
 
-import essenciaLatinaImage from '../assets/artists/essencia-latina.jpg';
 import falakHanaImage from '../assets/artists/falak-hana.jpg';
 import gabrielaPinaImage from '../assets/artists/gabriela-pina.jpg';
 import ladiesMayImage from '../assets/artists/ladies-may-gema-dance-academy.jpg';
@@ -261,9 +260,7 @@ export const artistCatalog: Artist[] = [
 		name: 'Essencia Latina',
 		discipline: 'Rueda de Casino',
 		scheduleLabel: '23:26-23:29',
-		image: essenciaLatinaImage,
-		alt: 'Afiche de Essencia Latina para LatinRengo Social.',
-		status: 'confirmed',
+		status: 'withheld',
 	},
 	{
 		id: 'magia-latina',
@@ -299,7 +296,7 @@ export const presentationOrder: ArtistPresentation[] = [
 	{ artistId: 'laura-alvaro', order: 2, status: 'confirmed' },
 	{ artistId: 'ladies-may', order: 3, status: 'confirmed' },
 	{ artistId: 'gabriela-pina', order: 4, status: 'confirmed' },
-	{ artistId: 'essencia-latina', order: 5, status: 'confirmed' },
+	{ artistId: 'essencia-latina', order: 5, status: 'withheld' },
 	{ artistId: 'magia-latina', order: 6, status: 'confirmed' },
 	{ artistId: 'romina-marcelo', order: 7, status: 'confirmed' },
 	{ artistId: 'latin-rengo-mi-timbaton', order: 8, status: 'confirmed' },
@@ -399,7 +396,7 @@ export const presentationSchedule: PresentationScheduleItem[] = [
 	{
 		id: 'essencia-latina',
 		kind: 'artist',
-		status: 'confirmed',
+		status: 'withheld',
 		timeLabel: '23:26-23:29',
 		startDateTime: '2026-07-18T23:26:00-04:00',
 		endDateTime: '2026-07-18T23:29:00-04:00',
@@ -542,7 +539,7 @@ export const menuCategories: MenuCategory[] = [
 				id: 'pepperoni',
 				status: 'confirmed',
 				name: 'Pepperoni',
-				description: 'Masa artesanal, salsa de tomate, queso mozzarella y pepperoni.',
+				description: 'Masa artesanal, Salsa de tomate, Queso Mozzarella y Pepperoni.',
 				prices: [
 					{ label: 'Individual · 24 cm', price: 7500 },
 					{ label: 'Familiar · 32 cm', price: 13000 },
@@ -553,7 +550,7 @@ export const menuCategories: MenuCategory[] = [
 				status: 'confirmed',
 				name: 'Del Jardín',
 				description:
-					'Masa artesanal, salsa de tomate, queso mozzarella, champiñón, choclo, aceituna y pimentón. Apta para vegetarianos.',
+					'Masa artesanal, Salsa de tomate, Queso Mozzarella, Champiñón, Choclo, Aceituna y Pimentón. Apta para vegetarianos.',
 				prices: [
 					{ label: 'Individual · 24 cm', price: 7500 },
 					{ label: 'Familiar · 32 cm', price: 13000 },
@@ -565,7 +562,7 @@ export const menuCategories: MenuCategory[] = [
 				status: 'confirmed',
 				name: 'Mediterránea',
 				description:
-					'Masa artesanal, salsa de tomate, queso mozzarella, jamón serrano, tomate cherry y pesto.',
+					'Masa artesanal, Salsa de tomate, Queso Mozzarella, Jamón serrano, Tomate cherry y Pesto.',
 				prices: [
 					{ label: 'Individual · 24 cm', price: 9000 },
 					{ label: 'Familiar · 32 cm', price: 14500 },
@@ -576,7 +573,7 @@ export const menuCategories: MenuCategory[] = [
 				status: 'confirmed',
 				name: 'Todas las carnes',
 				description:
-					'Masa artesanal, salsa de tomate, queso mozzarella, pepperoni, jamón, carne molida y longaniza.',
+					'Masa artesanal, Salsa de tomate, Queso Mozzarella y Pepperoni, Jamón, Carne Molida y Longaniza.',
 				prices: [
 					{ label: 'Individual · 24 cm', price: 7500 },
 					{ label: 'Familiar · 32 cm', price: 13000 },
@@ -599,14 +596,14 @@ export const menuCategories: MenuCategory[] = [
 				status: 'confirmed',
 				name: 'Papas fritas',
 				description:
-					'Con salsa de la casa. Aptas para vegetarianos y con opción de salsa vegana.',
+					'Con salsa de la casa. Aptas para vegetarianos, y con opción de salsa vegana.',
 				prices: [{ label: 'Porción', price: 4500 }],
 				tags: ['Vegetariano', 'Opción vegana'],
 			},
 			{
 				id: 'papas-fritas-mechada',
 				status: 'confirmed',
-				name: 'Papas fritas con mechada',
+				name: 'Papas fritas con Mechada',
 				description: 'Con una deliciosa salsa de queso y ciboulette.',
 				prices: [{ label: 'Porción', price: 10000 }],
 			},
@@ -615,14 +612,14 @@ export const menuCategories: MenuCategory[] = [
 				status: 'confirmed',
 				name: 'Papas fritas del Jardín',
 				description:
-					'Incluye champiñón, choclo, pimentón y salsa cheddar. Aptas para vegetarianos.',
+					'Incluye Champiñón, Choclo, Pimentón y Salsa Cheddar. Aptas para vegetarianos.',
 				prices: [{ label: 'Porción', price: 8000 }],
 				tags: ['Vegetariano'],
 			},
 			{
 				id: 'aros-cebolla',
 				status: 'confirmed',
-				name: 'Aros de cebolla',
+				name: 'Aros de Cebolla',
 				description: '10 unidades, con salsa a elección.',
 				prices: [{ label: '10 unidades', price: 4000 }],
 			},

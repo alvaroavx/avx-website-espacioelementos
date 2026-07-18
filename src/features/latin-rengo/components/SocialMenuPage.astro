@@ -40,7 +40,10 @@ const transferCopyText =
 			</nav>
 			<div class="lr-menu-grid">
 				{publicMenuCategories.map((category) => (
-					<section class="lr-menu-category" aria-labelledby={`menu-${category.id}`}>
+					<section
+						class:list={['lr-menu-category', `lr-menu-category--${category.id}`]}
+						aria-labelledby={`menu-${category.id}`}
+					>
 						<div class="lr-menu-category__header">
 							<h3 id={`menu-${category.id}`}>{category.title}</h3>
 							{(category.provider || category.providerLink) && (
