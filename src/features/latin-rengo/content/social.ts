@@ -105,6 +105,10 @@ export interface MenuCategory extends Statused {
 	id: string;
 	title: string;
 	provider?: string;
+	providerLink?: {
+		label: string;
+		href: string;
+	};
 	notice?: {
 		label: string;
 		items: string[];
@@ -495,6 +499,10 @@ export const menuCategories: MenuCategory[] = [
 		status: 'confirmed',
 		title: 'Pizzas',
 		provider: 'Pizzis Pizzería',
+		providerLink: {
+			label: '@pizzis.pizzeria',
+			href: 'https://www.instagram.com/pizzis.pizzeria',
+		},
 		items: [
 			{
 				id: 'pepperoni',

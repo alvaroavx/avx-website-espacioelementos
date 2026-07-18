@@ -40,7 +40,26 @@ const pageDescription =
 					<section class="lr-menu-category" aria-labelledby={`menu-${category.id}`}>
 						<div class="lr-menu-category__header">
 							<h3 id={`menu-${category.id}`}>{category.title}</h3>
-							{category.provider && <p>{category.provider}</p>}
+							{(category.provider || category.providerLink) && (
+								<div class="lr-menu-category__provider">
+									{category.provider && <p>{category.provider}</p>}
+									{category.providerLink && (
+										<a
+											href={category.providerLink.href}
+											target="_blank"
+											rel="noopener noreferrer"
+											aria-label={`Abrir Instagram de ${category.provider ?? category.providerLink.label}`}
+										>
+											<svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18">
+												<rect x="3" y="3" width="18" height="18" rx="5"></rect>
+												<circle cx="12" cy="12" r="4"></circle>
+												<circle cx="17.5" cy="6.5" r="1"></circle>
+											</svg>
+											<span>{category.providerLink.label}</span>
+										</a>
+									)}
+								</div>
+							)}
 						</div>
 						{category.notice && (
 							<aside class="lr-menu-notice" aria-label={category.notice.label}>
