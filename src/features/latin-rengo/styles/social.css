@@ -670,6 +670,7 @@ summary:focus-visible {
 .lr-menu-category h3 {
 	font-size: clamp(1.45rem, 7vw, 2.5rem);
 	line-height: 1;
+	scroll-margin-top: 1rem;
 }
 
 .lr-menu-category__provider {
@@ -842,6 +843,96 @@ summary:focus-visible {
 	padding: 0.2rem 0.5rem;
 }
 
+.lr-menu-payment {
+	display: grid;
+	gap: 1rem;
+	border: 1px solid rgba(37, 215, 223, 0.22);
+	border-radius: 18px;
+	background: rgba(9, 6, 21, 0.78);
+	margin-top: 1rem;
+	padding: 1rem;
+}
+
+.lr-menu-payment__header {
+	display: grid;
+	gap: 0.9rem;
+	border-bottom: 1px solid rgba(255, 245, 232, 0.14);
+	padding-bottom: 0.9rem;
+}
+
+.lr-menu-payment__header h2 {
+	font-size: clamp(1.45rem, 7vw, 2.5rem);
+	line-height: 1;
+}
+
+.lr-menu-payment__header p {
+	color: var(--lr-muted);
+	font-size: 1rem;
+	line-height: 1.45;
+	margin-top: 0.25rem;
+}
+
+.lr-menu-payment__actions {
+	display: grid;
+	gap: 0.45rem;
+	align-content: start;
+}
+
+.lr-menu-payment__actions button {
+	min-height: 44px;
+	border: 0;
+	border-radius: 999px;
+	background: var(--lr-orange);
+	color: #15040a;
+	cursor: pointer;
+	font: inherit;
+	font-weight: 900;
+	padding: 0.72rem 1rem;
+}
+
+.lr-menu-payment__actions button:hover {
+	filter: brightness(1.06);
+}
+
+.lr-menu-payment__actions p {
+	min-height: 1.3rem;
+	color: var(--lr-cyan);
+	font-size: 0.9rem;
+	font-weight: 780;
+	line-height: 1.35;
+}
+
+.lr-menu-payment__details {
+	display: grid;
+	gap: 0.55rem;
+	margin: 0;
+}
+
+.lr-menu-payment__details div {
+	display: grid;
+	gap: 0.2rem;
+	border: 1px solid rgba(255, 245, 232, 0.12);
+	border-radius: 12px;
+	background: #12101f;
+	padding: 0.75rem;
+}
+
+.lr-menu-payment__details dt {
+	color: var(--lr-muted);
+	font-size: 0.88rem;
+	font-weight: 760;
+	line-height: 1.2;
+}
+
+.lr-menu-payment__details dd {
+	color: var(--lr-text);
+	font-size: 1rem;
+	font-weight: 850;
+	line-height: 1.25;
+	margin: 0;
+	overflow-wrap: anywhere;
+}
+
 .lr-menu-footer {
 	display: grid;
 	gap: 0.25rem;
@@ -890,6 +981,15 @@ summary:focus-visible {
 		grid-template-columns: minmax(0, 1fr) minmax(13rem, 17rem);
 	}
 
+	.lr-menu-payment__header {
+		grid-template-columns: minmax(0, 1fr) auto;
+		align-items: start;
+	}
+
+	.lr-menu-payment__details {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
 	.lr-performance-item {
 		grid-template-columns: 7.5rem 2.4rem minmax(0, 1fr) 9.5rem;
 	}
@@ -936,6 +1036,10 @@ summary:focus-visible {
 
 	.lr-timeline time {
 		font-size: 1.25rem;
+	}
+
+	.lr-menu-payment__details {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 	}
 }
 
@@ -1048,6 +1152,10 @@ summary:focus-visible {
 	.lr-menu-notice li {
 		font-size: 0.72rem;
 		line-height: 1.2;
+	}
+
+	.lr-menu-payment {
+		display: none;
 	}
 
 	.lr-tag-list {

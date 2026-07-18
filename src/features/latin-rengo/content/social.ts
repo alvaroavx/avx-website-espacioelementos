@@ -98,6 +98,13 @@ export interface MenuLegendItem {
 	value: string;
 }
 
+export interface MenuTransferDetails extends Statused {
+	title: string;
+	description: string;
+	copyLabel: string;
+	fields: MenuLegendItem[];
+}
+
 export interface MenuItem extends Statused {
 	id: string;
 	name: string;
@@ -500,7 +507,21 @@ export const ticketTiers: TicketTier[] = [
 	},
 ];
 
-// TODO: publicar QR/datos de transferencia de Pizzis Pizzeria solo con archivo original y datos bancarios validados.
+export const menuTransferDetails: MenuTransferDetails = {
+	status: 'confirmed',
+	title: 'Datos de transferencia',
+	description: 'Puedes copiar estos datos para hacer la transferencia.',
+	copyLabel: 'Copiar datos',
+	fields: [
+		{ label: 'Nombre', value: 'LATIN RENGO' },
+		{ label: 'RUT', value: '19592390-6' },
+		{ label: 'Banco', value: 'Mercado Pago' },
+		{ label: 'Tipo de cuenta', value: 'Cuenta Vista' },
+		{ label: 'Numero de cuenta', value: '1000052622' },
+		{ label: 'Correo', value: 'latin.rengo@gmail.com' },
+	],
+};
+
 export const menuCategories: MenuCategory[] = [
 	{
 		id: 'pizzas',
@@ -758,6 +779,8 @@ export const publicMenuCategories = menuCategories
 		...category,
 		items: category.items.filter((item) => item.status === 'confirmed'),
 	}));
+export const publicMenuTransferDetails =
+	menuTransferDetails.status === 'confirmed' ? menuTransferDetails : null;
 export const publicFaqItems = faqItems.filter((item) => item.status === 'confirmed');
 
 export function formatCLP(price: number): string {

@@ -5,12 +5,15 @@ import {
 	formatCLP,
 	latinRengoSocialEvent as event,
 	publicMenuCategories,
+	publicMenuTransferDetails,
 	socialPath,
 } from '../content/social';
 
 const pageTitle = 'Menú LatinRengo Social';
 const pageDescription =
 	'Menú público confirmado de comida y bebestibles para LatinRengo Social, disponible como texto accesible para teléfono y TV.';
+const transferCopyText =
+	publicMenuTransferDetails?.fields.map((field) => `${field.label}: ${field.value}`).join('\n') ?? '';
 ---
 
 <LatinRengoSocialLayout title={pageTitle} description={pageDescription} canonicalPath="/latin-rengo-social/menu">
@@ -106,10 +109,98 @@ const pageDescription =
 					</section>
 				))}
 			</div>
+			{publicMenuTransferDetails && (
+				<section class="lr-menu-payment" aria-labelledby="menu-payment-title">
+					<div class="lr-menu-payment__header">
+						<div>
+							<p class="lr-kicker">Pago</p>
+							<h2 id="menu-payment-title">{publicMenuTransferDetails.title}</h2>
+							<p>{publicMenuTransferDetails.description}</p>
+						</div>
+						<div class="lr-menu-payment__actions">
+							<button type="button" data-lr-transfer-copy>{publicMenuTransferDetails.copyLabel}</button>
+							<p data-lr-transfer-status role="status" aria-live="polite"></p>
+						</div>
+					</div>
+					<dl class="lr-menu-payment__details">
+						{publicMenuTransferDetails.fields.map((field) => (
+							<div>
+								<dt>{field.label}</dt>
+								<dd>{field.value}</dd>
+							</div>
+						))}
+					</dl>
+				</section>
+			)}
 		</section>
 		<footer class="lr-menu-footer">
 			<p>Solo se muestran productos confirmados para publicación.</p>
 			<p>URL: espacioelementos.cl/latin-rengo-social/menu</p>
 		</footer>
 	</main>
+	<script define:vars={{ transferCopyText }}>
+		const menuLinks = document.querySelectorAll('.lr-menu-jump-nav a[href^="#menu-"]');
+		const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		menuLinks.forEach((link) => {
+			link.addEventListener('click', (event) => {
+				if (prefersReducedMotion) return;
+
+				const targetId = link.getAttribute('href')?.slice(1);
+				const target = targetId ? document.getElementById(targetId) : null;
+				if (!target) return;
+
+				event.preventDefault();
+				target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				window.history.pushState(null, '', `#${targetId}`);
+			});
+		});
+
+		const copyButton = document.querySelector('[data-lr-transfer-copy]');
+		const copyStatus = document.querySelector('[data-lr-transfer-status]');
+
+		function copyWithTextarea() {
+			const textarea = document.createElement('textarea');
+			textarea.value = transferCopyText;
+			textarea.setAttribute('readonly', '');
+			textarea.style.position = 'fixed';
+			textarea.style.left = '-9999px';
+			document.body.appendChild(textarea);
+			textarea.select();
+			const copied = document.execCommand('copy');
+			document.body.removeChild(textarea);
+			return copied;
+		}
+
+		async function writeTransferDetails() {
+			if (navigator.clipboard?.writeText) {
+				try {
+					await navigator.clipboard.writeText(transferCopyText);
+					return true;
+				} catch {
+					return copyWithTextarea();
+				}
+			}
+
+			return copyWithTextarea();
+		}
+
+		async function copyTransferDetails() {
+			if (!transferCopyText) return;
+
+			try {
+				const copied = await writeTransferDetails();
+				if (!copied) throw new Error('copy_failed');
+
+				if (copyStatus) copyStatus.textContent = 'Datos copiados.';
+			} catch {
+				if (copyStatus) {
+					copyStatus.textContent =
+						'No se pudo copiar automáticamente. Los datos están visibles para copiarlos manualmente.';
+				}
+			}
+		}
+
+		copyButton?.addEventListener('click', copyTransferDetails);
+	</script>
 </LatinRengoSocialLayout>
