@@ -77,7 +77,7 @@ Regla operativa: los componentes solo consumen colecciones filtradas como `publi
 - Menú confirmado:
   - Pizzas por Pizzis Pizzería.
   - Aperitivos listados en `content/social.ts`.
-  - Bebidas sin alcohol confirmadas: bebida en lata, energética y agua con gas o sin gas.
+  - Bebidas sin alcohol confirmadas: bebida en lata, energética, agua con gas o sin gas y té/café.
   - Bebestibles confirmados: cerveza, combinados y cocteles listados en `content/social.ts`.
   - Bebestibles publicados con autorización explícita de la organización, patentes, permisos y responsables.
   - Aviso preventivo visible: venta exclusiva para mayores de 18 años, identificación cuando corresponda y venta sujeta a condiciones y permisos del evento.

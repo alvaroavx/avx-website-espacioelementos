@@ -605,6 +605,13 @@ export const menuCategories: MenuCategory[] = [
 				description: 'Agua mineral con gas o sin gas.',
 				prices: [{ label: 'Unidad', price: 1000 }],
 			},
+			{
+				id: 'te-cafe',
+				status: 'confirmed',
+				name: 'Té/café',
+				description: 'Té o café.',
+				prices: [{ label: 'Unidad', price: 1500 }],
+			},
 		],
 	},
 	{
