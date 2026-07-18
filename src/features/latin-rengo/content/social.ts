@@ -93,6 +93,11 @@ export interface MenuPrice {
 	price: number;
 }
 
+export interface MenuLegendItem {
+	label: string;
+	value: string;
+}
+
 export interface MenuItem extends Statused {
 	id: string;
 	name: string;
@@ -109,6 +114,8 @@ export interface MenuCategory extends Statused {
 		label: string;
 		href: string;
 	};
+	intro?: string;
+	legend?: MenuLegendItem[];
 	notice?: {
 		label: string;
 		items: string[];
@@ -493,6 +500,7 @@ export const ticketTiers: TicketTier[] = [
 	},
 ];
 
+// TODO: publicar QR/datos de transferencia de Pizzis Pizzeria solo con archivo original y datos bancarios validados.
 export const menuCategories: MenuCategory[] = [
 	{
 		id: 'pizzas',
@@ -503,6 +511,11 @@ export const menuCategories: MenuCategory[] = [
 			label: '@pizzis.pizzeria',
 			href: 'https://www.instagram.com/pizzis.pizzeria',
 		},
+		intro: 'Para un descanso entre bailes o para reponer energías.',
+		legend: [
+			{ label: 'Individual', value: '24 cm' },
+			{ label: 'Familiar', value: '32 cm' },
+		],
 		items: [
 			{
 				id: 'pepperoni',
@@ -519,12 +532,12 @@ export const menuCategories: MenuCategory[] = [
 				status: 'confirmed',
 				name: 'Del Jardín',
 				description:
-					'Masa artesanal, salsa de tomate, queso mozzarella, champiñón, choclo, aceituna y pimentón.',
+					'Masa artesanal, salsa de tomate, queso mozzarella, champiñón, choclo, aceituna y pimentón. Apta para vegetarianos.',
 				prices: [
 					{ label: 'Individual · 24 cm', price: 7500 },
 					{ label: 'Familiar · 32 cm', price: 13000 },
 				],
-				tags: ['Vegetariano'],
+				tags: ['Vegetariana'],
 			},
 			{
 				id: 'mediterranea',
@@ -554,12 +567,18 @@ export const menuCategories: MenuCategory[] = [
 		id: 'aperitivos',
 		status: 'confirmed',
 		title: 'Aperitivos',
+		provider: 'Pizzis Pizzería',
+		providerLink: {
+			label: '@pizzis.pizzeria',
+			href: 'https://www.instagram.com/pizzis.pizzeria',
+		},
 		items: [
 			{
 				id: 'papas-fritas',
 				status: 'confirmed',
 				name: 'Papas fritas',
-				description: 'Con salsa de la casa, aptas para vegetarianos y con opción de salsa vegana.',
+				description:
+					'Con salsa de la casa. Aptas para vegetarianos y con opción de salsa vegana.',
 				prices: [{ label: 'Porción', price: 4500 }],
 				tags: ['Vegetariano', 'Opción vegana'],
 			},
@@ -567,14 +586,15 @@ export const menuCategories: MenuCategory[] = [
 				id: 'papas-fritas-mechada',
 				status: 'confirmed',
 				name: 'Papas fritas con mechada',
-				description: 'Con salsa de queso y ciboulette.',
+				description: 'Con una deliciosa salsa de queso y ciboulette.',
 				prices: [{ label: 'Porción', price: 10000 }],
 			},
 			{
 				id: 'papas-fritas-jardin',
 				status: 'confirmed',
 				name: 'Papas fritas del Jardín',
-				description: 'Con champiñón, choclo, pimentón y salsa cheddar.',
+				description:
+					'Incluye champiñón, choclo, pimentón y salsa cheddar. Aptas para vegetarianos.',
 				prices: [{ label: 'Porción', price: 8000 }],
 				tags: ['Vegetariano'],
 			},
@@ -582,7 +602,7 @@ export const menuCategories: MenuCategory[] = [
 				id: 'aros-cebolla',
 				status: 'confirmed',
 				name: 'Aros de cebolla',
-				description: 'Diez unidades con salsa a elección.',
+				description: '10 unidades, con salsa a elección.',
 				prices: [{ label: '10 unidades', price: 4000 }],
 			},
 		],

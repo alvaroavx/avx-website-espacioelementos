@@ -61,6 +61,17 @@ const pageDescription =
 								</div>
 							)}
 						</div>
+						{category.intro && <p class="lr-menu-category__intro">{category.intro}</p>}
+						{category.legend && (
+							<dl class="lr-menu-legend" aria-label={`Tamaños disponibles para ${category.title}`}>
+								{category.legend.map((entry) => (
+									<div>
+										<dt>{entry.label}</dt>
+										<dd>{entry.value}</dd>
+									</div>
+								))}
+							</dl>
+						)}
 						{category.notice && (
 							<aside class="lr-menu-notice" aria-label={category.notice.label}>
 								<strong>{category.notice.label}</strong>
