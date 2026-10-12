@@ -143,6 +143,22 @@ Opcional:
 Nota de implementación vigente:
 - en la primera reestructuración del sitio, `/proyectos` puede resolver directamente la capa de proyectos comunitarios sin abrir todavía subrutas del ecosistema.
 
+### Estado de las rutas (contrastado con `src/pages/` el 2026-10-12)
+
+Lo que existe:
+- `/`, `/servicios`, `/servicios/presentaciones`, `/servicios/talleres-y-experiencias`, `/servicios/produccion-de-eventos`, `/talleres`, `/proyectos` (proyectos comunitarios), `/nosotros`, `/contacto`.
+- `/videos`: no estaba en esta propuesta; existe como ruta liviana de videos y redes (sin iframes) y forma parte de la navegación principal.
+- Rutas del micrositio LatinRengo, fuera de esta arquitectura: ver `docs/product/latin-rengo-social.md`.
+
+Lo que se espera (planificado / no implementado):
+- `/talleres/funcional`, `/talleres/lyra`, `/talleres/parada-de-manos`, `/talleres/yoga`.
+- `/proyectos/compania-elementos`, `/proyectos/latin-rengo`, `/proyectos/comunitarios`.
+- `/dossiers` (hoy los dossiers se muestran como tarjetas dentro de Home, Servicios, Nosotros y Contacto).
+- Cartelera / agenda (hoy sustituida por CTA a Instagram, `InstagramCalendarCTA`).
+- Formularios de contacto (hoy solo WhatsApp y `mailto:`).
+
+Navegación principal implementada: Inicio, Servicios, Talleres, Proyectos, Videos, Nosotros, Contacto, más botón "Cotiza por WhatsApp".
+
 ## Home: bloques sugeridos
 
 1. Hero con propuesta de valor

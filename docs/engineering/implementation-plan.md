@@ -4,6 +4,21 @@
 
 Transformar la web actual en un sitio corporativo-comercial más claro, escalable y alineado con la visión de Espacio Elementos.
 
+## Estado de implementación (contrastado con el código el 2026-10-12)
+
+Lo que existe:
+- Fase 1: dominio real en `astro.config.mjs`; OG institucional en `src/consts.ts`; rutas blog/about/rss retiradas; header/footer multipágina. Quedan dependencias residuales del starter en `package.json`.
+- Fase 2: navegación por rutas reales (`NAV_ITEMS` en `src/data/site.ts`), que además incluye `/videos`.
+- Fase 3: Home reestructurada con hero estático y rail de rutas destacadas (sin carrusel).
+- Fase 4: `/servicios/presentaciones`, `/servicios/talleres-y-experiencias`, `/servicios/produccion-de-eventos`; dossiers enlazados.
+- Fase 5: `/nosotros`, `/proyectos` (proyectos comunitarios) y `/contacto` segmentado por WhatsApp/correo (sin formulario).
+- Fase 6: índice `/talleres` (talleres activos y suspendidos vía `active`).
+- Fase 7: datos en `src/data/` para servicios, talleres, equipo, proyectos, dossiers, videos y heroes.
+
+Lo que se espera (planificado / no implementado):
+- Fase 6: subpáginas de talleres regulares; página de proyectos alojados / ecosistema (Compañía Elementos, Latin Rengo, Lyra).
+- Fase 8: no hay evidencia registrada de una revisión final de performance/accesibilidad; `REPORTE.md` registra solo auditorías mobile puntuales.
+
 ## Principios
 
 - avanzar por fases;

@@ -2,10 +2,14 @@
 
 ## Stack actual
 
-- Astro 5
-- Sitemap
-- Bootstrap 5 por CDN
-- datos base en archivos `ts` dentro de `src/data/`
+- Astro 5 (salida estática, sin adapter ni SSR)
+- `@astrojs/sitemap` (única integración activa en `astro.config.mjs`)
+- CSS propio en `src/styles/global.css`; Bootstrap fue retirado (no hay CDN ni dependencia)
+- datos base en archivos `ts` dentro de `src/data/` (no se usan colecciones de contenido de Astro)
+- `astro:assets` solo en el módulo LatinRengo Social (afiches de artistas); el sitio principal usa `<img>` directo sobre `public/`
+- sin JavaScript de cliente en el sitio principal (menú mobile con checkbox CSS); GA4 con consentimiento solo en rutas LatinRengo
+
+Dependencias declaradas pero sin uso: `@astrojs/mdx`, `@astrojs/rss`, `@tailwindcss/postcss`.
 
 ## Estado general
 
@@ -16,10 +20,13 @@ Hoy el foco real del sitio esta en:
 - paginas de servicios;
 - talleres regulares;
 - proyectos comunitarios;
+- videos;
 - nosotros;
 - contacto;
 - assets estaticos en `public/`;
-- build compilada en `dist/`.
+- build compilada en `dist/` (versionada en git).
+
+Además conviven las rutas del micrositio LatinRengo (`/latin-rengo`, `/latin-rengo-social`, `/latin-rengo-social/menu`, `/latin-rengo-social/archivo/social-original`, `/latin-rengo-v3`). Ver `docs/product/latin-rengo-social.md`.
 
 ## Fuente de verdad
 
@@ -37,22 +44,32 @@ No editar:
 - `src/data/`: datos reutilizables para servicios, talleres, equipo, contacto y dossiers
 - `src/data/page-heroes.ts`: fuente compartida para los heroes principales y el carrusel de la Home
 - `src/data/site.ts`: navegacion, contacto y rutas de consulta reutilizables
-- `public/`: assets estáticos visuales
-- `dist/`: build compilada
+- `src/layouts/MainLayout.astro` y `src/components/BaseHead.astro`: layout y metadatos SEO/OG del sitio principal
+- `src/features/latin-rengo/`: módulo aislado de LatinRengo Social
+- `public/`: assets estáticos visuales y dossiers
+- `dist/`: build compilada, versionada en git; se regenera con `npm run build` y se commitea junto con `src/`
+
+Código presente pero sin uso actual (no importado por ninguna página):
+- componentes: `ContactRouteCard`, `CTA`, `ImageBlock`, `PricingBlock`, `ProgramCard`, `ProofBlock`, `Quote`, `SectionHeader`, `TallerCard`;
+- datos: `src/data/proofItems.ts`, `src/data/latin-rengo.ts` (dataset del Social anterior, reemplazado por `src/features/latin-rengo/content/social.ts`).
 
 ## Hallazgos conocidos
 
 ### 1. Residuos del starter
 La salida publica del starter fue removida del routing principal.
 
+Residuos verificados: dependencias `@astrojs/mdx`, `@astrojs/rss` y `@tailwindcss/postcss` sin uso; `description` y `main: postcss.config.js` (archivo inexistente) en `package.json`.
+
 Pendiente solo si aporta:
 - evaluar si conviene limpiar dependencias heredadas no usadas;
 - seguir desacoplando cualquier resto conceptual del starter original.
 
-### 2. Configuración pendiente
+### 2. Configuración
 - el dominio real confirmado es `https://espacioelementos.cl`
-- `astro.config.mjs` ya debe apuntar al dominio real
+- implementado: `astro.config.mjs` (`site`) y `src/consts.ts` apuntan al dominio real
 - SEO, canónicos y OG base deben mantenerse alineados con la arquitectura nueva
+- pendiente: no existe `public/robots.txt`; el sitemap incluye rutas `noindex` (archivo LatinRengo y `/latin-rengo-v3`)
+- no verificado: el repositorio no contiene configuración de despliegue; el mecanismo de publicación no está documentado
 
 ### 3. Navegación inconsistente
 La navegacion principal ya debe operar por rutas reales.
@@ -69,10 +86,10 @@ Pendiente:
 - mantener consistencia entre CTAs de home, servicios y contacto.
 
 ### 5. JS con referencias a nodos comentados
-Los scripts rotos de la landing anterior deben quedar fuera del sitio actual.
+Resuelto: las páginas del sitio principal no incluyen `<script>`; los únicos scripts de cliente están en el módulo LatinRengo.
 
-### 6. OG image residual
-La imagen Open Graph base ya debe usar la imagen institucional cargada en:
+### 6. OG image
+Implementado: `SITE_OG_IMAGE` en `src/consts.ts` usa la imagen institucional:
 - `/public/images/og/espacio-elementos-og.jpg`
 
 ### 7. Dossiers comerciales confirmados
@@ -82,11 +99,11 @@ Existen materiales comerciales que deben incorporarse cuando estén disponibles 
 - dossier de La Tarea Más Difícil
 - dossier personal del presidente de la organización
 
-Mientras no existan archivos en `public/`:
-- usar placeholders explícitos;
+Regla para futuros dossiers que aún no estén en `public/`:
+- usar placeholders explícitos (`DossierCard` muestra estado pendiente cuando `href` es `null`);
 - no enlazar PDFs inexistentes.
 
-Archivos ya cargados:
+Archivos ya cargados y enlazados desde `src/data/dossiers.ts`:
 - `/public/dossiers/espacio-elementos.pdf`
 - `/public/dossiers/presentaciones.pdf`
 - `/public/dossiers/la-tarea-mas-dificil.pdf`

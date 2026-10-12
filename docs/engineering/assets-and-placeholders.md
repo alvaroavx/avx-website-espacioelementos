@@ -16,7 +16,7 @@ Si un bloque necesita material que no existe todavía:
 
 ## Material confirmado por contexto
 
-Hay material comercial existente, pero no necesariamente cargado en el repositorio:
+Material comercial confirmado (hoy todo cargado en el repositorio):
 - dossier institucional de Espacio Elementos
 - dossier de presentaciones
 - dossier de La Tarea Más Difícil
@@ -41,3 +41,12 @@ Ejemplo:
 
 ```html
 <!-- TODO(asset): Falta imagen horizontal para sección "Presentaciones". Recomendado 1600x900. -->
+```
+
+## Práctica actual en el código
+
+- Los pendientes se marcan con comentarios `TODO` y `PENDIENTE:` en `src/data/*.ts` y en algunas páginas (no con el prefijo `TODO(asset)` sugerido arriba).
+- Placeholders visuales: `PlaceholderMedia.astro` (imagen o video pendiente) y `DossierCard.astro` (estado pendiente cuando `href` es `null`).
+- Videos pendientes: ítems con `isPending: true` en `src/data/videos.ts`.
+- Las imágenes del sitio principal se sirven desde `public/` sin optimización de `astro:assets`; solo los afiches de LatinRengo Social pasan por `astro:assets` (`src/features/latin-rengo/assets/artists/`).
+- `docs/imagenes_artistas_latin_rengo/` guarda los originales de esos afiches; no se publican.

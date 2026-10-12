@@ -51,6 +51,7 @@ Jerarquia de contenido definida:
 - `src/components/Header.astro` usa navegacion real por rutas, estado activo y menu mobile sin Bootstrap JS.
 - `src/components/Footer.astro` usa navegacion, contacto y redes desde `src/data/site.ts`.
 - Se retiro dependencia runtime de Bootstrap CDN en la capa principal.
+- La Home usa un hero estatico con rail de hasta 3 rutas destacadas; no hay carrusel (las props `carouselId`/`autoplay`/`interval` de `PageHero` se ignoran).
 - La navegacion principal incluye: Inicio, Servicios, Talleres, Proyectos, Videos, Nosotros, Contacto.
 
 ### Sistema visual y estilos
@@ -63,6 +64,8 @@ Jerarquia de contenido definida:
 - Los estados pendientes de media se muestran como placeholders editoriales, no como errores visuales.
 
 ### Componentes reutilizables principales
+
+Estado verificado el 2026-10-12: `ContactRouteCard`, `CTA`, `ImageBlock`, `PricingBlock`, `ProgramCard`, `ProofBlock`, `Quote`, `SectionHeader` y `TallerCard` existen pero ninguna pagina los importa. `src/data/proofItems.ts` tampoco tiene consumidores.
 
 Componentes de estructura y seccion:
 
@@ -177,7 +180,7 @@ Heroes:
 
 - `src/data/page-heroes.ts`
   - Contenido compartido de heroes principales.
-  - Incluye home, servicios, talleres, proyectos, contacto y videos.
+  - Incluye home, servicios (`services`), talleres (`workshops`), proyectos (`projects`) y videos. `/contacto` y `/nosotros` definen su hero en la propia pagina.
 
 ### Videos y redes
 
@@ -245,87 +248,48 @@ Material pendiente frecuente:
 - Reemplazar placeholders de videos por thumbnails reales y URLs confirmadas.
 - Revisar si `PriceTable` debe reemplazar los cards de precio actuales en `/talleres`.
 - Confirmar datos de proyectos comunitarios: ano, descripcion, partner, links y evidencia.
-- Mantener `dist/` fuera de edicion manual.
+- Mantener `dist/` fuera de edicion manual. `dist/` esta versionado: regenerarlo con `npm run build` y commitearlo junto con `src/`.
 - Seguir validando siempre mobile primero.
 
 ## Latin Rengo
 
 Latin Rengo esta separado del sitio principal de Espacio Elementos. No mezclar su tono, assets ni videos con la capa comercial principal salvo que el usuario lo pida explicitamente.
 
+La documentacion vigente y detallada esta en `docs/product/latin-rengo-social.md` (rutas, modelo editorial, menu, GA4, pendientes) y `docs/engineering/adr-latin-rengo-modular-boundary.md` (limite modular). Este resumen no la reemplaza.
+
 ### Rutas existentes
 
-- `/latin-rengo`: pagina anterior/landing de Latin Rengo.
-- `/latin-rengo-social`: pagina principal del evento Social de Rengo.
-- `/latin-rengo-v3`: redireccion estatica a `/latin-rengo-social`.
+- `/latin-rengo`: landing de clases regulares LatinRengo (`src/pages/latin-rengo.astro` + `src/styles/latin-rengo.css`).
+- `/latin-rengo-social`: guia del evento LatinRengo Social - Primer aniversario (adaptador hacia `SocialGuide.astro`).
+- `/latin-rengo-social/menu`: menu publico con datos de transferencia (adaptador hacia `SocialMenuPage.astro`).
+- `/latin-rengo-social/archivo/social-original`: version anterior del Social, `noindex, follow`.
+- `/latin-rengo-v3`: pagina puente para QR impresos (`SocialBridgePage.astro`), `noindex`, canonical a `/latin-rengo-social`. Ya no es una redireccion con `meta refresh` (eso fue el commit `db30deb`, reemplazado en `1fbff73`).
 
 ### Archivos fuente
 
-- `src/pages/latin-rengo.astro`
-- `src/pages/latin-rengo-social.astro`
-- `src/pages/latin-rengo-v3.astro`
-- `src/styles/latin-rengo.css`
-- `src/data/latin-rengo.ts`
-- `docs/product/latin-rengo-social.md`
+- `src/features/latin-rengo/` (contenido en `content/social.ts`, layout, componentes, GA4, estilos y afiches).
+- `src/pages/latin-rengo.astro`, `src/pages/latin-rengo-social.astro`, `src/pages/latin-rengo-social/menu.astro`, `src/pages/latin-rengo-social/archivo/social-original.astro`, `src/pages/latin-rengo-v3.astro`.
+- `src/styles/latin-rengo.css` (solo `/latin-rengo`).
+- `src/data/latin-rengo.ts`: dataset del Social anterior, **sin consumidores**; la fuente vigente es `src/features/latin-rengo/content/social.ts`.
 
-### Datos del evento
+### Estado del evento
 
-`src/data/latin-rengo.ts` define:
-
-- Nombre: Latin Rengo Social.
-- Marca: Social de Rengo.
-- Headline: El 1er Social de Salsa y Bachata de Rengo.
-- Contexto: celebracion del primer aniversario de Latin Rengo.
-- Fecha: Sabado 18 de julio.
-- Fecha tecnica: `2026-07-18`.
-- Horario: 21:00 a 03:00 hrs.
-- Lugar: Centro de Eventos Mariette.
-- WhatsApp: `+56 9 7989 8502`.
-- Formato: clase inicial, presentaciones y social latino.
-- Musica: salsa, bachata y mas.
-- Entradas:
-  - Preventa: `$3.000`.
-  - General: `$5.000`.
-  - Puerta: `$8.000`, sujeto a disponibilidad.
-
-### Contenido desarrollado en Latin Rengo Social
-
-La pagina `/latin-rengo-social` funciona como landing/event page independiente para el evento. Incluye:
-
-- Hero del evento.
-- Mensaje comercial del social.
-- Detalle de fecha, hora, lugar y contexto.
-- CTAs de reserva por WhatsApp.
-- Valores de entrada.
-- Programacion.
-- Razones para asistir.
-- Amenities.
-- Preguntas frecuentes.
-- Enfoque mobile para conversion.
+- Evento realizado el sabado 18 de julio de 2026 en Centro de Eventos Mariette, contacto `+56 9 7989 8502`.
+- Al 2026-10-12 la guia y el menu siguen publicados como vigentes, con la entrada General marcada como disponible y el JSON-LD como `EventScheduled`/`InStock`. Ver "Pendientes post-evento" en `docs/product/latin-rengo-social.md`.
 
 ### Assets de Latin Rengo
 
-Assets relacionados:
-
+- `src/features/latin-rengo/assets/artists/` (afiches procesados por `astro:assets`).
 - `public/images/latin-rengo-social-poster.jpg`
 - `public/images/colaboradores/latinrengo.png`
 - `public/images/colaboradores/logotipo-latinrengo.png`
 - `public/images/colaboradores/imagotipo-latinrengo.png`
 - `public/images/colaboradores/isotipo-latinrengo.png`
 
-### Redireccion `/latin-rengo-v3`
-
-`src/pages/latin-rengo-v3.astro` es una redireccion estatica a `/latin-rengo-social`.
-
-Implementacion:
-
-- `meta refresh` inmediato.
-- `window.location.replace('/latin-rengo-social')`.
-- Link fallback visible.
-- Canonical al destino.
-
 ### Restricciones para Latin Rengo
 
-- No intervenir `src/pages/latin-rengo.astro`, `src/pages/latin-rengo-social.astro` ni `src/styles/latin-rengo.css` salvo instruccion explicita.
+- Editar datos del Social solo en `src/features/latin-rengo/content/social.ts`; las paginas en `src/pages/` son adaptadores minimos.
+- No intervenir `src/pages/latin-rengo.astro` ni `src/styles/latin-rengo.css` salvo instruccion explicita.
 - No usar videos de Latin Rengo, salsa ni bachata en la capa de videos de Espacio Elementos.
 - No mezclar la marca de Latin Rengo con la arquitectura comercial principal de Espacio Elementos.
 - Si se trabaja Latin Rengo, mantenerlo como micrositio/evento independiente.
@@ -347,6 +311,7 @@ Validaciones historicas hechas durante el desarrollo:
 - Se corrigio overflow horizontal detectado en mobile.
 - Se valido que la capa de videos no incluya iframe, autoplay, Latin Rengo, salsa ni bachata.
 - Se valido que `/latin-rengo-v3` genere `/latin-rengo-v3/index.html`.
+- 2026-10-12: `astro build` a un directorio temporal produjo un resultado identico al `dist/` versionado (15 paginas).
 
 ## Reglas para el siguiente agente
 

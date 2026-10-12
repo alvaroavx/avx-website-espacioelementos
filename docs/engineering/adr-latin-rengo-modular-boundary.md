@@ -35,3 +35,10 @@ No se agregan dependencias cliente, CMS, backend, embeds sociales ni JS de actua
 - Necesidad de navegación, analítica, SEO o sitemap completamente independientes.
 - Ciclo editorial o despliegue separado de Espacio Elementos.
 - Mayor número de rutas o campañas LatinRengo que justifique ownership técnico propio.
+
+## Nota de estado (contrastada con el código el 2026-10-12)
+
+- Cumplen el límite: `/latin-rengo-social`, `/latin-rengo-social/menu` y `/latin-rengo-v3`, que solo importan desde `src/features/latin-rengo/`.
+- Fuera del límite: `/latin-rengo` y `/latin-rengo-social/archivo/social-original` importan `src/components/BaseHead.astro`, que a su vez carga `src/styles/global.css` del sitio principal. `/latin-rengo` además importa `LatinRengoAnalytics` desde el módulo.
+- `src/data/latin-rengo.ts` es un dataset del Social anterior sin consumidores.
+- La guía incrusta un `iframe` de Google Maps (`mapEmbedUrl`), y `/latin-rengo` incrusta otro. No es un embed social, pero sí un tercero que se carga sin pasar por el consentimiento de GA4.

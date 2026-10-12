@@ -1,12 +1,14 @@
 # LatinRengo Social
 
+> Estado al 2026-10-12: el evento ya ocurrió (sábado 18 de julio de 2026), pero las rutas siguen publicadas como vigentes. La última actualización de contenido es del 2026-07-18 (commit `f96aa9e`). Ver "Pendientes post-evento".
+
 ## Rutas
 
-- `/latin-rengo`: landing actual de clases LatinRengo. Conserva identidad naranja y solo enlaza a la guía Social.
+- `/latin-rengo`: landing actual de clases LatinRengo. Conserva identidad naranja y solo enlaza a la guía Social. Usa `BaseHead` (y por lo tanto `src/styles/global.css`) más `src/styles/latin-rengo.css`; no pasa por el layout del módulo.
 - `/latin-rengo-social`: guía vigente del evento LatinRengo Social - Primer aniversario.
 - `/latin-rengo-social/menu`: menú público en HTML, usable en teléfono y TV horizontal.
 - `/latin-rengo-social/archivo/social-original`: archivo histórico de la versión anterior, con `noindex, follow`.
-- `/latin-rengo-v3`: página temporal de referencia para códigos QR impresos; enlaza a la guía vigente y al menú. Se debe borrar después de este Social.
+- `/latin-rengo-v3`: página puente para códigos QR impresos (`SocialBridgePage.astro`, `noindex, follow`, canonical a `/latin-rengo-social`); enlaza a la guía, al menú y al programa. No es una redirección. Se debe borrar después de este Social.
 
 ## Límite modular
 
@@ -15,7 +17,8 @@ La nueva experiencia Social vive en `src/features/latin-rengo/`:
 - `content/social.ts`: fuente de verdad tipada para evento, programa, artistas, orden, entradas, menú, ubicación, contacto y FAQ.
 - `layouts/LatinRengoSocialLayout.astro`: layout autónomo, sin `BaseHead` ni CSS global de Espacio Elementos.
 - `components/SocialGuide.astro`: composición de la guía.
-- `components/SocialMenuPage.astro`: composición del menú.
+- `components/SocialMenuPage.astro`: composición del menú, incluido el bloque de datos de transferencia con botón "Copiar datos".
+- `components/SocialBridgePage.astro`: página puente de `/latin-rengo-v3`.
 - `components/LatinRengoAnalytics.astro`: GA4 aislado con consentimiento previo.
 - `config/analytics.ts`: ID de medición y llave de consentimiento.
 - `styles/social.css`: estilos cargados solo por rutas LatinRengo Social.
@@ -31,7 +34,13 @@ El modelo usa:
 - `provisional`: solo se puede renderizar si está expresamente rotulado y autorizado.
 - `withheld`: no debe llegar al HTML, metadatos, JSON-LD ni bundle público.
 
-Regla operativa: los componentes solo consumen colecciones filtradas como `publicArtists`, `publicPresentationSchedule`, `publicTickets`, `publicSchedule`, `publicMenuCategories` y `publicFaqItems`.
+Regla operativa: los componentes solo consumen colecciones derivadas como `publicArtists`, `publicPresentationSchedule`, `publicTickets`, `publicMenuCategories`, `publicMenuTransferDetails` y `publicFaqItems`, más `publicSchedule`.
+
+Cómo filtra realmente `content/social.ts`:
+
+- `publicTickets`, `publicMenuCategories` (categorías e ítems), `publicMenuTransferDetails` y `publicFaqItems` publican solo `confirmed`.
+- `publicArtists` y `publicPresentationSchedule` excluyen solo `withheld`: un ítem `provisional` se publicaría sin rótulo, porque no hay rotulado implementado.
+- `publicSchedule` no es una colección filtrada: es el arreglo fuente y se renderiza completo, cualquiera sea su `status`.
 
 ## Datos confirmados publicados
 
@@ -57,7 +66,7 @@ Regla operativa: los componentes solo consumen colecciones filtradas como `publi
   - 23:20-23:22 - transición.
   - 23:22-23:24 - Gabriela Piña, Bachata solista.
   - 23:24-23:26 - transición.
-  - 23:26-23:29 - Essencia Latina, Rueda de Casino.
+  - 23:26-23:29 - Essencia Latina, Rueda de Casino: **retirada** (`withheld` desde el commit `5a38e78`); no se publica ni su afiche. La grilla pública muestra dos transiciones seguidas (23:24-23:26 y 23:29-23:31) con un hueco de 23:26 a 23:29.
   - 23:29-23:31 - transición.
   - 23:31-23:34 - Magia Latina, Bachata ladies.
   - 23:34-23:36 - transición.
@@ -75,19 +84,20 @@ Regla operativa: los componentes solo consumen colecciones filtradas como `publi
   - General: $5.000, disponible hasta el viernes 17 de julio.
   - Puerta: $8.000, disponible en puerta el sábado 18 de julio y sujeta a disponibilidad.
 - Menú confirmado:
-  - Pizzas por Pizzis Pizzería.
-  - Aperitivos listados en `content/social.ts`.
+  - Pizzas por Pizzis Pizzería (enlace a Instagram `@pizzis.pizzeria`), con leyenda de tamaños Individual 24 cm / Familiar 32 cm.
+  - Aperitivos por Pizzis Pizzería: papas fritas, papas fritas con mechada, papas fritas del jardín y aros de cebolla.
   - Bebidas sin alcohol confirmadas: bebida en lata, energética, agua con gas o sin gas y té/café.
-  - Bebestibles confirmados: cerveza, combinados y cocteles listados en `content/social.ts`.
+  - Bebestibles confirmados: cerveza, Pisco Mistral 35°, Ron Barceló Dorado y Añejo, Whisky Johnnie Walker (con bebida), Ramazzotti o Aperol y Mojito sabores.
   - Bebestibles publicados con autorización explícita de la organización, patentes, permisos y responsables.
-  - Aviso preventivo visible: venta exclusiva para mayores de 18 años, identificación cuando corresponda y venta sujeta a condiciones y permisos del evento.
+  - El aviso de "Condiciones de venta" (mayores de 18 años, identificación, permisos) **ya no se publica**: se eliminó en el commit `f96aa9e`. El componente aún soporta `notice` por categoría.
+- Datos de transferencia (`menuTransferDetails`): nombre, RUT, banco, tipo y número de cuenta y correo de LatinRengo, publicados como texto en `/latin-rengo-social/menu` con botón para copiarlos.
 - Cómo llegar:
   - Se publica mapa de Google Maps con enlace confirmado: `https://maps.app.goo.gl/FWgMPkF2G9vWgjTa8`.
 
 ## Datos retenidos o no publicados
 
 - Dirección textual exacta del Centro de Eventos Mariette, si se requiere mostrarla fuera del mapa.
-- QR bancario de imágenes de referencia.
+- QR bancario de imágenes de referencia (los datos de transferencia sí se publican como texto en el menú).
 - Condiciones generales de pago, devolución o reserva no confirmadas.
 
 ## Cómo editar programa, artistas y menú
@@ -98,6 +108,7 @@ Editar solamente `src/features/latin-rengo/content/social.ts`.
 - Orden de presentaciones: actualizar `presentationSchedule`. No publicar columna de duración.
 - Artistas: agregar o modificar `artistCatalog`. El orden artístico resumido se controla por `presentationOrder`.
 - Menú: editar `menuCategories`. No duplicar datos en la página del menú.
+- Datos de transferencia: editar `menuTransferDetails`; cambiar `status` a `withheld` los retira del HTML.
 - Entradas: editar `ticketTiers`.
 - FAQ: editar `faqItems`.
 
@@ -107,20 +118,20 @@ No usar texto incrustado en afiches como única fuente para información funcion
 
 La fuente única es `ticketTiers` en `src/features/latin-rengo/content/social.ts`.
 
-Estado actual publicado:
+Estado actual publicado (sin cambios desde el evento):
 
 - `preventa`: `note: "Agotada."`, `availability: "sold-out"`.
 - `general`: `note: "Disponible hasta el viernes 17 de julio."`, `availability: "available"`.
 - `puerta`: `note: "Disponible en puerta el sábado 18 de julio, sujeta a disponibilidad."`, `availability: "available"`.
 
-Cambio preparado para el sábado 18 de julio de 2026:
+Cambio preparado para el sábado 18 de julio de 2026 (**no aplicado**: `general` sigue `available` en el código y en `dist/`):
 
 - Mantener `preventa` como `availability: "sold-out"`.
 - Cambiar `general` a una nota de venta finalizada y `availability: "ended"` o `"sold-out"`.
 - Mantener `puerta` como `availability: "available"` mientras corresponda.
 - Ejecutar `npm run build` para regenerar HTML, JSON-LD y `dist/`.
 
-`createEventJsonLd()` ya mapea `sold-out` y `ended` a `https://schema.org/SoldOut`; `available` se publica como `https://schema.org/InStock`.
+`createEventJsonLd()` ya mapea `sold-out` y `ended` a `https://schema.org/SoldOut`; `available` se publica como `https://schema.org/InStock`. `eventStatus` está fijo en `https://schema.org/EventScheduled`.
 
 ## Google Analytics 4
 
@@ -190,10 +201,17 @@ No debe depender del dataset vigente del evento.
 3. Mover assets públicos usados por `/latin-rengo` si se migra también la landing naranja.
 4. Cambiar `siteOrigin` en `content/social.ts`.
 5. Definir `PUBLIC_GA_MEASUREMENT_ID` para el nuevo dominio o desactivarlo explícitamente.
-6. Revalidar canonical, JSON-LD, sitemap, GA4 y reglas de hosting en el destino.
+6. Revalidar canonical, JSON-LD, sitemap, GA4 y reglas de hosting en el destino. Hoy `@astrojs/sitemap` incluye también `/latin-rengo-social/archivo/social-original` y `/latin-rengo-v3`, aunque ambas son `noindex`.
+   `/latin-rengo` y el archivo histórico dependen de `src/components/BaseHead.astro` y `src/styles/global.css` del sitio principal; hay que llevarlos o reemplazarlos.
 7. Ejecutar build y smoke tests mobile-first.
 
-## Pendientes P0
+## Pendientes post-evento (planificado / no implementado)
+
+- Decidir el estado público tras el evento: archivar la guía, marcar entradas como `ended` o retirar `/latin-rengo-social` y `/latin-rengo-social/menu`.
+- Actualizar el JSON-LD (`eventStatus`, `offers.availability`), que hoy sigue anunciando un evento programado con entradas disponibles.
+- Revisar si los datos de transferencia del menú deben seguir publicados.
+
+## Pendientes P0 (definidos antes del evento)
 
 - Confirmar dirección textual exacta del Centro de Eventos Mariette si se quiere mostrar como texto.
 - Probar lectura real del menú en TV a la distancia del recinto y decidir si hace falta `/latin-rengo-social/menu/tv`.

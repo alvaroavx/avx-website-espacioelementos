@@ -12,6 +12,27 @@ Dependiendo del criterio técnico del proyecto, usar:
 - archivos `.ts` o `.json` en `src/data/`
 - o colecciones de contenido Astro si realmente aporta
 
+## Estado actual (contrastado con `src/data/` el 2026-10-12)
+
+Se optó por archivos `.ts` en `src/data/`; no se usan colecciones de contenido de Astro. Los campos reales difieren de los sugeridos abajo; la referencia es el tipo exportado en cada archivo.
+
+| Entidad | Implementación | Estado |
+| --- | --- | --- |
+| Servicios | `src/data/services.ts` (`hasPage` distingue servicios con página propia) | implementado |
+| Talleres regulares | `src/data/workshops.ts` (`active`, `WORKSHOP_PRICING`) | implementado, sin subpáginas |
+| Proyectos | `src/data/projects.ts` (solo comunitarios/colaboraciones) | implementado |
+| Equipo | `src/data/team.ts` | implementado |
+| Testimonios | sin datos; `Quote.astro` y `public/images/testimonios/` existen sin uso | no implementado |
+| Aliados / colaboraciones | `COMMUNITY_PARTNERS` en `src/data/site.ts` | implementado |
+| Dossiers | `src/data/dossiers.ts` | implementado |
+| Rutas de consulta | `INQUIRY_PATHS` en `src/data/site.ts` | implementado |
+| Eventos / cartelera | no existe | planificado / no implementado |
+| Videos | `src/data/videos.ts` (no estaba en este modelo) | implementado, con ítems `isPending` |
+| Heroes | `src/data/page-heroes.ts` (home, services, workshops, projects, videos) | implementado |
+| Pruebas territoriales | `src/data/proofItems.ts` | existe sin uso en páginas |
+
+LatinRengo Social tiene su propio modelo en `src/features/latin-rengo/content/social.ts` (ver `docs/product/latin-rengo-social.md`).
+
 ## Entidades principales sugeridas
 
 ### 1. Servicios
