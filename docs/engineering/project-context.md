@@ -6,8 +6,8 @@
 - `@astrojs/sitemap` (única integración activa en `astro.config.mjs`)
 - CSS propio en `src/styles/global.css`; Bootstrap fue retirado (no hay CDN ni dependencia)
 - datos base en archivos `ts` dentro de `src/data/` (no se usan colecciones de contenido de Astro)
-- `astro:assets` solo en el módulo LatinRengo Social (afiches de artistas); el sitio principal usa `<img>` directo sobre `public/`
-- sin JavaScript de cliente en el sitio principal (menú mobile con checkbox CSS); GA4 con consentimiento solo en rutas LatinRengo
+- el sitio usa `<img>` directo sobre `public/`
+- sin JavaScript de cliente (menú mobile con checkbox CSS) ni GA4
 
 Dependencias declaradas pero sin uso: `@astrojs/mdx`, `@astrojs/rss`, `@tailwindcss/postcss`.
 
@@ -26,7 +26,7 @@ Hoy el foco real del sitio esta en:
 - assets estaticos en `public/`;
 - build compilada en `dist/` (versionada en git).
 
-Además conviven las rutas del micrositio LatinRengo (`/latin-rengo`, `/latin-rengo-social`, `/latin-rengo-social/menu`, `/latin-rengo-social/archivo/social-original`, `/latin-rengo-v3`). Ver `docs/product/latin-rengo-social.md`.
+Las rutas de LatinRengo se extrajeron al proyecto hermano `../latinrengo-website-astro/`. En este sitio permanecen solo referencias a colaboraciones de Espacio Elementos.
 
 ## Fuente de verdad
 
@@ -45,13 +45,12 @@ No editar:
 - `src/data/page-heroes.ts`: fuente compartida para los heroes principales y el carrusel de la Home
 - `src/data/site.ts`: navegacion, contacto y rutas de consulta reutilizables
 - `src/layouts/MainLayout.astro` y `src/components/BaseHead.astro`: layout y metadatos SEO/OG del sitio principal
-- `src/features/latin-rengo/`: módulo aislado de LatinRengo Social
 - `public/`: assets estáticos visuales y dossiers
 - `dist/`: build compilada, versionada en git; se regenera con `npm run build` y se commitea junto con `src/`
 
 Código presente pero sin uso actual (no importado por ninguna página):
 - componentes: `ContactRouteCard`, `CTA`, `ImageBlock`, `PricingBlock`, `ProgramCard`, `ProofBlock`, `Quote`, `SectionHeader`, `TallerCard`;
-- datos: `src/data/proofItems.ts`, `src/data/latin-rengo.ts` (dataset del Social anterior, reemplazado por `src/features/latin-rengo/content/social.ts`).
+- datos: `src/data/proofItems.ts`.
 
 ## Hallazgos conocidos
 
@@ -68,7 +67,7 @@ Pendiente solo si aporta:
 - el dominio real confirmado es `https://espacioelementos.cl`
 - implementado: `astro.config.mjs` (`site`) y `src/consts.ts` apuntan al dominio real
 - SEO, canónicos y OG base deben mantenerse alineados con la arquitectura nueva
-- pendiente: no existe `public/robots.txt`; el sitemap incluye rutas `noindex` (archivo LatinRengo y `/latin-rengo-v3`)
+- pendiente: no existe `public/robots.txt`.
 - no verificado: el repositorio no contiene configuración de despliegue; el mecanismo de publicación no está documentado
 
 ### 3. Navegación inconsistente
@@ -86,7 +85,7 @@ Pendiente:
 - mantener consistencia entre CTAs de home, servicios y contacto.
 
 ### 5. JS con referencias a nodos comentados
-Resuelto: las páginas del sitio principal no incluyen `<script>`; los únicos scripts de cliente están en el módulo LatinRengo.
+Resuelto: las páginas del sitio principal no incluyen `<script>` de cliente.
 
 ### 6. OG image
 Implementado: `SITE_OG_IMAGE` en `src/consts.ts` usa la imagen institucional:

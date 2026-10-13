@@ -10,7 +10,7 @@ El proyecto ya no se piensa como una landing de talleres ni como un blog. Su obj
 - organizaciones
 - clientes privados para eventos, shows, talleres y experiencias
 
-El mismo repositorio aloja ademas el micrositio **LatinRengo** (proyecto distinto que comparte dominio), aislado en `src/features/latin-rengo/`. Ver `docs/product/latin-rengo-social.md` y `docs/engineering/adr-latin-rengo-modular-boundary.md`.
+Las páginas de **LatinRengo** se extrajeron al proyecto hermano `../latinrengo-website-astro/`. Este repositorio conserva únicamente referencias a colaboraciones en la historia de Espacio Elementos.
 
 ## Enfoque actual del sitio (implementado)
 
@@ -22,7 +22,7 @@ El mismo repositorio aloja ademas el micrositio **LatinRengo** (proyecto distint
 - layout compartido `src/layouts/MainLayout.astro` para home, servicios, talleres, proyectos, videos, nosotros y contacto
 - contacto por enlaces `wa.me` y `mailto:` (no hay formulario): rutas segmentadas para empresas, colegios, municipios y eventos privados
 - dossiers reales enlazados desde `public/dossiers/`
-- el sitio principal no carga JavaScript de cliente ni analitica; GA4 con consentimiento existe solo en rutas LatinRengo
+- el sitio principal no carga JavaScript de cliente ni analitica
 
 ## Estructura relevante
 
@@ -31,10 +31,9 @@ El mismo repositorio aloja ademas el micrositio **LatinRengo** (proyecto distint
 ├── src/
 │   ├── components/           # Componentes Astro reutilizables del sitio principal
 │   ├── data/                 # Datos reutilizables del sitio (servicios, talleres, equipo, etc.)
-│   ├── features/latin-rengo/ # Modulo aislado del micrositio LatinRengo Social
 │   ├── layouts/              # Layouts compartidos
 │   ├── pages/                # Rutas reales del sitio
-│   ├── styles/               # CSS global y CSS de la landing /latin-rengo
+│   ├── styles/               # CSS global del sitio principal
 │   └── consts.ts             # Metadatos base del sitio (titulo, descripcion, URL, OG)
 ├── docs/                     # Vision, arquitectura, contenido y contexto tecnico
 ├── dist/                     # Build generado, VERSIONADO en git (ver mas abajo)
@@ -60,21 +59,13 @@ Sitio principal (usan `MainLayout`):
 - `/nosotros`
 - `/contacto`
 
-Micrositio LatinRengo (no usa `MainLayout`; detalle en `docs/product/latin-rengo-social.md`):
-
-- `/latin-rengo`
-- `/latin-rengo-social`
-- `/latin-rengo-social/menu`
-- `/latin-rengo-social/archivo/social-original` (`noindex, follow`)
-- `/latin-rengo-v3` (pagina puente para QR impresos, `noindex`)
-
 Planificado / no implementado: subpaginas de talleres, subpaginas de proyectos, `/dossiers` y cartelera (ver `docs/product/site-architecture.md`).
 
 ## Dominio y SEO
 
 - Dominio configurado en `astro.config.mjs` (`site`) y `src/consts.ts`: `https://espacioelementos.cl`.
-- Integracion activa: `@astrojs/sitemap` (genera `sitemap-index.xml`). El sitemap incluye todas las rutas, tambien las marcadas `noindex`.
-- Metadatos (canonical, OG, Twitter) centralizados en `src/components/BaseHead.astro`; LatinRengo Social usa su propio layout.
+- Integracion activa: `@astrojs/sitemap` (genera `sitemap-index.xml`).
+- Metadatos (canonical, OG, Twitter) centralizados en `src/components/BaseHead.astro`.
 - No existe `public/robots.txt`.
 
 ## Dossiers y material
@@ -93,10 +84,6 @@ Imagen Open Graph institucional: `public/images/og/espacio-elementos-og.jpg`.
 - La fuente de verdad es `src/`. `dist/` no se edita a mano.
 - `dist/` **esta versionado en git** (la linea `dist/` de `.gitignore` esta comentada). Cada cambio en `src/` se acompana de `npm run build` y del `dist/` regenerado en el mismo commit; un `dist/` desactualizado publicaria contenido antiguo.
 - El repositorio no contiene configuracion de despliegue (sin adapter, sin CI, sin archivos de hosting). El mecanismo real de publicacion en `espacioelementos.cl` no esta documentado aqui: **no verificado**.
-
-## Variables de entorno
-
-- `PUBLIC_GA_MEASUREMENT_ID` (opcional): solo afecta a LatinRengo. Si no se define se usa el ID por defecto; `off`, `disabled` o `false` desactivan GA4. Ver `src/features/latin-rengo/config/analytics.ts`.
 
 ## Comandos basicos
 

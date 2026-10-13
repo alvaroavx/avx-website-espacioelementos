@@ -48,5 +48,5 @@ Ejemplo:
 - Los pendientes se marcan con comentarios `TODO` y `PENDIENTE:` en `src/data/*.ts` y en algunas páginas (no con el prefijo `TODO(asset)` sugerido arriba).
 - Placeholders visuales: `PlaceholderMedia.astro` (imagen o video pendiente) y `DossierCard.astro` (estado pendiente cuando `href` es `null`).
 - Videos pendientes: ítems con `isPending: true` en `src/data/videos.ts`.
-- Las imágenes del sitio principal se sirven desde `public/` sin optimización de `astro:assets`; solo los afiches de LatinRengo Social pasan por `astro:assets` (`src/features/latin-rengo/assets/artists/`).
-- `docs/imagenes_artistas_latin_rengo/` guarda los originales de esos afiches; no se publican.
+- Las imágenes del sitio principal se sirven desde `public/` sin optimización de `astro:assets`.
+- El afiche de Latin Rengo Social y su logo permanecen en `public/` porque se usan como evidencia de colaboración en el sitio principal. Los afiches procesados pertenecen al proyecto independiente de LatinRengo. Los originales en `docs/imagenes_artistas_latin_rengo/` se conservan como archivo fuente histórico y no se publican.

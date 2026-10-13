@@ -253,46 +253,11 @@ Material pendiente frecuente:
 
 ## Latin Rengo
 
-Latin Rengo esta separado del sitio principal de Espacio Elementos. No mezclar su tono, assets ni videos con la capa comercial principal salvo que el usuario lo pida explicitamente.
+Las paginas, componentes, estilos y afiches exclusivos de LatinRengo se extrajeron al proyecto hermano `../latinrengo-website-astro/`. Este sitio ya no genera `/latin-rengo`, `/latin-rengo-social`, `/latin-rengo-social/menu`, `/latin-rengo-social/archivo/social-original` ni `/latin-rengo-v3`.
 
-La documentacion vigente y detallada esta en `docs/product/latin-rengo-social.md` (rutas, modelo editorial, menu, GA4, pendientes) y `docs/engineering/adr-latin-rengo-modular-boundary.md` (limite modular). Este resumen no la reemplaza.
+Permanecen `public/images/latin-rengo-social-poster.jpg` y `public/images/colaboradores/latinrengo.png` porque las paginas de proyectos y la lista de colaboradores del sitio principal los usan como evidencia de colaboración. `docs/product/latin-rengo-social.md` y `docs/engineering/adr-latin-rengo-modular-boundary.md` documentan el estado histórico anterior a la extracción.
 
-### Rutas existentes
-
-- `/latin-rengo`: landing de clases regulares LatinRengo (`src/pages/latin-rengo.astro` + `src/styles/latin-rengo.css`).
-- `/latin-rengo-social`: guia del evento LatinRengo Social - Primer aniversario (adaptador hacia `SocialGuide.astro`).
-- `/latin-rengo-social/menu`: menu publico con datos de transferencia (adaptador hacia `SocialMenuPage.astro`).
-- `/latin-rengo-social/archivo/social-original`: version anterior del Social, `noindex, follow`.
-- `/latin-rengo-v3`: pagina puente para QR impresos (`SocialBridgePage.astro`), `noindex`, canonical a `/latin-rengo-social`. Ya no es una redireccion con `meta refresh` (eso fue el commit `db30deb`, reemplazado en `1fbff73`).
-
-### Archivos fuente
-
-- `src/features/latin-rengo/` (contenido en `content/social.ts`, layout, componentes, GA4, estilos y afiches).
-- `src/pages/latin-rengo.astro`, `src/pages/latin-rengo-social.astro`, `src/pages/latin-rengo-social/menu.astro`, `src/pages/latin-rengo-social/archivo/social-original.astro`, `src/pages/latin-rengo-v3.astro`.
-- `src/styles/latin-rengo.css` (solo `/latin-rengo`).
-- `src/data/latin-rengo.ts`: dataset del Social anterior, **sin consumidores**; la fuente vigente es `src/features/latin-rengo/content/social.ts`.
-
-### Estado del evento
-
-- Evento realizado el sabado 18 de julio de 2026 en Centro de Eventos Mariette, contacto `+56 9 7989 8502`.
-- Al 2026-10-12 la guia y el menu siguen publicados como vigentes, con la entrada General marcada como disponible y el JSON-LD como `EventScheduled`/`InStock`. Ver "Pendientes post-evento" en `docs/product/latin-rengo-social.md`.
-
-### Assets de Latin Rengo
-
-- `src/features/latin-rengo/assets/artists/` (afiches procesados por `astro:assets`).
-- `public/images/latin-rengo-social-poster.jpg`
-- `public/images/colaboradores/latinrengo.png`
-- `public/images/colaboradores/logotipo-latinrengo.png`
-- `public/images/colaboradores/imagotipo-latinrengo.png`
-- `public/images/colaboradores/isotipo-latinrengo.png`
-
-### Restricciones para Latin Rengo
-
-- Editar datos del Social solo en `src/features/latin-rengo/content/social.ts`; las paginas en `src/pages/` son adaptadores minimos.
-- No intervenir `src/pages/latin-rengo.astro` ni `src/styles/latin-rengo.css` salvo instruccion explicita.
-- No usar videos de Latin Rengo, salsa ni bachata en la capa de videos de Espacio Elementos.
-- No mezclar la marca de Latin Rengo con la arquitectura comercial principal de Espacio Elementos.
-- Si se trabaja Latin Rengo, mantenerlo como micrositio/evento independiente.
+No mezclar la marca, los estilos, los datos ni los videos de LatinRengo con la capa comercial principal de Espacio Elementos. Antes de publicar este cambio, definir el destino de las URL antiguas y de los codigos QR impresos; este repositorio no documenta reglas de redirección del hosting ni un dominio publico confirmado para el proyecto independiente.
 
 ## Validaciones realizadas
 
@@ -310,7 +275,7 @@ Validaciones historicas hechas durante el desarrollo:
   - `/videos`
 - Se corrigio overflow horizontal detectado en mobile.
 - Se valido que la capa de videos no incluya iframe, autoplay, Latin Rengo, salsa ni bachata.
-- Se valido que `/latin-rengo-v3` genere `/latin-rengo-v3/index.html`.
+- Antes de la extracción se valido que `/latin-rengo-v3` generaba `/latin-rengo-v3/index.html`.
 - 2026-10-12: `astro build` a un directorio temporal produjo un resultado identico al `dist/` versionado (15 paginas).
 
 ## Reglas para el siguiente agente

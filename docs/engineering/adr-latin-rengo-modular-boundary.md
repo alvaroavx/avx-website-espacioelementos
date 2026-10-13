@@ -2,7 +2,9 @@
 
 ## Estado
 
-Aceptado.
+Reemplazado el 2026-10-13 por la extracción a `../latinrengo-website-astro/`.
+
+Este ADR describe la arquitectura anterior a la extracción. En este repositorio ya no existen las rutas ni el módulo LatinRengo. El sitio de Espacio Elementos conserva el afiche y logo usados para documentar la colaboración comunitaria.
 
 ## Contexto
 

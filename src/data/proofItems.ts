@@ -61,9 +61,9 @@ export const proofItems: ProofItem[] = [
 	{
 		type: 'foto',
 		title: 'Poster Latin Rengo Social',
-		page: '/latin-rengo-social — ya en uso',
+		page: '/proyectos — colaboración comunitaria',
 		status: 'disponible',
-		note: 'No intervenir — página Latin Rengo queda fuera de este scope',
+		note: 'La página LatinRengo vive en el proyecto independiente; este afiche respalda la colaboración de Espacio Elementos.',
 	},
 
 	// TESTIMONIOS

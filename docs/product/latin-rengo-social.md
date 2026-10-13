@@ -1,5 +1,7 @@
 # LatinRengo Social
 
+> Archivo histórico del estado previo a la extracción. Las rutas, componentes y datos descritos abajo viven ahora en `../latinrengo-website-astro/`; este repositorio ya no publica las páginas LatinRengo. Revisar allí el estado editorial vigente.
+
 > Estado al 2026-10-12: el evento ya ocurrió (sábado 18 de julio de 2026), pero las rutas siguen publicadas como vigentes. La última actualización de contenido es del 2026-07-18 (commit `f96aa9e`). Ver "Pendientes post-evento".
 
 ## Rutas

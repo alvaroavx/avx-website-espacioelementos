@@ -148,7 +148,7 @@ Nota de implementación vigente:
 Lo que existe:
 - `/`, `/servicios`, `/servicios/presentaciones`, `/servicios/talleres-y-experiencias`, `/servicios/produccion-de-eventos`, `/talleres`, `/proyectos` (proyectos comunitarios), `/nosotros`, `/contacto`.
 - `/videos`: no estaba en esta propuesta; existe como ruta liviana de videos y redes (sin iframes) y forma parte de la navegación principal.
-- Rutas del micrositio LatinRengo, fuera de esta arquitectura: ver `docs/product/latin-rengo-social.md`.
+- Las rutas del micrositio LatinRengo se extrajeron al proyecto hermano `../latinrengo-website-astro/` y no forman parte de esta arquitectura.
 
 Lo que se espera (planificado / no implementado):
 - `/talleres/funcional`, `/talleres/lyra`, `/talleres/parada-de-manos`, `/talleres/yoga`.

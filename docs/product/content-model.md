@@ -31,7 +31,7 @@ Se optó por archivos `.ts` en `src/data/`; no se usan colecciones de contenido 
 | Heroes | `src/data/page-heroes.ts` (home, services, workshops, projects, videos) | implementado |
 | Pruebas territoriales | `src/data/proofItems.ts` | existe sin uso en páginas |
 
-LatinRengo Social tiene su propio modelo en `src/features/latin-rengo/content/social.ts` (ver `docs/product/latin-rengo-social.md`).
+El modelo de LatinRengo Social pertenece al proyecto independiente `../latinrengo-website-astro/`; este repositorio solo registra la colaboración en `src/data/projects.ts`.
 
 ## Entidades principales sugeridas
 

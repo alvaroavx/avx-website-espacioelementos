@@ -102,7 +102,7 @@ Jerarquizar el contenido así:
 - El dominio confirmado del sitio es `https://espacioelementos.cl`.
 - Las rutas del starter de blog de Astro ya fueron retiradas. Quedan residuos solo en `package.json` (`@astrojs/mdx`, `@astrojs/rss`, `@tailwindcss/postcss`, `description` y `main` heredados), sin uso en `src/`.
 - Antes de ampliar funcionalidad, limpiar residuos del starter si no aportan al nuevo objetivo.
-- LatinRengo es un proyecto distinto que comparte repositorio y dominio. Vive aislado en `src/features/latin-rengo/` con adaptadores mínimos en `src/pages/`; no mezclar su marca, estilos ni datos con el sitio principal (ver `docs/engineering/adr-latin-rengo-modular-boundary.md`).
+- LatinRengo es un proyecto distinto, extraído al repositorio hermano `../latinrengo-website-astro/`. Este sitio conserva solo referencias a colaboraciones de Espacio Elementos; no volver a integrar aquí sus páginas, estilos ni datos (ver `docs/engineering/adr-latin-rengo-modular-boundary.md`).
 - No asumir que el contenido actual es definitivo.
 - No inventar claims, cifras, premios, clientes, prensa ni alianzas no verificadas.
 - Cuando falten assets o materiales, dejar placeholders claros y pedirlos explícitamente.
@@ -131,6 +131,6 @@ Antes de cambios grandes, revisar:
 - `docs/engineering/assets-and-placeholders.md`
 - `REPORTE.md` (estado desarrollado del sitio)
 
-Si el cambio toca LatinRengo, revisar además:
+Si el cambio toca las referencias históricas a LatinRengo, revisar además:
 - `docs/product/latin-rengo-social.md`
 - `docs/engineering/adr-latin-rengo-modular-boundary.md`
