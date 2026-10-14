@@ -1,5 +1,7 @@
 # Modelo de contenido
 
+> **Estado posterior — 2026-10-14:** la nueva dirección de entrenamiento y comunidad ya está implementada localmente. Consultar [implementación actual](../engineering/redireccion-2026-10-14.md). El contenido que sigue conserva el estado y la planificación anteriores; no usar su prioridad comercial como instrucción vigente.
+
 ## Objetivo
 
 Ordenar el contenido del sitio para que sea escalable, editable y reutilizable, evitando páginas excesivamente hardcodeadas.

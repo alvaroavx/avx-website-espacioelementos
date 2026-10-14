@@ -1,5 +1,7 @@
 # Contexto técnico actual del proyecto
 
+> **Estado posterior — 2026-10-14:** la nueva dirección de entrenamiento y comunidad ya está implementada localmente. Consultar [implementación actual](redireccion-2026-10-14.md). El contenido que sigue conserva el estado y la planificación anteriores; no usar su prioridad comercial como instrucción vigente.
+
 ## Stack actual
 
 - Astro 5 (salida estática, sin adapter ni SSR)

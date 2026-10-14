@@ -1659,3 +1659,11 @@ ol {
   }
 
 }
+
+/* Dirección Elementos 2026: superficies tranquilas y foco visible compartido. */
+body { background: #f6f2e8; }
+body::before, body::after { display: none; }
+h1,h2,h3,h4 { text-transform: none; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid #a6481b; outline-offset: 5px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+.simple-editorial{width:min(1000px,calc(100% - 3rem));margin:auto;padding:clamp(3rem,7vw,6rem) 0}.simple-editorial h1{font-size:clamp(2.5rem,6vw,5rem);letter-spacing:-.04em;line-height:1.08;margin:1rem 0 1.5rem}.simple-editorial .intro-copy{font-size:1.2rem;line-height:1.7;max-width:720px}.editorial-photo{width:100%;height:auto;max-height:600px;object-fit:contain;object-position:left;margin:2rem 0}.editorial-links{margin:3rem 0}.editorial-links>a,.editorial-links>article{display:block;padding:1.5rem 0;border-top:1px solid #14202d30}.editorial-links strong{display:block;font-size:1.5rem}.editorial-links span{display:block;margin-top:.5rem}.editorial-links a:hover strong{text-decoration:underline}.simple-editorial h2{font-size:1.8rem;margin:1rem 0}.simple-editorial>p{margin-block:1rem}.simple-editorial>.site-button{margin-top:1rem}.editorial-links article p{margin-block:1rem}

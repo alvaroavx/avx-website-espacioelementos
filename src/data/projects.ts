@@ -20,7 +20,7 @@ export const projects: ProjectItem[] = [
 		description:
 			'Primer Social de Salsa y Bachata de Rengo, organizado junto a Latin Rengo para celebrar su primer aniversario. Una noche de baile, shows invitados y comunidad salsera en el Centro de Eventos Mariette.',
 		partner: 'Latin Rengo',
-		partnerHref: 'https://www.instagram.com/latin.rengo/?utm_source=espacioelementos&utm_medium=referral',
+		partnerHref: 'https://latinrengo.cl/',
 		year: '2026',
 		tags: ['Evento', 'Comunidad', 'Danza'],
 		image: '/images/latin-rengo-social-poster.jpg',

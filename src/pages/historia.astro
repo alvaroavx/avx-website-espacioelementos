@@ -1,0 +1,119 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { historyChapters } from '../data/history';
+---
+
+<style>
+.history-first-meeting{padding:2rem 0 3rem}.history-first-meeting h2{font-size:clamp(1.6rem,3vw,2.3rem);margin-bottom:1rem}.history-first-meeting>p:not(.history-kicker){max-width:720px;line-height:1.7}
+
+	.history { background: var(--elementos-crema, #f6f2e8); color: var(--elementos-tinta, #14202d); }
+	.history-width { width: min(1100px, calc(100% - 3rem)); margin-inline: auto; }
+	.history-intro { padding-block: clamp(3.5rem, 8vw, 7rem) 3rem; }
+	.history-kicker { font-size: .78rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; margin: 0 0 1.25rem; }
+	.history h1 { max-width: 950px; font-size: clamp(2.75rem, 6.7vw, 5.5rem); line-height: 1.07; letter-spacing: -.055em; margin: 0; }
+	.history h1 em { font-style: normal; color: var(--elementos-azul, #0c4b7c); }
+	.history-lead { max-width: 660px; margin: 1.75rem 0 0; font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 1.6; }
+	.history-portrait { margin-block: 0 3rem; }
+	.history-portrait img { display: block; width: 100%; height: auto; border-radius: 3px; }
+	.history-portrait figcaption { padding-block: .7rem; color: var(--elementos-tinta-suave, #314152); font-size: .88rem; }
+	.history-index { display: flex; gap: 1.5rem; align-items: baseline; padding-block: 1rem; border-block: 1px solid var(--elementos-borde, #d0ccc5); }
+	.history-index > span { font-size: .75rem; text-transform: uppercase; letter-spacing: .12em; font-weight: 700; white-space: nowrap; }
+	.history-index ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: .2rem 1.35rem; }
+	.history-index a { display: inline-flex; min-height: 44px; align-items: center; color: inherit; text-underline-offset: .3em; font-size: .94rem; }
+	.history-chapter { --chapter-accent: var(--elementos-azul, #0c4b7c); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.65fr); gap: clamp(2rem, 7vw, 6rem); padding-block: 4rem; border-bottom: 1px solid var(--elementos-borde, #d0ccc5); scroll-margin-top: 7rem; }
+	.history-chapter--tierra { --chapter-accent: var(--elementos-verde, #248c45); }
+	.history-chapter--fuego { --chapter-accent: var(--elementos-naranjo, #eb8e1d); }
+	.history-chapter-heading img { width: 48px; height: 48px; object-fit: contain; margin-bottom: 1rem; }
+	.history-year { font-size: .82rem; text-transform: uppercase; letter-spacing: .12em; font-weight: 700; margin: 0 0 .75rem; }
+	.history-chapter h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); line-height: 1.2; letter-spacing: -.035em; margin: 0; max-width: 340px; }
+	.history-moments { list-style: none; margin: 0; padding: 0 0 0 1.75rem; border-left: 1px solid var(--elementos-borde, #d0ccc5); }
+	.history-moment { position: relative; margin-bottom: 2.5rem; }
+	.history-moment:last-child { margin-bottom: 0; }
+	.history-moment::before { content: ''; position: absolute; width: 9px; height: 9px; background: var(--chapter-accent); left: calc(-1.75rem - 5px); top: .6rem; border-radius: 50%; }
+	.history-date { margin: 0 0 .6rem; font-size: .85rem; color: var(--elementos-tinta-suave, #314152); }
+	.history-moment h3 { font-size: 1.35rem; line-height: 1.25; margin: 0 0 .7rem; letter-spacing: -.02em; }
+	.history-moment > p:not(.history-date) { margin: 0; line-height: 1.7; }
+	.history-moment--quiet h3 { font-size: 1.15rem; }
+	.history-moment--quiet > p:not(.history-date) { font-size: .95rem; }
+	.history-source { color: var(--elementos-azul, #0c4b7c); display: inline-flex; gap: .5rem; align-items: center; min-height: 44px; margin-top: .35rem; font-size: .86rem; text-underline-offset: .3em; }
+	.history-today { background: var(--elementos-azul, #0c4b7c); color: #fff; padding-block: clamp(3rem, 7vw, 6rem); scroll-margin-top: 7rem; }
+	.history-today h2 { color: inherit; font-size: clamp(2.15rem, 4.6vw, 3.8rem); line-height: 1.1; letter-spacing: -.045em; margin: 0; }
+	.history-today p:not(.history-kicker) { max-width: 620px; margin: 1.5rem 0; }
+	.history-today .site-button { background: var(--elementos-crema, #f6f2e8); color: var(--elementos-tinta, #14202d); border-color: transparent; }
+	.history a:focus-visible { outline: 3px solid currentColor; outline-offset: 5px; }
+	@media (max-width: 650px) {
+		.history-width { width: calc(100% - 2.5rem); }
+		.history-index { display: block; }
+		.history-index ul { margin-top: .5rem; gap: .15rem 1rem; }
+		.history-chapter { grid-template-columns: 1fr; gap: 1.75rem; padding-block: 2.5rem; }
+		.history-chapter-heading img { width: 36px; height: 36px; margin-bottom: .75rem; }
+		.history-chapter h2 { max-width: none; }
+		.history-moments { margin-left: .3rem; padding-left: 1.3rem; }
+		.history-moment::before { left: calc(-1.3rem - 5px); }
+	}
+</style>
+
+<MainLayout
+	title="Nuestra historia | Espacio Elementos"
+	description="Antes del nombre, ya nos juntábamos a entrenar. La historia de una casa de movimiento, circo, baile y comunidad en Rengo."
+	image="/images/web/comunidad.webp"
+>
+	<div class="history">
+		<header class="history-intro history-width">
+			<p class="history-kicker">Nuestra historia · Rengo</p>
+			<h1>Primero fue<br />juntarnos a <em>movernos.</em></h1>
+			<p class="history-lead">Después vinieron los talleres, el nombre, las galas. Lo que nos reúne sigue siendo lo mismo: entrenar, aprender y compartir esta casa.</p>
+		</header>
+
+		<figure class="history-portrait history-width">
+			<img src="/images/web/comunidad.webp" alt="Un grupo de Elementos reunido en la sala de entrenamiento, entre colchonetas y paredes de madera." width="1600" height="1200" decoding="async" fetchpriority="high" />
+			<figcaption>Una casa toma vida con las personas que la habitan.</figcaption>
+		</figure>
+
+        <aside class="history-first-meeting history-width" aria-label="Nuestra primera junta calisténica">
+            <p class="history-kicker">Encontrarnos también afuera</p>
+            <h2>Una primera junta en Los Montes.</h2>
+            <p>Nos reunimos en el parque de calistenia para entrenar, compartir técnicas y acompañar a quienes querían aprender. La comunidad también se construía fuera de la casa.</p>
+            <a class="history-source" href="https://www.instagram.com/espacio.elementos/p/Cs1qiCpJSrs/" target="_blank" rel="noopener noreferrer">Ver el registro de la junta ↗</a>
+        </aside>
+
+		<nav class="history-index history-width" aria-label="Recorrer nuestra historia">
+			<span>El camino</span>
+			<ul>
+				{historyChapters.map((chapter) => <li><a href={`#historia-${chapter.id}`}>{chapter.year}</a></li>)}
+				<li><a href="#historia-hoy">Hoy</a></li>
+			</ul>
+		</nav>
+
+		<div class="history-chapters history-width">
+			{historyChapters.map((chapter) => (
+				<section id={`historia-${chapter.id}`} class={`history-chapter history-chapter--${chapter.element}`} aria-labelledby={`titulo-${chapter.id}`}>
+					<header class="history-chapter-heading">
+						<img src={`/images/marca/${chapter.element}.png`} alt="" width="48" height="48" loading="lazy" />
+						<p class="history-year">{chapter.year}</p>
+						<h2 id={`titulo-${chapter.id}`}>{chapter.title}</h2>
+					</header>
+					<ol class="history-moments">
+						{chapter.moments.map((moment) => (
+							<li class:list={['history-moment', { 'history-moment--quiet': moment.quiet }]}>
+								<p class="history-date">{moment.datetime ? <time datetime={moment.datetime}>{moment.date}</time> : moment.date}</p>
+								<h3>{moment.title}</h3>
+								<p>{moment.story}</p>
+								{moment.source && <a class="history-source" href={moment.source} target="_blank" rel="noopener noreferrer" aria-label={`Ver registro: ${moment.title} (Instagram, nueva pestaña)`}>Ver registro <span aria-hidden="true">↗</span></a>}
+							</li>
+						))}
+					</ol>
+				</section>
+			))}
+		</div>
+
+		<section id="historia-hoy" class="history-today" aria-labelledby="historia-hoy-title">
+			<div class="history-width">
+				<p class="history-kicker">Hoy · La historia sigue</p>
+				<h2 id="historia-hoy-title">Seguimos aquí.<br />Seguimos moviéndonos.</h2>
+				<p>Entre una clase y otra nos encontramos, nos reímos y seguimos aprendiendo. Si tienes ganas de entrenar, hacer circo o bailar, hay una forma de sumarte.</p>
+				<a class="site-button" href="/#entrena">Ven a entrenar con nosotros <span aria-hidden="true">↗</span></a>
+			</div>
+		</section>
+	</div>
+</MainLayout>

@@ -29,13 +29,10 @@ export const buildMailHref = (subject: string, body?: string) => {
 };
 
 export const NAV_ITEMS = [
-	{ label: 'Inicio', href: '/' },
-	{ label: 'Servicios', href: '/servicios' },
-	{ label: 'Talleres', href: '/talleres' },
-	{ label: 'Proyectos', href: '/proyectos' },
-	{ label: 'Videos', href: '/videos' },
-	{ label: 'Nosotros', href: '/nosotros' },
-	{ label: 'Contacto', href: '/contacto' },
+ { label: 'Entrena', href: '/#entrena' },
+ { label: 'La casa', href: '/#la-casa' },
+ { label: 'Nuestra historia', href: '/historia' },
+ { label: 'Únete', href: '/#unete' },
 ];
 
 export const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@EspacioElementos';
@@ -46,9 +43,9 @@ export const SITE_CONTACT = {
 	emailHref: buildMailHref('Contacto desde espacioelementos.cl'),
 	whatsappLabel: OFFICIAL_WHATSAPP_LABEL,
 	whatsappHref: buildWhatsAppHref(
-		'Hola Espacio Elementos, quiero cotizar una experiencia o servicio.'
+		'Hola Elementos, quiero sumarme a entrenar. ¿Me cuentan los horarios, valores y cómo comenzar?'
 	),
-	location: "Rengo, Region de O'Higgins, Chile",
+	location: "Calle Nueva Tres 1036, Villa El Naranjal Viejo, Rengo",
 };
 
 export const INQUIRY_PATHS = [
@@ -108,6 +105,7 @@ export const SOCIAL_LINKS = [
 		href: 'https://www.instagram.com/espacio.elementos',
 		icon: '/images/rrss/instagram.png',
 	},
+ { label: 'TikTok', href: 'https://www.tiktok.com/@espacio.elementos', icon: '/images/rrss/tiktok.svg' },
 	{
 		label: 'Facebook',
 		href: 'https://www.facebook.com/espacio.elementos.rengo',
@@ -177,6 +175,6 @@ export const COMMUNITY_PARTNERS = [
 	{
 		name: 'Latin Rengo',
 		logo: '/images/colaboradores/latinrengo.png',
-		href: 'https://www.instagram.com/latin.rengo/?utm_source=espacioelementos&utm_medium=referral',
+		href: 'https://latinrengo.cl/',
 	},
 ];

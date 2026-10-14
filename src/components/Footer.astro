@@ -1,52 +1,12 @@
 ---
-import { NAV_ITEMS, SITE_CONTACT, SOCIAL_LINKS } from '../data/site';
-
-const today = new Date();
+import { SITE_CONTACT, SOCIAL_LINKS } from '../data/site';
 ---
-
-<footer class="site-footer">
-	<div class="container site-footer__grid">
-		<div>
-			<img src="/images/elementos-blanco.png" alt="Elementos" width="92" height="92" loading="lazy" decoding="async" />
-			<p class="site-footer__lead">
-				Movimiento, artes escenicas, bienestar y comunidad con una mirada profesional, humana y territorial.
-			</p>
-		</div>
-
-		<div>
-			<h2 class="site-footer__title">Navegacion</h2>
-			<ul class="site-footer__list">
-				{NAV_ITEMS.map((item) => (
-					<li><a href={item.href}>{item.label}</a></li>
-				))}
-			</ul>
-		</div>
-
-		<div>
-			<h2 class="site-footer__title">Contacto</h2>
-			<ul class="site-footer__list">
-				<li><a href={SITE_CONTACT.emailHref}>{SITE_CONTACT.email}</a></li>
-				<li><a href={SITE_CONTACT.whatsappHref} target="_blank" rel="noopener noreferrer">{SITE_CONTACT.whatsappLabel}</a></li>
-				<li>{SITE_CONTACT.location}</li>
-			</ul>
-		</div>
-
-		<div>
-			<h2 class="site-footer__title">Redes</h2>
-			<div class="site-footer__social">
-				{SOCIAL_LINKS.map((link) => (
-					<a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.label}>
-						<img src={link.icon} alt="" width="42" height="42" loading="lazy" decoding="async" />
-					</a>
-				))}
-			</div>
-		</div>
-	</div>
-
-	<div class="container site-footer__bottom">
-		<p>&copy; Espacio Elementos {today.getFullYear()}</p>
-		<p>
-			Implementacion por <a href="https://avx.cl/" target="_blank" rel="noopener noreferrer">AVX Informatica</a>
-		</p>
-	</div>
+<footer class="house-footer">
+  <div class="footer-inner">
+    <div class="footer-top"><div><img src="/images/elementos-blanco.png" alt="Símbolos de Elementos" width="72" height="72" loading="lazy" /><p class="footer-motto">Una casa.<br />Muchas formas de moverse.</p></div><div><h2>Nos encontramos en Rengo</h2><p>Calle Nueva Tres 1036<br />Villa El Naranjal Viejo</p><a href={SITE_CONTACT.whatsappHref} target="_blank" rel="noopener noreferrer">{SITE_CONTACT.whatsappLabel} ↗</a><a href={SITE_CONTACT.emailHref}>{SITE_CONTACT.email}</a></div><div><h2>Sigue el movimiento</h2>{SOCIAL_LINKS.map(link=><a href={link.href} target="_blank" rel="noopener noreferrer">{link.label} ↗</a>)}</div></div>
+    <div class="footer-bottom"><p>© {new Date().getFullYear()} Espacio Elementos</p><div><a href="/historia">Nuestra historia</a><a href="/servicios">Arte y colaboraciones</a><a href="/contacto">Contacto</a></div></div>
+  </div>
 </footer>
+<style>
+.house-footer{background:#142b30;color:#f6f2e8;padding:4rem 0 1.5rem}.footer-inner{width:min(1200px,calc(100% - 3rem));margin:auto}.footer-top{display:grid;grid-template-columns:1.3fr 1fr .75fr;gap:3rem}.footer-top img{object-fit:contain}.footer-motto{font-size:1.65rem;line-height:1.25;margin-top:1rem}.footer-top h2{font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;color:#bed1cb;margin-bottom:1.2rem}.footer-top a{display:block;width:fit-content;padding:.25rem 0;font-size:.95rem}.footer-top p:not(.footer-motto){margin-bottom:1rem}.footer-bottom{border-top:1px solid #ffffff30;margin-top:3rem;padding-top:1.3rem;display:flex;justify-content:space-between;gap:1rem;font-size:.78rem;color:#cbd7d3}.footer-bottom div{display:flex;gap:1.4rem}a:hover{text-decoration:underline;text-underline-offset:5px}a:focus-visible{outline:3px solid #f5cf00;outline-offset:5px}@media(max-width:700px){.footer-top{grid-template-columns:1fr;gap:2.2rem}.footer-bottom{flex-direction:column}.footer-bottom div{flex-wrap:wrap;gap:.5rem 1.3rem}}
+</style>

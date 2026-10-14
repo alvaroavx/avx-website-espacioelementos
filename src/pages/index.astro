@@ -1,236 +1,31 @@
 ---
-import DossierCard from '../components/DossierCard.astro';
-import PageHero from '../components/PageHero.astro';
-import ServiceCard from '../components/ServiceCard.astro';
-import WorkshopCard from '../components/WorkshopCard.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-import { dossiers } from '../data/dossiers';
-import { heroContent } from '../data/page-heroes';
-import {
-	AUDIENCE_SEGMENTS,
-	COMMUNITY_PARTNERS,
-	INQUIRY_PATHS,
-	ECOSYSTEM_PILLARS,
-	SITE_CONTACT,
-	TRUST_POINTS,
-} from '../data/site';
-import { services } from '../data/services';
-import { YOUTUBE_CHANNEL_URL } from '../data/site';
-import { activeWorkshops } from '../data/workshops';
 import MainLayout from '../layouts/MainLayout.astro';
-
-const homeHeroSlides = [
-	heroContent.home,
-	heroContent.services,
-	heroContent.workshops,
-	heroContent.projects,
+import { SITE_DESCRIPTION } from '../consts';
+import { buildWhatsAppHref, SITE_CONTACT, SOCIAL_LINKS } from '../data/site';
+const activities = [
+ {number:'01',name:'Entrenamiento funcional',line:'Fuerza para la vida.',text:'Trabajamos fuerza, movilidad y resistencia. Un espacio para aprender, practicar y avanzar con compañía.',image:'/images/web/funcional.webp',alt:'Dos personas entrenando con el peso de su cuerpo dentro de Elementos',link:buildWhatsAppHref('Hola Elementos, quiero entrenar funcional. ¿Cuáles son los horarios, valores y cupos?'),label:'Quiero entrenar',color:'earth'},
+ {number:'02',name:'Lira',line:'Otra forma de descubrirte.',text:'Exploramos el movimiento en el aro aéreo: fuerza, coordinación y expresión. Circo que se aprende practicando.',image:'/images/web/lira.webp',alt:'Práctica de lira en el aro aéreo dentro de la casa',link:buildWhatsAppHref('Hola Elementos, me interesa la lira. ¿Me cuentan los horarios, valores y cómo comenzar?'),label:'Quiero probar lira',color:'air'},
+ {number:'03',name:'Latin Rengo',line:'Nos encontramos bailando.',text:'Salsa y bachata para aprender, compartir y disfrutar del baile. Nuestro proyecto compañero, con sabor propio.',image:'/images/web/latin-rengo-comunidad.webp',alt:'Comunidad de Latin Rengo reunida después de bailar en Espacio Elementos',link:'https://latinrengo.cl/',label:'Conoce Latin Rengo',color:'fire'},
 ];
 ---
+<style>
+.home-house{background:#f6f2e8;color:#142b30}.wrap{width:min(1240px,calc(100% - 3rem));margin-inline:auto}.home-house h1,.home-house h2,.home-house h3{text-transform:none;overflow-wrap:normal}.overline{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;line-height:1.5}.small-sun{color:#a6481b;font-size:1.6rem;vertical-align:middle;margin-right:.4rem}.welcome{display:grid;grid-template-columns:1fr 1fr;gap:3rem;padding-block:3.5rem 4.5rem;align-items:center}.welcome h1{font-size:clamp(3.5rem,6.4vw,6.2rem);letter-spacing:-.055em;line-height:.98;margin:1.5rem 0}.welcome h1 em{color:#a6481b;font-style:normal;display:block}.welcome-text{font-size:1.18rem;line-height:1.65}.actions{display:flex;flex-wrap:wrap;gap:1.4rem;align-items:center;margin-top:2rem}.button{display:inline-flex;align-items:center;justify-content:center;gap:1.5rem;padding:1rem 1.3rem;min-height:48px;background:#0c4b7c;color:white;font-size:.9rem;font-weight:700;border:1px solid #0c4b7c;border-radius:4px;line-height:1.4}.button:hover{background:#142b30}.quiet-link{display:inline-block;font-size:.95rem;font-weight:700;text-decoration:underline;text-underline-offset:6px;padding-block:.5rem}.welcome-photo{margin:0;position:relative}.welcome-photo img{display:block;width:100%;height:auto;aspect-ratio:1/1.08;object-fit:cover;border-radius:48% 48% 2px 2px}.welcome-photo figcaption{display:flex;justify-content:space-between;border-bottom:1px solid #142b3040;font-size:.8rem;padding:.8rem 0}.movement-strip{display:flex;justify-content:center;align-items:center;gap:clamp(1.5rem,5vw,5rem);padding:1.35rem 1rem;background:#e8b44c;color:#142b30;font-weight:700;font-size:clamp(.8rem,1.6vw,1.2rem)}.movement-strip i{font-style:normal}.practices{padding-block:5.5rem}.section-top{display:flex;justify-content:space-between;gap:2rem;align-items:flex-end;margin-bottom:2.5rem}.home-house h2{font-size:clamp(2.4rem,4.7vw,4.2rem);line-height:1.07;letter-spacing:-.04em;margin-top:.8rem}.section-top>p{font-size:1rem;line-height:1.7}.practices-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}.practice-image{position:relative;aspect-ratio:3/3.5;background:#eadbc8;overflow:hidden}.practice-image img{width:100%;height:100%;object-fit:cover;display:block}.practice.fire .practice-image{background:#e7bb9a;display:grid;place-items:center}.practice.fire img{object-fit:contain;width:78%;height:78%}.practice-number{position:absolute;bottom:.9rem;left:.9rem;background:#f6f2e8;border-radius:50%;width:2.4rem;height:2.4rem;display:grid;place-items:center;font-size:.8rem}.practice-copy{padding:1.5rem 0 0}.practice h3{font-size:1.65rem;letter-spacing:-.025em;line-height:1.12}.practice-line{font-weight:700;font-size:.95rem;margin:.5rem 0 .7rem}.practice-copy>p:not(.practice-line){font-size:.95rem;line-height:1.65}.practice-copy>a{display:flex;justify-content:space-between;border-bottom:2px solid #142b30;padding:1.2rem 0 .65rem;font-size:.9rem;font-weight:700}.schedule{border-top:1px solid #142b3033;margin-top:3rem;padding-top:2rem;display:flex;gap:2rem;align-items:center;justify-content:space-between}.schedule h3{font-size:1.3rem;margin-bottom:.7rem}.schedule p{font-size:.95rem;max-width:630px}.outline{background:transparent;color:#0c4b7c;flex-shrink:0}.outline:hover{color:white}.our-house{background:#e3e9df;padding-block:5rem}.house-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:4rem;align-items:center}.house-grid figure{margin:0}.house-grid img{width:100%;height:auto;display:block;border-radius:3px}.house-grid figcaption{font-size:.8rem;padding-top:.8rem}.house-copy h2 em,.join-us em{font-style:normal;color:#236348}.house-copy p:not(.overline){margin-top:1.3rem;font-size:1.05rem;line-height:1.7}.house-copy a{margin-top:1.5rem}.living{display:grid;grid-template-columns:1fr 1fr;gap:5rem;padding-block:5rem}.living p:not(.overline){max-width:450px;margin-top:1.5rem;font-size:1.05rem}.social-rows{align-self:center}.social-rows a{display:flex;justify-content:space-between;border-bottom:1px solid #142b3050;padding:1.1rem 0;font-size:1.7rem;letter-spacing:-.02em}.social-rows a:hover{color:#a6481b}.join-us{background:#ece3d0;padding-block:5rem}.join-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:7rem;align-items:center}.join-grid>div>p:not(.overline){margin:1.5rem 0;max-width:550px}.visit-note{border:1px solid #142b3050;padding:2rem;position:relative}.note-label{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase}.visit-note h3{font-size:2.5rem;letter-spacing:-.04em;margin-top:1.2rem;line-height:1.05}.visit-small{font-size:.85rem;line-height:1.6}a:focus-visible{outline:3px solid #a6481b;outline-offset:5px}section[id],#horarios{scroll-margin-top:1.5rem}@media(max-width:900px){.welcome{gap:2rem}.welcome h1{font-size:4rem}.actions{gap:.7rem}.practices-grid{gap:1.2rem}.house-grid{gap:2rem}.schedule{align-items:flex-start;flex-direction:column}.join-grid{gap:3rem}}@media(max-width:700px){.wrap{width:calc(100% - 2.5rem)}.welcome{grid-template-columns:1fr;padding-block:2rem 2.5rem;gap:2rem}.welcome h1{font-size:clamp(3.6rem,12vw,5rem)}.welcome-text{font-size:1.08rem}.welcome-photo img{aspect-ratio:1/1;border-radius:44% 44% 2px 2px}.movement-strip{gap:.7rem;justify-content:space-around;font-size:.75rem}.movement-strip i{font-size:.75rem}.section-top{display:block}.section-top>p{margin-top:1.2rem}.practices{padding-block:3.2rem}.practices-grid{grid-template-columns:1fr;gap:2.7rem}.practice-image{aspect-ratio:4/4.5}.practice.fire .practice-image{aspect-ratio:4/3}.practice-copy{padding-top:1.1rem}.schedule{margin-top:2.5rem}.house-grid,.living,.join-grid{grid-template-columns:1fr;gap:2rem}.our-house,.join-us{padding-block:3rem}.living{padding-block:3rem}.house-copy h2{font-size:2.75rem}.visit-note{padding:1.5rem}.home-house h2{font-size:2.65rem}.social-rows a{font-size:1.4rem}}
+.practice.fire .practice-image{display:block}.practice.fire img{object-fit:cover;width:100%;height:100%}
+</style>
 
-<MainLayout
-	title={SITE_TITLE}
-	description={SITE_DESCRIPTION}
-	image="/images/banners/banner-2.png"
->
-	<PageHero
-		eyebrow={heroContent.home.eyebrow}
-		title={heroContent.home.title}
-		description={heroContent.home.description}
-		image={heroContent.home.image}
-		imageAlt={heroContent.home.imageAlt}
-		actions={heroContent.home.actions}
-		carouselId="homeHeroCarousel"
-		autoplay={false}
-		slides={homeHeroSlides}
-	/>
-
-	<section class="page-section page-section--wash-blue page-section--symbol-air">
-		<div class="container">
-			<div class="section-heading">
-				<p class="eyebrow">Rutas de consulta</p>
-				<h2>Entradas claras para empresas, colegios, municipios y eventos privados</h2>
-				<p>
-					La propuesta principal ya esta definida desde el primer pliegue. Aqui dejamos caminos directos
-					para que cada contraparte llegue rapido a la conversacion correcta.
-				</p>
-			</div>
-			<div class="path-grid">
-				{INQUIRY_PATHS.map((path) => (
-					<article class="path-card">
-						<h3>{path.title}</h3>
-						<p>{path.summary}</p>
-						<a
-							class="site-link"
-							href={path.href}
-							target={path.target}
-							rel={path.target === '_blank' ? 'noopener noreferrer' : undefined}
-						>
-							{path.label}
-						</a>
-					</article>
-				))}
-			</div>
-		</div>
-	</section>
-
-	<section class="page-section page-section--symbol-water">
-		<div class="container">
-			<div class="section-heading">
-				<p class="eyebrow">Que hacemos</p>
-				<h2>Un ecosistema que cruza bienestar, escena y trabajo con personas</h2>
-			</div>
-			<div class="icon-card-grid">
-				{ECOSYSTEM_PILLARS.map((pillar) => (
-					<article class="icon-card">
-						<h3>{pillar.title}</h3>
-						<p>{pillar.description}</p>
-					</article>
-				))}
-			</div>
-		</div>
-	</section>
-
-	<section class="page-section page-section--wash-gold page-section--symbol-fire">
-		<div class="container">
-			<div class="section-heading">
-				<p class="eyebrow">Servicios principales</p>
-				<h2>Rutas claras para contratar, colaborar o activar una experiencia</h2>
-				<p>
-					La oferta principal del sitio esta orientada a instituciones, equipos, espacios culturales,
-					organizaciones y clientes privados que necesitan una propuesta seria, viva y bien ejecutada.
-				</p>
-			</div>
-			<div class="content-grid">
-				{services.map((service) => (
-					<ServiceCard service={service} />
-				))}
-			</div>
-		</div>
-	</section>
-
-	<section class="page-section page-section--wash-blue page-section--symbol-water">
-		<div class="container split-panel">
-			<div>
-				<p class="eyebrow">Para quien trabajamos</p>
-				<h2>Distintos contextos, una misma forma de trabajar</h2>
-				<p>
-					No somos solo un espacio de talleres. La propuesta tambien conversa con necesidades
-					institucionales, celebraciones, jornadas de bienestar, eventos y acciones territoriales.
-				</p>
-				<ul class="pill-list">
-					{AUDIENCE_SEGMENTS.map((audience) => (
-						<li>{audience}</li>
-					))}
-				</ul>
-			</div>
-			<div class="trust-panel">
-				<h3>Por que confiar</h3>
-				<ul class="check-list">
-					{TRUST_POINTS.map((point) => (
-						<li>{point}</li>
-					))}
-				</ul>
-			</div>
-		</div>
-	</section>
-
-	<section class="page-section page-section--wash-green page-section--symbol-earth">
-		<div class="container">
-			<div class="section-heading">
-				<p class="eyebrow">Talleres regulares</p>
-				<h2>La practica constante sigue siendo parte del corazon de Elementos</h2>
-				<p>
-					Los talleres viven dentro del ecosistema, pero ya no cargan solos con todo el relato del sitio.
-					Aqui aparecen como una linea activa, concreta y accesible.
-				</p>
-			</div>
-			<div class="workshop-grid">
-				{activeWorkshops.map((workshop) => (
-					<WorkshopCard workshop={workshop} />
-				))}
-			</div>
-			<div class="section-actions">
-				<a class="site-button" href="/talleres">Conoce los talleres</a>
-			</div>
-		</div>
-	</section>
-
-	<section class="page-section page-section--wash-green page-section--symbol-air">
-		<div class="container split-panel split-panel--media">
-			<div>
-				<p class="eyebrow">Proyectos comunitarios</p>
-				<h2>Trabajo territorial, colaboraciones y acciones con comunidad</h2>
-				<p>
-					La dimension comunitaria valida la trayectoria del proyecto y muestra que la cercania no es un
-					discurso, sino una forma real de relacionarse con el territorio, los equipos y las personas.
-				</p>
-				<a class="site-link" href="/proyectos">Ver proyectos comunitarios</a>
-			</div>
-			<div class="logo-cloud">
-				{COMMUNITY_PARTNERS.map((partner) => (
-					<a href={partner.href} target="_blank" rel="noopener noreferrer" aria-label={partner.name}>
-						<img src={partner.logo} alt={partner.name} />
-					</a>
-				))}
-			</div>
-		</div>
-	</section>
-
-	<section class="page-section page-section--wash-gold page-section--symbol-fire">
-		<div class="container">
-			<div class="section-heading">
-				<p class="eyebrow">Videos y registros</p>
-				<h2>Mira como se vive Elementos</h2>
-				<p>
-					Obras, shows, galas y clases. El archivo vivo de Espacio Elementos esta en YouTube.
-				</p>
-			</div>
-			{/* PENDIENTE: Video destacado — Álvaro elige desde videos.ts (id: 'featured-home').
-			    Opciones: Gala Elementos 2025, varieté de circo o registro comunitario de alto impacto visual.
-			    Thumbnail de video destacado pendiente de seleccion y entrega. */}
-			<div class="video-placeholder-home" style="border: 2px dashed currentColor; padding: 2rem; text-align: center; opacity: 0.6; border-radius: 8px; margin-bottom: 1.5rem;">
-				<p style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;">Video destacado pendiente</p>
-				<p>Gala Elementos 2025, show escenico o registro comunitario — Alvaro elige el video final desde la playlist del canal.</p>
-			</div>
-			<div class="section-actions">
-				<a class="site-button" href="/videos">Ver videos y registros</a>
-				<a class="site-button site-button--secondary" href={YOUTUBE_CHANNEL_URL} target="_blank" rel="noopener noreferrer">Ver canal de YouTube</a>
-			</div>
-		</div>
-	</section>
-
-	<section class="page-section page-section--wash-orange page-section--symbol-fire">
-		<div class="container">
-			<div class="section-heading">
-				<p class="eyebrow">Dossiers</p>
-				<h2>Material comercial disponible para conversaciones y cotizaciones</h2>
-				<p>
-					El sitio ya puede compartir material institucional y comercial para conversaciones, cotizaciones
-					y presentaciones de proyecto.
-				</p>
-			</div>
-			<div class="dossier-grid">
-				{dossiers.slice(0, 2).map((dossier) => (
-					<DossierCard dossier={dossier} />
-				))}
-			</div>
-		</div>
-	</section>
-
-	<section class="page-section page-section--contact">
-		<div class="container contact-banner">
-			<div>
-				<p class="eyebrow">Contacto</p>
-				<h2>Conversemos tu evento, proyecto o necesidad institucional</h2>
-				<p>
-					Si quieres cotizar una experiencia, solicitar un dossier o consultar por talleres, te respondemos
-					por correo o WhatsApp.
-				</p>
-			</div>
-			<div class="contact-banner__actions">
-				<a class="site-button" href="/contacto">Ir a contacto</a>
-				<a class="site-button site-button--secondary" href={SITE_CONTACT.emailHref}>Escribir por correo</a>
-			</div>
-		</div>
-	</section>
+<MainLayout title="Espacio Elementos · Ven a entrenar con nosotros" description={SITE_DESCRIPTION} image="/images/web/comunidad.webp">
+  <div class="home-house">
+    <section class="welcome wrap" aria-labelledby="welcome-title">
+      <div class="welcome-copy"><p class="overline"><span class="small-sun" aria-hidden="true">✳</span> Movimiento y comunidad · Rengo</p><h1 id="welcome-title">Ven a<br />entrenar<br /><em>con nosotros.</em></h1><p class="welcome-text">Entrenamos, hacemos circo y bailamos.<br />Nos movemos para sentirnos bien.<br />Y en el camino, hacemos comunidad.</p><div class="actions"><a class="button" href="#entrena">Encuentra tu movimiento <span aria-hidden="true">↓</span></a><a class="quiet-link" href="#unete">Cómo unirte ↗</a></div></div>
+      <figure class="welcome-photo"><img src="/images/web/entrenamiento-acompanado.webp" alt="Entrenamiento acompañado en la barra, dentro de Espacio Elementos" width="2976" height="2976" fetchpriority="high" /><figcaption><span>Así se vive en nuestra casa.</span><span aria-hidden="true">↗</span></figcaption></figure>
+    </section>
+    <div class="movement-strip" aria-label="Movimiento, circo, baile y comunidad"><span>Movimiento</span><i aria-hidden="true">✳</i><span>Circo</span><i aria-hidden="true">✳</i><span>Baile</span><i aria-hidden="true">✳</i><span>Comunidad</span></div>
+    <section id="entrena" class="practices wrap" aria-labelledby="practices-title"><div class="section-top"><div><p class="overline">Qué hacemos</p><h2 id="practices-title">Encuentra tu<br />forma de moverte.</h2></div><p>Hay distintas maneras de empezar.<br />Cuéntanos qué te gustaría practicar<br />y encontremos la tuya.</p></div>
+      <div class="practices-grid">{activities.map(a=><article class:list={['practice',a.color]}><div class="practice-image"><img src={a.image} alt={a.alt} width="600" height="800" loading="lazy" decoding="async" /><span class="practice-number" aria-hidden="true">{a.number}</span></div><div class="practice-copy"><h3>{a.name}</h3><p class="practice-line">{a.line}</p><p>{a.text}</p><a href={a.link} target="_blank" rel="noopener noreferrer">{a.label} <span aria-hidden="true">↗</span></a></div></article>)}</div>
+      <div class="schedule" id="horarios"><div><h3>Horarios, valores y tu primera clase</h3><p>Escríbenos por la actividad que te interesa. Te contamos los horarios, el valor de las clases y la disponibilidad para que puedas organizarte.</p></div><a class="button outline" href={buildWhatsAppHref('Hola Elementos, quisiera conocer los horarios y valores actuales de las clases.')} target="_blank" rel="noopener noreferrer">Consultar horarios y valores ↗</a></div>
+    </section>
+    <section id="la-casa" class="our-house" aria-labelledby="house-title"><div class="wrap house-grid"><figure><img src="/images/web/comunidad.webp" alt="El equipo de Elementos reunido en la sala de madera" width="1600" height="1200" loading="lazy" decoding="async" /><figcaption>El espacio lo hacemos entre quienes lo habitamos.</figcaption></figure><div class="house-copy"><p class="overline">Quiénes somos</p><h2 id="house-title">Una casita.<br />Un lugar<br /><em>para encontrarnos.</em></h2><p>Antes de tener un nombre, éramos personas que se juntaban a entrenar. Esa sigue siendo nuestra esencia: compartir el movimiento, aprender y acompañarnos.</p><p>Nos gusta el arte. A veces creamos obras, hacemos una gala o salimos al barrio. Y siempre volvemos a lo que nos reúne: las ganas de movernos juntos.</p><a class="quiet-link" href="/historia">Conoce nuestra historia <span aria-hidden="true">→</span></a></div></div></section>
+    <section class="living wrap" aria-labelledby="living-title"><div><p class="overline">La vida entre clases</p><h2 id="living-title">Seguimos<br />en movimiento.</h2><p>Los entrenamientos, los encuentros, las risas y lo que vamos creando. Nuestra vida cotidiana también está en las redes.</p></div><div class="social-rows">{SOCIAL_LINKS.filter(s=>s.label!=='Facebook').map(s=><a href={s.href} target="_blank" rel="noopener noreferrer"><span>{s.label}</span><span aria-hidden="true">↗</span></a>)}</div></section>
+    <section id="unete" class="join-us" aria-labelledby="join-title"><div class="wrap join-grid"><div><p class="overline">Tu primera vez en Elementos</p><h2 id="join-title">El primer paso:<br /><em>conversemos.</em></h2><p>No necesitas tener todo resuelto. Cuéntanos qué quieres practicar, qué experiencia tienes o qué te gustaría aprender.</p><a class="button" href={SITE_CONTACT.whatsappHref} target="_blank" rel="noopener noreferrer">Hablemos por WhatsApp ↗</a></div><div class="visit-note"><span class="note-label">Nos vemos en la casa</span><h3>Rengo,<br />El Naranjal.</h3><p>Calle Nueva Tres 1036<br />Villa El Naranjal Viejo</p><p class="visit-small">Coordinemos tu visita y te contamos qué llevar para tu clase.</p><a class="quiet-link" href="https://www.google.com/maps/search/?api=1&amp;query=Calle%20Nueva%20Tres%201036%2C%20Rengo" target="_blank" rel="noopener noreferrer">Cómo llegar ↗</a></div></div></section>
+  </div>
 </MainLayout>

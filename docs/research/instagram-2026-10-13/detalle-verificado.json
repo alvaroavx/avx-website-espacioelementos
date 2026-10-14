@@ -1,0 +1,34 @@
+{
+  "fechaRevision": "2026-10-13",
+  "metodo": "Reconstruido exclusivamente de observaciones de navegador obtenidas antes del bloqueo. No es archivo de todas las publicaciones.",
+  "registros": [
+    {
+      "url": "https://www.instagram.com/espacio.elementos/p/ChnRkIUukkh/",
+      "fechaPublicacionUTC": "2022-08-23T19:25:20.000Z",
+      "fechaMostrada": "23 de ago. de 2022",
+      "observacion": "Primera publicación localizada al final de la cuadrícula; bienvenida para artistas y deportistas amantes del movimiento. No acredita fecha de fundación.",
+      "comentarios": "No se documentó revisión de comentarios de esta pieza.",
+      "revisionMedio": "Página abierta y texto/fecha observados; no captura individual guardada."
+    },
+    {
+      "url": "https://www.instagram.com/elementalvax/reel/CigrXcTDoLH/",
+      "fechaPublicacionUTC": "2022-09-15T02:37:12.000Z",
+      "fechaMostrada": "14 de septiembre de 2022",
+      "fechaEventoAnunciada": "2022-09-16",
+      "horaAnunciada": "17:30",
+      "observacion": "Convoca explícitamente a inauguración con seminario de equilibrio de manos. Anuncio observado; realización no comprobada en esta pieza.",
+      "revisionMedio": "Fotograma/afiche observado; video no reproducido íntegramente.",
+      "captura": "capturas/CigrXcTDoLH.png",
+      "comentariosInicialesAnonimizados": [
+        "Ojalá lo repitan!! Porfaa",
+        "Ay! No pude ir",
+        "Hola!! Hay que inscribirse??",
+        "Se viene con todo 💪🏼✨",
+        "Buenaaa que bakan!!😍",
+        "😍😍😍",
+        "🔥🔥🔥"
+      ],
+      "limiteComentarios": "Siete comentarios iniciales; respuestas sin desplegar. No guardar identidades ni inferir representatividad."
+    }
+  ]
+}

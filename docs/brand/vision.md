@@ -1,102 +1,13 @@
-# Visión de marca: Espacio Elementos
+# Visión vigente: una casa de movimiento
 
-## Definición
+Dirección solicitada por el responsable el 2026-10-13 e implementada inicialmente el 2026-10-14. Reemplaza el posicionamiento B2B prioritario anterior.
 
-Espacio Elementos es un ecosistema de movimiento, artes escénicas, bienestar y comunidad con base territorial en Rengo.
+Elementos es una comunidad de Rengo que se encuentra para entrenar, hacer circo, bailar y compartir. Primero fueron personas que se juntaban a entrenar; después llegaron el nombre, las estructuras formales, las galas y las obras.
 
-Tiene un espacio físico, pero no se limita a él.  
-También desarrolla talleres, presentaciones, experiencias escénicas, activaciones comunitarias y servicios para organizaciones y clientes privados.
+El sitio invita a participar: **ven a entrenar con nosotros**. Funcional, lira y Latin Rengo son las tres entradas actuales descritas por el responsable. La persona debe entender qué ocurre, dónde está el espacio y cómo consultar para sumarse.
 
-## Posicionamiento deseado
+La casa, sus materiales, las personas y las prácticas reales son el centro visual. Se mantienen los colores y símbolos elementales. Obras, producción y colaboraciones tienen espacio secundario y relato histórico, sin convertirse en la promesa principal.
 
-Espacio Elementos debe percibirse como:
+No inventar oferta vigente, resultados de salud ni historias. Las fechas del responsable y las fuentes del archivo se conservan con su precisión. La marca, la empresa y la agrupación no son el mismo hito.
 
-- profesional y confiable;
-- humano y cercano;
-- diverso e inclusivo;
-- corporal, artístico y sensible;
-- local, pero con ambición y estándar alto;
-- capaz de trabajar con empresas, colegios, municipios y comunidades;
-- serio, sin perder identidad.
-
-## Diferenciadores
-
-Los diferenciadores principales son:
-
-### 1. Integración real de disciplinas
-No es solo entrenamiento ni solo arte.  
-Integra movimiento, salud, circo, danza, entrenamiento funcional, comunidad y experiencias escénicas.
-
-### 2. Sello humano
-La cercanía, personalización y preocupación genuina por las personas son parte central del proyecto.
-
-### 3. Profesionalización del arte y el movimiento local
-Espacio Elementos muestra que se puede trabajar con estándar alto, sensibilidad y organización sin caer en rigidez corporativa.
-
-### 4. Versatilidad operativa
-Puede funcionar como espacio, escuela de movimiento, plataforma artística y proveedor de experiencias para terceros.
-
-## Audiencias prioritarias
-
-### Primarias
-- empresas
-- colegios
-- municipios
-- organizaciones comunitarias
-- clientes privados para eventos
-
-### Secundarias
-- personas interesadas en talleres regulares
-- artistas y colaboradores
-- aliados institucionales
-- comunidad local
-
-## Qué debe sentir alguien al entrar al sitio
-
-La persona debería sentir algo como esto:
-
-“Esto se ve serio y profesional, pero no frío.  
-Aquí hay identidad, trabajo real, capacidad artística y experiencia con personas.  
-Podría contratarlos, colaborar con ellos o participar.”
-
-## Mensaje madre de marca
-
-Espacio Elementos crea experiencias de movimiento, bienestar y artes escénicas con sello humano y profesional.
-
-## Propuesta de valor resumida
-
-Diseñamos y ejecutamos talleres, presentaciones y experiencias corporales/escénicas que conectan arte, salud, comunidad y profesionalismo.
-
-## Palabras clave de marca
-
-- movimiento
-- comunidad
-- bienestar
-- arte
-- experiencia
-- humanidad
-- diversidad
-- entrenamiento
-- escena
-- cultura
-- cercanía
-- profesionalismo
-- conexión
-- autoconocimiento
-- equilibrio
-
-## Antipalabras o desvíos
-
-Evitar depender demasiado de:
-- fitness estético
-- transformación física superficial
-- “espiritualidad” vaga
-- discurso demasiado alternativo
-- lenguaje empresarial frío
-- promesas rimbombantes sin respaldo
-
-## Regla de lectura de marca
-
-Cuando haya dudas entre dos caminos:
-- elegir el que mantenga profesionalismo;
-- pero sin sacrificar cercanía, diversidad ni identidad elemental.
+Fuentes: [dossier](../research/instagram-2026-10-13/README.md), [origen confirmado](../research/instagram-2026-10-13/origen-confirmado-y-cronologia.md) y [dirección artística](../research/instagram-2026-10-13/direccion-artistica.md).

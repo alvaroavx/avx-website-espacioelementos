@@ -1,48 +1,15 @@
 ---
-import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '../consts';
-import { NAV_ITEMS, SITE_CONTACT, SOCIAL_LINKS } from '../data/site';
+import { NAV_ITEMS } from '../data/site';
+const path = Astro.url.pathname;
 ---
-
-<header class="site-header">
-	<nav class="site-header__nav-wrap" aria-label="Navegacion principal">
-		<div class="container site-header__inner">
-			<a class="site-header__brand" href="/" aria-label={SITE_TITLE}>
-				<img src="/images/logo-espacio-elementos.png" alt={SITE_TITLE} width="270" height="77" decoding="async" />
-			</a>
-
-			<div class="site-header__menu">
-				<input class="site-header__checkbox" type="checkbox" id="siteNavToggle" aria-label="Abrir navegacion" />
-				<label class="site-header__toggle" for="siteNavToggle" aria-hidden="true">
-					<span></span>
-					<span></span>
-					<span></span>
-				</label>
-
-				<div class="site-header__panel">
-					<ul class="site-header__nav">
-						{NAV_ITEMS.map((item) => (
-							<li>
-								<HeaderLink href={item.href} class="site-header__link">
-									{item.label}
-								</HeaderLink>
-							</li>
-						))}
-						<li class="site-header__cta-wrap">
-							<a class="site-button site-button--small" href={SITE_CONTACT.whatsappHref} target="_blank" rel="noopener noreferrer">
-								Cotiza por WhatsApp
-							</a>
-						</li>
-					</ul>
-					<div class="site-header__social">
-						{SOCIAL_LINKS.map((link) => (
-							<a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.label}>
-								<img src={link.icon} alt="" width="34" height="34" loading="lazy" decoding="async" />
-							</a>
-						))}
-					</div>
-				</div>
-			</div>
-		</div>
-	</nav>
+<header class="house-header">
+  <div class="house-header__inner">
+    <a class="house-brand" href="/" aria-label="Espacio Elementos · Inicio"><img src="/images/logo-espacio-elementos.png" alt="Espacio Elementos" width="270" height="77" /></a>
+    <nav aria-label="Navegación principal">
+      {NAV_ITEMS.map(item => <a href={item.href} class:list={{join:item.href === '/#unete'}} aria-current={item.href === '/historia' && path.startsWith('/historia') ? 'page' : undefined}>{item.label}{item.href === '/#unete' && <span aria-hidden="true"> ↗</span>}</a>)}
+    </nav>
+  </div>
 </header>
+<style>
+.house-header{background:#f6f2e8;border-bottom:1px solid #14202d20;position:relative;z-index:10}.house-header__inner{width:min(1280px,calc(100% - 3rem));margin:auto;display:flex;align-items:center;justify-content:space-between;gap:2rem;padding:1.2rem 0}.house-brand{flex-shrink:0}.house-brand img{display:block;width:216px;height:auto}nav{display:flex;align-items:center;gap:2rem;font-size:.95rem;font-weight:700}nav a{padding:.65rem 0;white-space:nowrap}nav a:hover,nav a[aria-current]{text-decoration:underline;text-underline-offset:6px}nav .join{padding:.6rem 1.3rem;background:#0c4b7c;color:white;border-radius:4px}.join span{margin-left:1rem}a:focus-visible{outline:3px solid #eb8e1d;outline-offset:5px}@media(max-width:780px){.house-header__inner{width:calc(100% - 2.5rem);flex-direction:column;align-items:flex-start;gap:.8rem;padding:1rem 0}.house-brand img{width:175px}nav{width:100%;justify-content:space-between;gap:.7rem;font-size:.82rem}nav .join{padding:.55rem .8rem}.join span{margin-left:.35rem}}@media(max-width:360px){nav{font-size:.75rem;gap:.4rem}}
+</style>

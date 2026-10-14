@@ -1,5 +1,9 @@
 # Plan de implementación
 
+> **Estado posterior — 2026-10-14:** la nueva dirección de entrenamiento y comunidad ya está implementada localmente. Consultar [implementación actual](redireccion-2026-10-14.md). El contenido que sigue conserva el estado y la planificación anteriores; no usar su prioridad comercial como instrucción vigente.
+
+> **Cambio de dirección solicitado — 2026-10-13:** el objetivo futuro prioriza venir a entrenar, movimiento y comunidad, con funcional, lira y baile/Latin Rengo, más Nuestra historia. La prioridad B2B descrita abajo corresponde a la dirección anterior; el código todavía la implementa. Este encargo es solo investigación y documentación, sin cambios al sitio. Ver [dossier y decisión de rumbo](../research/instagram-2026-10-13/README.md).
+
 ## Objetivo
 
 Transformar la web actual en un sitio corporativo-comercial más claro, escalable y alineado con la visión de Espacio Elementos.
